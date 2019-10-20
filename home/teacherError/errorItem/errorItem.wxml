@@ -1,0 +1,19 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<import src="./tree_template.wxml"></import>
+<import src="./err_template.wxml"></import>
+
+<scroll-view scroll-y="true">
+
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{ currentTab == 0 ? 'active' : '' }}" data-current="0" catchtap="clickTab" wx:for="{{ questions }}" wx:key="{{ index }}" data-item="{{ item }}">
+      {{ item.error }}
+    </view>
+  </view>
+
+  <view class="{{ currentTab == 3 ? 'show':'hidden' }}">
+    <template is="template" data="{{ knowledgePoints }}"></template>
+  </view>
+
+  <template is="err_template" data="{{ wholes }}"></template>
+
+</scroll-view>

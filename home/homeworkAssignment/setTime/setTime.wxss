@@ -1,0 +1,94 @@
+page {
+  background: #F4F4F4;
+  height: 100%;
+}
+
+.page__hd {
+  padding: 50rpx 50rpx 100rpx 50rpx;
+  text-align: center;
+}
+
+.page__title {
+  display: inline-block;
+  padding: 20rpx 40rpx;
+  font-size: 32rpx;
+  color: #aaa;
+  border-bottom: 1px solid #ccc;
+}
+
+.page__desc {
+  display: none;
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #bbb;
+}
+
+.section {
+  margin-bottom: 80rpx;
+}
+
+.section__title {
+  margin-bottom: 16rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}
+
+.picker {
+  padding: 35rpx;
+  background-color: #fff;
+  border: 1rpx solid ridge;
+  margin-top: 20rpx;
+}
+
+.sjian {
+  margin-left: 300rpx;
+}
+
+.sjian text {
+  font-size: 30rpx;
+}
+
+.picker .date {
+  font-size: 30rpx;
+}
+
+.btn-area {
+  width: 100%;
+  position: absolute;
+  bottom: 8rpx;
+}
+
+.btn-area text {
+  font-size: 36rpx;
+}
+
+.complete {
+  width: 80%;
+}
+
+textarea {
+  background: #fff;
+  margin-top: 30rpx;
+  padding: 20rpx 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 100%;
+}
+
+.InClass {
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  display: -webkit-flex;
+  justify-content:space-around;
+}
+
+.InClass view {
+  text-align: center;
+  order: 1;
+  width: 33.33%;
+}
+
+.color {
+  color: #00CD8A;
+}

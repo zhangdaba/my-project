@@ -1,0 +1,22 @@
+<view class="chapter">知识点目录</view>
+<view 
+class="view" 
+hover-class="hoverview" 
+wx:for="{{ chapterInfo }}" 
+wx:key="{{ index }}" 
+wx:for-item="chap"
+data-chap="{{ chap }}"
+bindtap="chapter">
+  <!-- 图片 -->
+    <image src="../../../static/images/01.png" mode="scaleToFill"></image>
+  <!-- 文字 -->
+  <view class="text">
+    <text>{{ chap.knowledgelevel3Name }} \n</text> <text>\n {{ chap.knowledgelevel1Name }}</text>
+  </view>
+  <!-- icon图标 -->
+  <view class="icon">
+    <icon class="iconfont icon-jiantou1"></icon>
+  </view>
+</view>
+
+<view wx:if="{{ !chapterInfo.length }}">暂无知识点信息</view>

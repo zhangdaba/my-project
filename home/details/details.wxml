@@ -1,0 +1,53 @@
+<!--home/details/details.wxml-->
+<view>
+  <view class="and">
+    <view class="left">
+      <image src="../../static/images/01.png"></image>
+    </view>
+    
+    <view class="right">
+      <view>知识与能力训练(五年级数学下册A)</view>
+      <view>一年级6班 数学</view>
+      <view>宝安中学</view>
+    </view>
+
+    <view class="complete">
+     <view class="leftDet">
+      <icon class="icon iconfont icon-shuben"></icon><text class="text">\t 完成度: \t</text><text class="tet">99%</text>
+     </view>
+
+     <view class="rightDet">
+      <icon class="icon iconfont icon-shijian"></icon><text class="text"> \t截至时间:\t\t</text><text class="tet">2018-10-18</text>
+     </view>
+    </view>
+
+  </view>
+
+  <view class="yunand" hover-class='yunandhove'>
+    <view>
+      <icon class="iconfont icon-tongji"></icon><text>\t 答题统计</text>
+    </view>
+    <view>
+      <icon class="ico iconfont icon-jiantou-copy"></icon>
+    </view>
+  </view>
+
+    <view class="yunand" hover-class='yunandhove'>
+    <view>
+      <icon class="iconfont icon-icon-test1"></icon><text>\t 统计</text>
+    </view>
+    <view>
+      <icon class="ico iconfont icon-jiantou-copy"></icon>
+    </view>
+  </view>
+
+    <view class="yunand" hover-class='yunandhove'>
+    <view>
+      <icon class="iconfont icon-dangan"></icon><text>\t 班级档案</text>
+    </view>
+    <view>
+      <icon class="ico iconfont icon-jiantou-copy"></icon>
+    </view>
+  </view>
+
+</view>

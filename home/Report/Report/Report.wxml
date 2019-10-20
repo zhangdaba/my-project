@@ -1,0 +1,17 @@
+<view class="top">
+
+  <view class="view" hover-class="viewhover" data-item="{{ item }}" bindtap="grade" wx:for="{{ getClass }}" wx:key="{{ index }}">
+
+    <view class="top-item">
+      <view>{{ item.className }}</view>
+      <view>{{ item.subject }}</view> 
+    </view>
+
+    <view class="bottom-item">
+      <view>{{ item.schoolName }}</view>
+    </view>
+  
+  <view class="GetInto">进入查看</view>
+  
+  </view>
+</view>

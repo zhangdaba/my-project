@@ -1,0 +1,52 @@
+.cox {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10rpx;
+}
+
+.right text {
+  width: 250rpx;
+  display: inline-block;
+  font-size: 26rpx;
+}
+
+.box {
+  width: 49%;
+  height: 300rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  float: left;
+  margin-top: 10rpx;
+}
+
+.boxHover {
+  background: #ccc;
+}
+
+.boxone {
+  margin: 30rpx;
+}
+
+.server {
+  margin-top: 10rpx;
+}
+
+.school {
+  font-size: 26rpx;
+  margin-top: 24rpx;
+  color: #ccc;
+}
+
+.into {
+  font-size: 30rpx;
+  margin-top: 30rpx;
+  text-align: center;
+}
+
+.cls text:first-child {
+  color: #44a9ff;
+  font-size: 36rpx;
+}

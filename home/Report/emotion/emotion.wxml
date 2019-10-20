@@ -1,0 +1,92 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<import src="./tree_template.wxml"></import>
+<import src="/template/subject/subject_select.wxml"></import>
+<import src="/template/subject/subject_title.wxml"></import>
+<import src="/template/subject/subject_answer.wxml"></import>
+<import src="/template/subject/subject_parse.wxml"></import>
+
+<view class="swiper-tab">
+  <view class="swiper-tab-item" catchtap="clickTab" wx:for="{{ questions }}" wx:key="{{ index }}" data-indx="{{ index }}" id="{{ switchindx == index ? 'indx': '' }}" data-item="{{ item }}">{{ item.error }}</view>
+</view>
+
+<template is="template" data="{{ reportAll }}"></template>
+
+<view>
+
+  <view class="student" wx:if="{{ knowledgeTopAll.length }}">
+    <view class="student_list">作业</view>
+    <view class="student_list">平均时间</view>
+    <view class="student_list" bindtap='proportion'>正确率△</view>
+  </view>
+
+  <view class="student" wx:for="{{ knowledgeTopAll }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="topAllStudent">
+    <view class="student_first">{{ item.source }}</view>
+    <view class="student_list">{{ item.homeworkName }}</view>
+    <view class="student_list">{{ item.answerTime }}</view>
+    <view class="student_list">{{ item.accuracy == null ? '空': dateFr.parseInt( item.accuracy * 100) + '%' }}</view>
+  </view>
+
+  <view class="student_subject" wx:if="{{ whiles.length }}">
+
+    <view class="student_list_item">
+      <view>题目</view>
+      <view>序号</view>
+    </view>
+
+    <view class="student_list_item">
+      <view>平均</view>
+      <view>答题时间</view>
+    </view>
+
+    <view class="student_list_item">
+      <view>平均</view>
+      <view>正确率</view>
+    </view>
+
+    <view class="student_list_item">查看</view>
+
+  </view>
+
+  <view wx:for="{{ whiles }}" wx:key="index" data-item="{{ item }}" data-idx="{{ index }}" bindtap="whilesBind">
+
+    <view class="student_subject">
+      <view class="student_list_item">{{ index + 1 }}</view>
+      <view class="student_list_item">
+        {{ item.avgAnswerTime === null ? '空' : item.avgAnswerTime +'s' }}
+      </view>
+      <view class="student_list_item">{{ dateFr.parseInt(item.accuracy * 100) + '%' }}</view>
+      <view class="student_list_item" bindtap="xiangqing" data-indx="{{ index }}">{{ item.is === true ? '收起' : '详情' }}</view>
+    </view>
+
+    <view class="zhengque m12" style="display: {{ item.is === true ? 'block' : 'none' }}">
+
+      <template is="subject_title" data="{{ item }}"></template>
+
+      <view wx:if="{{ item.isSub === 0 }}">
+
+        <template is="subject_select" data="{{ item }}"></template>
+
+        <template is="subject_answer" data="{{ item }}"></template>
+
+        <template is="subject_parse" data="{{ item }}"></template>
+      </view>
+
+      <view wx:else>
+
+        <view wx:for="{{ item.newSubquestionAnswers }}">
+
+          <template is="subject_title" data="{{ item }}"></template>
+
+          <template is="subject_select" data="{{ item }}"></template>
+
+          <template is="subject_answer" data="{{ item }}"></template>
+
+          <template is="subject_parse" data="{{ item }}"></template>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+</view>

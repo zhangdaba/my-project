@@ -1,0 +1,38 @@
+page {
+  background: #FDFDFD;
+}
+
+.setting {
+  line-height: 110rpx;
+  padding-left: 50rpx;
+  background: #fff;
+}
+
+.content {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+
+.content view {
+  width: 50%;
+  text-align: center;
+  margin-top: 20rpx;
+  background: #44A9FF;
+  color: #fff;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  border: 4rpx solid #FDFDFD;
+  border-radius: 10rpx;
+  line-height: 80rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.color {
+  color: #fff;
+}

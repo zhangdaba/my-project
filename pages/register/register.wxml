@@ -1,0 +1,76 @@
+<view class="view">
+  <form bindsubmit="formSubmit">
+    <view class="text"><text>身份</text></view>
+    
+    <view class="identity">
+
+      <!-- 身份选择 -->
+      <view 
+        class="{{ index + 1 == idx ? 'blue':'black' }} cls"  
+        wx:for="{{ identitys }}" 
+        wx:key="index"
+        bindtap="goIndex"
+        data-index="{{ index }}"
+        data-item="{{ item }}"
+        >
+        <text>{{ item.name }}</text>
+      </view>
+    
+    </view>
+
+    <view class="text"><icon class="iconfont icon-yonghu"></icon><text>手机号</text></view>
+
+    <view>
+      <input 
+        type="number" 
+        class='input-radius input' 
+        name="phone"
+        placeholder='请输入您的手机号'
+        bindinput='getphoto'
+        placeholder-class="placeholderStyle"/>
+    </view>
+
+    <!-- <view class="text">
+      <icon class="iconfont icon-duanxinyanzhengma"></icon>
+      <text>验证码</text>
+        wx:if="{{ !count }}"
+      <button 
+        type="primary"
+        plain="true"
+        size="mini"
+        disabled="{{ disabled }}"
+        class="verification"
+        bindtap="inputPhoneNum">{{ codename }}</button>
+    </view> -->
+    
+    <!-- <input 
+      type='number' 
+      class='huoqu input input-radius' 
+      name="verification" placeholder='请输入您的验证码' 
+      placeholder-class="placeholderStyle"></input> -->
+
+    <view class="text">
+      <icon class="iconfont icon-mima54"></icon>
+    <text>密码</text></view>
+    <input type="password" placeholder="密码为6到12位数字，字母，不能为空" 
+    placeholder-class="placeholderStyle" 
+    class="input" 
+    name="password"></input>
+
+    <view class="text">
+      <icon class="iconfont icon-mima54"></icon>
+    <text>确定密码</text></view>
+    <input type="password" class="input" name="confirm"></input>
+
+    <view class="text">
+      <icon class="iconfont icon-icon-pencil"></icon>
+    <text>您的姓名</text></view>
+    <input type="text" class="input" name="username"></input>
+
+    <button
+      type="primary"
+      form-type="submit"
+      class="complete good"
+      hover-class="#00CD8A"> 完成认证 </button>
+  </form>
+</view>

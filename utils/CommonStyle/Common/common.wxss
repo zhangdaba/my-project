@@ -1,0 +1,31 @@
+.weight {
+  font-weight: 700; 
+}
+
+.m12 {
+  margin: 12rpx;
+}
+
+.textIndent {
+  text-indent: 2rem;
+}
+
+.ell {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* 清除浮动 start */
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0;
+}
+
+.clearfloat {
+  zoom: 1;
+}
+/* 清除浮动 end */

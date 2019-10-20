@@ -1,0 +1,69 @@
+<!-- tabChange 当前选择的tabbar -->
+<view hidden="{{ tabChange.index !== 0  }}">
+
+  <swiper class="pswiper">
+    <block wx:for="{{ advImage }}" wx:key="{{ index }}">
+      <swiper-item>
+        <image class="pimg" src="{{ item }}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 学生部分 -->
+  <view class="parent clearfix">
+    <view class="name">
+      <text>{{ studentName[studentName_Idx].name || '请选择孩子' }}</text>
+      <text>\t 的作业</text>
+    </view>
+    <picker mode="selector" 
+            class="switch" 
+            value="{{ studentName[studentName_Idx].id }}" 
+            range="{{ studentName }}" 
+            range-key="{{ 'name' }}" 
+            bindchange="pswitch">
+      <text>切换孩子</text>
+      <icon class="iconfont icon-jiantou1"></icon>
+    </picker>
+  </view>
+  <!-- 学生部分 end -->
+
+  <view class="pswitch">  
+    <view class="select" bindtap="submission">
+      <icon class="iconfont icon-chakanxiangqing"></icon>
+      <view>
+        <text>查看作业\n</text>
+        <text>作业情况方便看</text>
+      </view>
+    </view>
+
+    <view class="select" bindtap="ParentErrorBook">
+      <icon class="iconfont icon-cuoti"></icon>
+      <view>
+        <text>错题本\n</text>
+        <text>错了什么一目了然</text>
+      </view>
+    </view>
+
+    <view class="select" bindtap="parentInfo">
+      <icon class="iconfont icon-xueqing"></icon>
+      <view>
+        <text>学情报告\n</text>
+        <text>随时掌握学习情况</text>
+      </view>
+    </view>
+
+  </view>
+
+</view>
+
+<view hidden="{{ tabChange.index !== 1 }}">
+  <my_msg id="my_msgProp" /> 
+</view>
+
+<view hidden="{{ tabChange.index !== 2 }}">
+  <my_personal></my_personal>
+</view>
+
+<mp-tabbar current="{{ num }}" ext-class="color:#fff" style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{ list }}" bindchange="tabChange">
+
+</mp-tabbar>

@@ -1,0 +1,81 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<!-- 事件冒泡 -->
+<view class="top-tab" bindtap="switchTab">
+  <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{task}}" data-index="{{ index }}" wx:key="index">
+    {{ item }}
+  </view>
+</view>
+
+<swiper style="height: {{ screenWidth }}px" current="{{ currentTabInde }}" bindchange="currentTab">
+
+  <swiper-item>
+    <scroll-view scroll-y="true">
+
+      <block wx:if="{{ !newRes.length }}">
+        <No_news text='空空如也...' />
+      </block>
+
+      <view class="classNum">
+        <view class="class" wx:for="{{ newRes }}" wx:key="{{ index }}" wx:for-item="task" data-task="{{ task }}" bindtap="notCorrected">
+          <view class="class_name">
+
+            <view class="class_title">
+              <view>{{ task.homeworkName }}</view>
+            </view>
+
+            <view class="class_center">
+              <view>
+                <icon class="iconfont {{ dateFr.icon() }}"></icon>
+              </view>
+              <view>
+                <text>{{ task.subject }} \n {{ task.grade }} \t ( {{ task.homeworkSource }} ) \n 总题数量： {{ task.countQue }} </text>
+              </view>
+            </view>
+
+            <view class="class_bottom">
+              <view>开始时间: {{ task.beginTime }}</view>
+              <view>结束时间: {{ task.stopTime }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </swiper-item>
+
+  <swiper-item>
+    <scroll-view scroll-y="true">
+
+      <block wx:if="{{ !oldRes.length }}">
+        <No_news text='空空如也...' />
+      </block>
+
+      <view class="classNum">
+        <view class="class" wx:for="{{ oldRes }}" wx:key="{{ index }}" wx:for-item="task" data-task="{{ task }}" bindtap="stuDent">
+          <view class="class_name">
+
+            <view class="class_title">
+              <view>{{ task.homeworkName }}</view>
+            </view>
+
+            <view class="class_center">
+              <view>
+                <icon class="iconfont {{ dateFr.icon() }}"></icon>
+              </view>
+              <view>
+                <text>{{ task.subject }} \n {{ task.grade }} \t ( {{ task.homeworkSource }} ) \n 总题数量： {{ task.countQue }} </text>
+              </view>
+            </view>
+
+            <view class="class_bottom">
+              <view>开始时间: {{ task.beginTime }}</view>
+              <view>结束时间: {{ task.stopTime }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </swiper-item>
+
+</swiper>

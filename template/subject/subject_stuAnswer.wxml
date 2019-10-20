@@ -1,0 +1,24 @@
+<template name="subject_stuAnswer">
+
+  <view class="stuName">
+    <view>
+      <text>学生答案: </text>
+    </view>
+
+    <view class="image" wx:if="{{ item.stuAnswer != ''}}">
+      <rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
+    </view>
+
+    <view class="image" wx:elif="{{ item.pictureAnswer != '' }}">
+      <view class="imgCenter">
+        <image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic1" bindtap='previewImg'>
+        </image>
+      </view>
+    </view>
+
+    <view class="image" wx:else>
+      <text>空</text>
+    </view>
+  </view>
+
+</template>

@@ -1,0 +1,93 @@
+@import "/utils/CommonStyle/subject/errCom.wxss";
+
+scroll-view {
+  height: 100%;
+}
+
+swiper-item {
+  height: 100%;
+}
+
+.idx {
+  width: 150rpx;
+  height: 150rpx;
+  background: #ccc;
+  float: left;
+  margin-left: 30rpx;
+}
+
+#topic {
+  color: #00f;
+}
+
+.stuName {
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.imgCenter {
+  text-align: center;
+}
+
+.imgCenter image {
+  padding-top: 30rpx;
+}
+
+.viewImg {
+  margin-bottom:20rpx;
+}
+
+.xuesheng {
+  text-align: center;
+  padding-top:30rpx;
+}
+
+.queBody {
+  font-size: 34rpx;
+  margin-top: 20rpx;
+}
+
+.answer1, .title,.stuAnswer {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.btnClass {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.btnClass .btn {
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.Submission {
+  width: 60%;
+  margin-top: 500rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.image {
+  font-size: 32rpx;
+  margin-bottom: 50rpx;
+}
+
+.topicIndex {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap
+}
+
+.topicIndex view {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ccc;
+}

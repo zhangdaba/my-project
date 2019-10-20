@@ -1,0 +1,26 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<import src="./tree_template.wxml"></import>
+<import src="./err_template.wxml"></import>
+
+<scroll-view scroll-y="true">
+
+  <view class="top-and">
+    <view class="top-top">
+      <view class="top-top-item">
+        <view class="top-tab">
+          <text catchtap="switchTab" data-item="{{ item }}" wx:for="{{ questions }}" wx:key="{{ index }}">{{ item.error }}</text>
+        </view>
+        <!-- top-tab -->
+      </view>
+    </view>
+    
+    <!-- 章节下 start -->
+    <view class="chapterContent">
+      <template is="template" data="{{ chapters }}"></template>
+    </view>
+    <!-- 章节下 end -->
+    
+    <template is="err_template" data="{{ wholes }}"></template>
+  </view>
+
+</scroll-view>

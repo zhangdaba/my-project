@@ -1,0 +1,43 @@
+.ChapterRecursions {
+  width: 88%;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.ChapterRecursions .ChapterRecursionsNum {
+  width: 96%;
+  margin: 0 auto;
+}
+
+.contentName {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 34rpx;
+}
+
+.flex-container {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 34rpx;
+  padding: 10rpx 0;
+}
+
+.flex-container view:nth-of-type(1) {
+  width: 80%;
+  overflow: hidden;
+  word-break: normal;
+  text-overflow: ellipsis;
+}
+
+.list-container {
+  margin-left: 20rpx;
+}
+
+.item-container {
+  margin-left: 40rpx;
+}

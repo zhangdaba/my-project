@@ -1,0 +1,42 @@
+<!-- 名字模块 -->
+<view class="name">
+  <view class="background">
+
+    <view class="user">
+      <image bindtap="bindViewTap" class="img" src="{{ userInfo.avatarUrl }}" mode="cover"></image>
+      <view class="nickName">
+        <text>{{ userInfo.nickName || '某某' }}</text>
+      </view>
+    </view>
+
+    <view class="right">
+      <button size="mini" open-type="getUserInfo" type="primary" class="pcenter" plain="true" bindgetuserinfo="getUserInfo">
+        <text>获取头像昵称</text>
+      </button>
+    </view>
+
+  </view>
+</view>
+
+<!-- 其他模块 -->
+<view class="editionNum">
+  <view class="edition">
+    <text decode="{{ true }}">&nbsp;&nbsp;智能笔</text>
+  </view>
+<!-- wx.makePhoneCall({
+  phoneNumber: '1340000' //仅为示例，并非真实的电话号码
+}) -->
+  <view class="edition" bindtap="makePhone">
+    <text decode="{{ true }}">&nbsp;&nbsp;联系客服</text>
+  </view>
+
+  <view class="edition" bindtap="cache">
+    <text decode="{{ true }}">&nbsp;&nbsp;切换账号</text>
+  </view>
+
+
+  <view class="edition">
+    <view bindtap="login">当前版本</view>
+    <view>V \n 1.0.0</view>
+  </view>
+</view>

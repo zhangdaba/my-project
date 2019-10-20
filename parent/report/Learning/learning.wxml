@@ -1,0 +1,83 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<import src="./tree_template.wxml"></import>
+<import src="/template/subject/subject_select.wxml"></import>
+<import src="/template/subject/subject_parse.wxml"></import>
+<import src="/template/subject/subject_title.wxml"></import>
+<import src="/template/subject/subject_answer.wxml"></import>
+
+<scroll-view scroll-y="true">
+  <view class="swiper-tab">
+    <view class="swiper-tab-item" catchtap="clickTab" wx:for="{{ questions }}" wx:key="{{ index }}" id="{{ indx == index ? 'indx': '' }}" data-indx="{{ index }}" data-item="{{ item }}">{{ item.error }}</view>
+  </view>
+
+  <template is="template" data="{{ chapterItem }}"></template>
+
+  <view class="student" wx:if="{{ tasks.length }}">
+    <view class="student_list">作业</view>
+    <view class="student_list">作业/时间</view>
+    <view class="student_list">正确率</view>
+  </view>
+
+  <view class="student" wx:for="{{ tasks }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="taskOnBind">
+    <view class="student_list">{{ item.homeworkName }}</view>
+    <view class="student_list">{{ item.ownerAnswerTime }}</view>
+    <view class="student_list">{{ item.ownerAccuracy === null ? '空': dateFr.parseInt( item.ownerAccuracy * 100) + '%' }}</view>
+    <view class="knowledgeItem {{ item.submit ? '' : 'knowledgeColor' }}">{{ item.submit ? '已提交':'未提交' }}</view>
+    <view class="InClass">{{ item.source }}</view>
+  </view>
+
+  <view class="flex" wx:if="{{ whiles.length }}">
+    <view class="flex_list">答题时间</view>
+    <view class="flex_list">班级</view>
+    <view class="flex_list">正确率</view>
+    <view class="flex_list">班级正确率</view>
+    <view class="flex_list">查看</view>
+  </view>
+
+  <view wx:for="{{ whiles }}" wx:key="index">
+
+    <view class="flex">
+      <view class="flex_list">{{ item.answerTime }}</view>
+      <view class="flex_list">{{ item.classAvgAnswerTime }}</view>
+      <view class="flex_list">{{ dateFr.parseInt(item.right * 100) + '%' }}</view>
+      <view class="flex_list">{{ dateFr.parseInt(item.classAccuracy * 100) + '%' }}</view>
+      <view class="flex_list xiangqing" bindtap="xiangqing" data-indx="{{ index }}">详情</view>
+    </view>
+
+
+    <view style="display: {{ item.is === true ? 'block' : 'none' }}">
+
+      <template is="subject_title" data="{{ item }}"></template>
+      
+      <view wx:if="{{ item.isSub === 0 }}">
+        <!-- 大题选项 -->
+        <template is="subject_select" data="{{ item }}"></template>
+
+        <template is="subject_answer" data="{{ item }}"></template>
+
+        <!-- 答题解析 -->
+        <template is="subject_parse" data="{{ item }}"></template>
+
+      </view>
+
+      <!-- 有小题 -->
+      <view wx:if="{{ item.isSub === 1 }}">
+
+        <view wx:for="{{ item.newSubquestionAnswers }}" wx:key="index">
+
+          <template is="subject_title" data="{{ item }}"></template>
+
+          <template is="subject_select" data="{{ item }}"></template>
+
+          <template is="subject_answer" data="{{ item }}"></template>
+
+          <template is="subject_parse" data="{{ item }}"></template>
+
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+
+</scroll-view>

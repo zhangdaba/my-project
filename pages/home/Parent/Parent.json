@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "navigationBarTitleText": "首页",
+  "navigationBarBackgroundColor": "#3A5898",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "mp-tabbar": "../../../Componet/weui/Tabbar/tabbar/tabbar",
+    "my_personal": "../../../Componet/Common/Personal/personnal",
+    "my_msg": "../../../Componet/Common/dynamicMsg/msg"
+  }
+}

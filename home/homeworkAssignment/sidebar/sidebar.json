@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "no_news": "/Componet/Common/No_news_yet/No_news"
+  },
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "作业布置"
+}

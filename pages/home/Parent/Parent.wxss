@@ -1,0 +1,98 @@
+/* 轮播图样式 start */
+page {
+  background: #f4f5f9;
+}
+
+.pswiper {
+  width: 100%;
+  height: 350rpx;
+}
+
+swiper .pimg {
+  height: 100%;
+  width: 100%;
+}
+/* 轮播图样式 end */
+
+/* 切换孩子部分 */
+.parent {
+  width: 92%;
+  height: 150rpx;
+  line-height: 150rpx;
+  background: #fff;
+  border-radius: 150rpx;
+  border-bottom: 1px dotted #ccc;
+  margin: 0 auto;
+  position: relative;
+  top: -66rpx;
+  -moz-box-shadow:2px 2px 5px #efefef; 
+  -webkit-box-shadow:2px 2px 5px #efefef; 
+  box-shadow:2px 2px 5px #efefef;
+}
+
+.parent .name {
+  float: left;
+  text-indent: 2em;
+}
+
+.parent .name text:nth-child(1) {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.parent .name text:nth-child(2) {
+  font-size: 32rpx;
+  color: #666;
+}
+
+.parent .switch {
+  font-size: 32rpx;
+  padding-right: 30rpx;
+  float: right;
+  color: #ccc;
+}
+
+/* 清除浮动 */
+
+.clearfix {
+  overflow: hidden;
+  _zoom: 1;
+}
+
+
+.pswitch {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pswitch .select {
+  width: 46%;
+  height: 184rpx;
+  margin-top: 20rpx;
+  border-radius: 16rpx;
+  background: #FFF;
+  position: relative;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pswitch .select view {
+  margin-left: 20rpx;
+}
+
+.pswitch .select icon {
+  font-size: 80rpx;
+  text-shadow: 10rpx 10rpx 10rpx #44a9ff;
+}
+
+.select view text:nth-of-type(1) {
+  font-size: 36rpx;
+}
+
+.select view text:nth-of-type(2) {
+  color: #ccc;
+}

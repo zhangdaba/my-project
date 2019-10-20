@@ -1,0 +1,27 @@
+<view>
+  <view class="students">
+    <text>未批改题型</text>
+  </view>
+  <view class="view" wx:if="{{ !notRes.length }}">
+    <text> 暂无未批改题型 </text> </view>
+  <view class="view" wx:for="{{ notRes }}" wx:index="{{ index }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap='Corrected'>
+    <view class='large'>
+      <text class="weipigai">第{{item.queNo}}题</text>
+      <text class="ww">未批改</text>
+    </view>
+  </view>
+  
+  <view class="students">
+    <text>已批改题型</text>
+  </view>
+  <view class="view" wx:for="{{ readyRes }}" wx:index="{{ index }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="Corrected">
+    <view class='large'>
+      <text class="weipigai">第{{ item.queNo }}题</text>
+      <text class='yipigai'>已批改</text>
+    </view>
+  </view>
+
+  <view class="view" wx:if="{{ !readyRes.length }}">
+    <text>暂无已批改题型</text>
+  </view>
+</view>

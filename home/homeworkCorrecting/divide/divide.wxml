@@ -1,0 +1,25 @@
+<view>
+  <view>
+    <view class="sum">批改作业</view>
+  </view>
+
+  <view 
+    class="divide" 
+    wx:for="{{ divides }}"
+    wx:key="index"
+    wx:for-item="divde"
+    hover-class="hoverdivde"
+    data-divde="{{ divde }}"
+    bindtap="divide"
+  >
+   <view>
+    <icon class="content iconfont {{ divde.icon }}"></icon>
+    <text>{{ divde.title }}</text>
+   </view>
+   
+    <view>
+      <icon class="icon iconfont icon-xiala3-copy-copy"></icon>
+    </view>
+  </view>
+
+</view>

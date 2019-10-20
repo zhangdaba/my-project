@@ -1,0 +1,46 @@
+<form bindsubmit='submit'>
+  <view class="page">
+
+    <textarea placeholder="请输入作业名称" 
+              maxlength="50" 
+              focus 
+              value="{{ chapItem }}" 
+              placeholder-class="placeholder" 
+              data-chapItem="{{ chapItem }}" 
+              bindinput="inputContent" />
+
+    <view class="InClass">
+      <view wx:for="{{ releases }}" 
+            data-item="{{ item }}" 
+            data-idx="{{ index }}" 
+            class="{{ index == evIndex ? 'color':'' }}" 
+            bindtap="releasesClick" 
+            wx:key="index">{{ item.title }}</view>
+    </view>
+
+    <view hidden="{{ evIndex === 1 }}">
+      <view class="section">
+        <picker mode="date" value="{ date }}" data-item="{{ data }}" bindchange="bindDateChange">
+          <view class="picker">
+            <text class="date">结束日期：</text>
+            <text class="sjian"> <text> {{date || '请选择' }} </text></text>
+          </view>
+        </picker>
+
+        <picker mode="time" value="{{ endtime }}" bindchange="endTimeChange">
+          <view class="picker">
+            <text class="date">结束时间：</text>
+            <text class="sjian"> <text> {{endtime }} </text></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="btn-area">
+    <button class="complete" form-type="submit" type="primary" style="background: #44A9FF;">
+      <text>完成</text></button>
+  </view>
+
+</form>

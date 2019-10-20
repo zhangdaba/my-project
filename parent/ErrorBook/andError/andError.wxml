@@ -1,0 +1,17 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
+<scroll-view scroll-y="true">
+  
+  <view class="errorNum">
+
+    <view class="subject" wx:for="{{ todayError }}" bindtap="subject" data-item="{{ item }}" wx:key="{{ index }}">
+      <view class="subject_list left"> <icon class="iconfont {{ dateFr.icon() }}"></icon></view>
+      <view class="subject_list center">{{ item.subjectName }}</view>
+      <view class="subject_list right"><icon class="iconfont icon-jiantou1"></icon></view>
+    </view>
+
+  </view>
+
+  <view wx:if="{{ !todayError.length }}" class="empty"><icon class="iconfont icon-empty"></icon> <text> \n 暂无错题...</text></view>
+
+</scroll-view>

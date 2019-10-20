@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "home/homeworkAssignment/sidebar/sidebar",
+    
+    "pages/index/index",
+
+    "home/Report/Report/Report",
+    "home/Report/emotion/emotion",
+
+    "pages/home/Parent/Parent",
+    "pages/home/Teacher/teacher",
+
+    "home/teacherError/error/error",
+    "home/teacherError/errorItem/errorItem",
+
+    "parent/ErrorBook/andError/andError",
+    "parent/ErrorBook/seeError/seeError",
+    
+
+    "parent/report/subReport/subReport",
+    "parent/report/Learning/learning",
+
+    "parent/viewJobs/submission/submiss",
+    "parent/viewJobs/subSee/subSee",
+
+    "home/homeworkAssignment/setTime/setTime",
+    "home/homeworkAssignment/assignment/assignment",
+    "home/homeworkAssignment/bindingClass/class",
+    "home/homeworkAssignment/bindingSchool/school",
+    "home/homeworkAssignment/dividehapter/chapter",
+    "home/homeworkAssignment/divideKnowledge/Knowledge",
+    "home/homeworkAssignment/setting/setting",
+
+    "home/homeworkCorrecting/Correcting/Correcting",
+    
+    "home/homeworkCorrecting/divide/divide",
+    "home/homeworkCorrecting/Question/question",
+    "home/homeworkCorrecting/Correction/correction",
+    "home/homeworkCorrecting/Student/Student",
+    
+    "parent/home/binding/children",
+    "pages/register/register",
+    "home/details/details"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3A5898",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
+  },
+  "sitemapLocation": "sitemap.json"
+}

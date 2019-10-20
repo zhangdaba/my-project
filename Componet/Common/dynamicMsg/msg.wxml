@@ -1,0 +1,26 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
+
+
+  <view class="view">
+    <scroll-view scroll-y="true">
+    <view class="view_num" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
+      <view class="view-list" style="background: {{ dateFr.random() }}">
+        <view>
+          <icon class="iconfont icon-tongyixiaoxi"></icon>
+        </view>
+      </view>
+
+      <view class="view-last">
+        <text>{{ item.subjectName }}作业</text> {{ item.content }}
+        <view class="view-last-float">
+          <text>{{ item.createTime }}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{ !my_msgPropArr.length }}" class="empty">
+      <icon class="iconfont icon-empty"></icon>
+      <text> \n 空空如也...</text>
+    </view>
+    </scroll-view>
+  </view>

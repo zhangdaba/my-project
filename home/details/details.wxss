@@ -1,0 +1,100 @@
+page {
+  background: #F7F7F7;
+}
+
+.and {
+  height: 400rpx;
+  background: #fff;
+}
+
+.left, .right {
+  height: 300rpx;
+  padding-top: 20rpx;
+}
+
+.left {
+  width: 36%;
+  float: left;
+}
+
+.left image {
+  width: 76%;
+  height: 84%;
+  margin-left: 50rpx;
+  overflow: hidden;
+}
+
+.right {
+  width: 64%;
+  float: right;
+}
+
+.right view:nth-child(1) {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 0 20rpx 0;
+}
+
+.right view:nth-child(2),.right view:nth-child(3) {
+  font-size: 30rpx;
+  margin:40rpx 20rpx 40rpx;
+}
+
+.complete {
+  padding-left: 50rpx;
+
+}
+
+.complete .icon {
+  font-size: 36rpx;
+}
+
+.complete .leftDet .text,.complete .rightDet .text {
+  font-size: 24rpx;
+}
+
+.complete .tet {
+  font-size: 24rpx;
+  color:#84E9C4;
+  font-weight: 700
+}
+
+.leftDet {
+  float: left;
+}
+
+.rightDet {
+  float: right;
+  padding-right: 30rpx;
+}
+
+
+.yunand {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+
+.yunand view:nth-child(1) {
+  float: left;
+  padding-left: 30rpx;
+}
+
+.yunand view:nth-child(1) text {
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.yunand view:nth-child(2) {
+  float: right;
+}
+
+.yunand .ico {
+  font-size: 56rpx;
+}
+
+.yunandhove {
+  color: #00CD8A
+}

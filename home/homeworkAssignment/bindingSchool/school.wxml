@@ -1,0 +1,45 @@
+<view class="add">
+
+  <view class="search">
+    <input 
+      focus 
+      placeholder="请输入学校名称" 
+      type="string"
+      confirm-type="search"
+      bindinput="inputBind"
+      data-item="{{ item }}"
+      bindinput="search">
+    </input>
+
+    <view class="cls">
+      <icon class="iconfont icon-sousuo"></icon>
+    </view>
+  </view>
+
+  <view class="nothing" wx:if="{{ !school.length }}"><text>暂无内容 ！！！</text></view>
+
+  <view class="school" wx:if="{{ school.length }}" wx:for="{{ school }}" wx:key="{{ index }}" hover-class="schoolHover">
+
+    <view bindtap="school" data-item="{{ item }}"> <text>{{ item.name }}</text></view>
+
+  </view>
+  
+<!-- 
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      <text>省份</text> <text>{{region[0]}} {{region[1]}} {{region[2]}}</text>
+    </view>
+  </picker> -->
+
+  <!-- 学校 -->
+  <!-- <view class="School" bindtap="sch">
+    <picker value="0" mode="selector" bindcancel="event" bindchange="bindevent" value='0' range="{{array}}" range-key="{{ arrar }}">
+      <icon class="icon iconfont icon-xuexiao"></icon>
+      <text decode="{{ true }}">&nbsp;&nbsp;学校</text>
+      <icon class="ico iconfont icon-jiantou"></icon>
+      <text class="puyue" wx:if="{{ !isNode }}">{{ arr }}</text>
+      <text class="puyue" wx:if="{{ isNode }}"> {{ array[index] }}</text>
+    </picker>
+  </view> -->
+
+</view>

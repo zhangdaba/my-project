@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "no_msg": "/Componet/Common/No_news_yet/No_news"
+  },
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "章节目录"
+}

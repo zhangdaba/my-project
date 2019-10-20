@@ -1,0 +1,8 @@
+<template name="subject_title">
+  <view class="subject">
+    <view class="subject_title">
+      <!-- {{ index + 1 }}. -->
+      <rich-text type="nodes" space="nbsp" nodes="{{ item.queBody || item.title }}"></rich-text>
+    </view>
+  </view>
+</template>

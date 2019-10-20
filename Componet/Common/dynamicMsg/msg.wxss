@@ -1,0 +1,55 @@
+@import "/app.wxss";
+
+page {
+  background-color: #F6F7FB;
+}
+
+.view {
+  width: 94%;
+  margin: 20rpx auto 160rpx;
+}
+
+.view .view_num {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+  border-bottom: 1px dotted #AAC8FF;
+}
+
+.view .view-list {
+  width: 16%;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  border-radius: 20rpx;
+}
+
+.view .view-last-float text {
+  float: right;
+  color: #ccc;
+}
+
+.view .view-last {
+  width: 80%;
+  word-wrap:break-word;
+}
+
+.view .view-list icon {
+  font-size: 60rpx;
+  color: #fff;
+}
+
+.empty {
+  text-align: center;
+  padding-top: 150rpx;
+  color: #ccc;
+}
+
+.empty text {
+  font-size: 36rpx;
+}
+
+.empty icon {
+  font-size: 160rpx;
+}

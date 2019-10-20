@@ -1,0 +1,158 @@
+@import "../../../parent/viewJobs/submission/submiss.wxss";
+
+.top-tab {
+  height: 64rpx;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+  background-color: #fff;
+  align-items: stretch;
+  font-size: 32rpx;
+  color: #7b7b7b;
+}
+
+.top-tab-item {
+  flex-grow: 1;
+  text-align: center;
+  height: 64rpx;
+  line-height: 64rpx;
+}
+
+.active {
+  color: #44A9FF;
+  border-bottom: 2px solid #44A9FF;
+}
+
+.swiper-item {
+  height: 100%;
+}
+
+.scroll-view {
+  height: 100%;
+}
+
+
+
+/* 批改 */
+.cls {
+  width: 96%;
+  height: 430rpx;
+  background-color: #fff;
+  margin: 20rpx auto 20rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.first {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-top: 20rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+.first .box text:nth-child(1) {
+  font-size: 46rpx;
+  color: #00CD8A;
+}
+
+.first .box text:nth-child(2) {
+  margin-left: 20rpx;
+  font-size: 30rpx;
+}
+
+.first view:nth-child(2) {
+  float: right;
+  padding-right: 30rpx;
+  font-size: 28rpx;
+}
+
+.first .See {
+  font-size: 16rpx;
+}
+
+.iconfont {
+  font-size: 36rpx;
+}
+
+.cls .ico {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  margin-top: 20rpx;
+  background-color: #40D3A0;
+}
+
+.icoS {
+  width: 60rpx;
+  height: 60rpx;
+  display: inline-block;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}
+
+.cls .text {
+  font-size: 28rpx;
+  margin-top: 26rpx;
+  margin-left: 20rpx;
+}
+
+.view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 22rpx;
+  margin-top: 6rpx;
+}
+
+.cls .zhishi {
+  height: 40rpx;
+  width: 100%;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  margin-top: 22rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cls .clasSview {
+  font-size: 28rpx;
+}
+
+.corrected {
+  width: 34rpx;
+  height: 34rpx;
+  float: right;
+  margin-right: 40rpx;
+  margin-top: -36%;
+}
+
+.corr {
+  color: #00CD8A;
+}
+
+.andRes {
+  text-align: center;
+  padding-top: 80rpx;
+}
+
+.andRes text {
+  font-size: 32rpx;
+}
+
+.xiazai {
+  
+}
+
+/* 批改 end */

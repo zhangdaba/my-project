@@ -1,0 +1,57 @@
+page {
+  background: #F0F0F0;
+}
+
+.students {
+  width: 100%;
+  height: 90rpx;
+  line-height: 78rpx;
+  background: #fff;
+  margin-top: 4rpx;
+  padding-left: 40rpx;
+  color: #7C7C7C;
+}
+
+.students text {
+  font-size: 32rpx;
+}
+
+.view {
+  background: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 4rpx;
+  padding-left: 40rpx;
+}
+
+.view text {
+  font-size: 30rpx;
+}
+
+.weipigai, .weitijiao, .yitijiao {
+  padding-right: 26rpx;
+  padding-left: 30rpx;
+}
+
+.view .weitijiao {
+  color: #FF7575;
+}
+
+.view .weipigai {
+ color: #7D7D7D;
+}
+
+.view .yitijiao {
+  color: #00CD8A;
+}
+
+.yipigai {
+  float: right;
+  padding-right: 40rpx;
+  color:#00CD8A;
+}
+.ww {
+  float: right;
+  padding-right: 40rpx;
+  color: #FF7575;
+}

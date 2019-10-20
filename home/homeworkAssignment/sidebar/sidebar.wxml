@@ -1,0 +1,115 @@
+<view class="splice">
+  <text class="topic-left">共计{{ books.length }}道题</text>
+
+  <text hidden="{{ management_good }}" class="topic-right" bindtap="management">换题</text>
+
+  <text hidden="{{ !management_good }}" class="topic-right topic-right-item" bindtap="finish_management">确定换题</text>
+
+</view>
+
+<view class="all">
+
+  <view class="books" wx:for="{{ books }}" 
+        decode="true" 
+        wx:key="{{ index }}" 
+        data-idx="{{ index }}" 
+        data-item="{{ item }}" 
+        bindtap="select">
+
+    <view class="taskItem">
+      <!-- 换题 -->
+      <view hidden="{{ !management_good }}">
+
+        <view class="block" hidden="{{ item.flag }}">
+          <view class="icon_none"></view>
+        </view>
+
+        <view class="block" hidden="{{ !item.flag }}">
+          <icon type="success" size="20" color="#f00"></icon>
+        </view>
+      </view>
+
+      <!-- 题型开始 -->
+      <view>
+
+        <view>
+          <!-- 题目 -->
+          <text>{{ index + 1 }}. \t </text>
+          <view class="position">
+            <rich-text type="nodes*" space="&nbsp" nodes="{{ item.title }}"></rich-text>
+          </view>
+        </view>
+        
+        <!-- 大题情况 -->
+        <view wx:if="{{ item.isSub == 0 }}">
+          <view class="choice">
+            <view class="choice_item" wx:if="{{ item.optionA != '' }}">
+              <view class="author-info">A:</view>
+
+              <rich-text class="rich-text" type="nodes*" space="&nbsp" nodes="{{ item.optionA }}"></rich-text>
+              
+            </view>
+
+            <view class="choice_item" wx:if="{{ item.optionB != '' }}">
+              B:
+              <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionB }}"></rich-text>
+            </view>
+
+            <view class="choice_item" wx:if="{{ item.optionC != '' }}">
+              C:
+              <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionC }}"></rich-text>
+            </view>
+
+            <view class="choice_item" wx:if="{{ item.optionD != '' }}">
+              D:
+              <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionD }}"></rich-text>
+            </view>
+
+            <view class="choice_item" wx:if="{{ item.optionE != '' }}">
+              E:
+              <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionE }}"></rich-text>
+            </view>
+
+
+          </view>
+        </view>
+
+        <!-- 子题情况 -->
+        <view wx:if="{{ item.isSub == 1 }}">
+          <view wx:for="{{ item.subquestion }}" wx:key="{{ index }}">
+            <rich-text type="nodes*" space="&nbsp" nodes="{{ item.title }}"></rich-text>
+            <view class="choice">
+              <view class="choice_item" wx:if="{{ item.optionA != '' }}">
+                A:
+                <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionA }}"></rich-text>
+              </view>
+
+              <view class="choice_item" wx:if="{{ item.optionB != '' }}">
+                B:
+                <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionB }}"></rich-text>
+              </view>
+
+              <view class="choice_item" wx:if="{{ item.optionC != '' }}">
+                C:
+                <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionC }}"></rich-text>
+              </view>
+
+              <view class="choice_item" wx:if="{{ item.optionD != '' }}">
+                D:
+                <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionD }}"></rich-text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <button class="btn" bindtap="Arrangement" wx:if="{{ books.length }}" style="background: #44A9FF;" type="primary">
+    <text>点击布置</text>
+  </button>
+</view>
+
+<view wx:if="{{ !books.length }}">
+  <no_news text="空空如也"/>
+</view>

@@ -1,0 +1,33 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<template name="template">
+  <view class="ChapterRecursions">
+    <view class="ChapterRecursionsNum">
+      <view class="contentName" wx:if="{{ chapterItem.length }}">
+        <view>章节目录</view>
+        <view>班级正确率</view>
+      </view>
+      <view wx:for="{{ chapterItem }}" wx:key="{{ index }}" data-item="{{ item }}" catchtap='chapterTop'>
+
+        <view class="flex-container">
+          <view>{{ item.chapterName }}</view>
+          <view>{{ item.chapterAccuracy == null ? '' : dateFr.parseInt( item.chapterAccuracy * 100) + '%' }}</view>
+        </view>
+        
+        <view wx:for="{{ item.children }}" wx:key="{{ index }}" wx:for-item="item_list" data-item="{{ item_list }}" catchtap='chapterTop'>
+
+          <view class="flex-container list-container">
+            <view>{{ item_list.chapterName }}</view>
+            <view>{{ item_list.chapterAccuracy == null ? '' : dateFr.parseInt( item_list.chapterAccuracy * 100) + '%' }}</view>
+          </view>
+
+          <view catchtap='chapterTop' wx:for="{{ item_list.children }}" wx:key="{{ index }}" wx:for-item="item_list_item" data-item="{{ item_list_item }}">
+            <view class="flex-container item-container">
+              <view> {{ item_list_item.chapterName }}</view>
+              <view> {{ item_list_item.chapterAccuracy == null ? '' : dateFr.parseInt( item_list_item.chapterAccuracy * 100) + '%' }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

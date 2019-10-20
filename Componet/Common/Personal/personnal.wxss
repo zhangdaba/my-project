@@ -1,0 +1,93 @@
+page {
+  background: #F6F7FB;
+}
+
+.name {
+  width: 100%;
+  height: 450rpx;
+  background: #395695;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.name .background {
+  width: 100%;
+  height: 476rpx;
+  background: url('http://abc.epen.ltd/image/201910091443311.png') no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+  position: relative;
+  top: 56rpx;
+}
+
+.user {
+  height: 150rpx;
+  width: 150rpx;
+  margin: auto;
+  position: absolute;
+  top: -56rpx;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.user .img {
+  width: 150rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  font-size: 46rpx;
+  text-align: center;
+  color: #fff;
+  background: #56a4e4;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.user .nickName {
+  text-align: center;
+  color: #fff;
+}
+
+.name .background .right {
+  position: absolute;
+  right: 50rpx;
+  top: 50rpx;
+}
+
+.name .background .right button {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+/* 智能笔 */
+
+.editionNum {
+  margin-top: 80rpx;
+  font-weight: 600;
+}
+
+.edition {
+  width: 100%;
+  height: 100rpx;
+  margin-top: 20rpx;
+  line-height: 100rpx;
+  background: #fff;
+  font-size: 30rpx;
+}
+
+.edition view:nth-child(1) {
+  float: left;
+  padding-left: 20rpx;
+}
+
+.edition view:nth-child(2) {
+  float: right;
+  padding-right: 20rpx;
+}
+
+.edition view:nth-child(2) text {
+  font-weight: 700;
+}
+
+/* 当前版本 end */

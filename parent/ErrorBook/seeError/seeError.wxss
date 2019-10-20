@@ -1,0 +1,49 @@
+@import '/utils/CommonStyle/subject/treeCom.wxss';
+@import '/utils/CommonStyle/subject/errCom.wxss';
+
+scroll-view {
+  height: 100%;
+}
+
+.top-tab {
+  height: 64rpx;
+  line-height: 64rpx;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+  background-color: #fff;
+  align-items: stretch;
+  font-size: 32rpx;
+  color: #7b7b7b;
+}
+
+.top-tab text {
+  padding: 0 80rpx;
+}
+
+.top-top {
+  width: 100%;
+  height: 64rpx;
+  position: fixed;
+  border-bottom: 1px dashed #000;
+}
+
+.top-top-item {
+  position: relative;
+  z-index: 999;
+}
+
+.chapterContent {
+  padding-top: 80rpx;
+}
+
+.images {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.homeworkName {
+  margin-bottom: 20rpx;
+}

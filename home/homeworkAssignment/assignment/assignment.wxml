@@ -1,0 +1,24 @@
+<view class="cox">
+  <view 
+    class="box"
+    hover-class='boxHover'
+    wx:for="{{ books }}"
+    wx:key="{{ index }}"
+    data-item="{{ item }}"
+    data-index="{{ index }}"
+    bindtap="taskone">
+    
+   <view class="boxone">
+    <view class="cls">
+      <text> {{ item.className }}</text>
+      <text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{ item.subject }}</text>
+    </view>
+    
+    <view class="server"><text> {{ item.book }}</text></view>
+    <view class="school"><text>{{ item.schoolName }}</text></view>
+    <view class="into">进入布置</view>
+   </view>
+  </view>
+</view>
+
+

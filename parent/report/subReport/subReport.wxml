@@ -1,0 +1,25 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
+<scroll-view scroll-y="true">
+
+<view class="select">
+  <text>学科选择</text>
+</view>
+
+<view class="view">
+
+  <view class="view_list"
+        wx:for="{{ subject }}"
+        data-item="{{item.className }}"
+        data-idx="{{ index }}" 
+        wx:key="{{ index }}" 
+        data-item="{{ item }}"
+        bindtap="subject">
+    <text class="view_list_item">{{ item.subject }}</text>
+    <icon class="iconfont {{ dateFr.icon() }}"></icon>
+  </view>
+  
+
+</view>
+
+</scroll-view>

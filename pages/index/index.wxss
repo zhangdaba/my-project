@@ -1,0 +1,78 @@
+page {
+  padding-left: 60rpx;
+}
+
+.login icon {
+  font-size: 120rpx;
+  color: #44A9FF;
+  padding-top: 160rpx;
+}
+
+/* 控制input下边线的长度 */
+
+.handle {
+  width: 80%;
+  height: 100rpx;
+  padding-top: 60rpx;
+}
+
+.box {
+  font-size: 30rpx;
+  position: relative;
+}
+
+.icon {
+  font-size: 40rpx;
+  position: absolute;
+  left: 84rpx;
+}
+
+.placeholderStyle {
+  font-size: 30rpx;
+  padding-right: 50rpx;
+}
+
+.input-radius {
+  height: 60rpx;
+  border-bottom: 1px solid #F6F7FB;
+  padding-left: 80rpx;
+}
+
+.input-radius:hover {
+  border-bottom: 1px solid #44A9FF;
+}
+
+/* 登录 注册 样式 */
+
+.sign {
+  width: 80%;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-top: 30rpx;
+}
+
+.signLift {
+  height: 70rpx;
+  width: 230rpx;
+  margin-top: 20rpx;
+  float: left;
+}
+
+.signLift text {
+  font-size: 32rpx;
+}
+
+.signRight {
+  width: 100rpx;
+  height: 100rpx;
+  font-size: 30rpx;
+  float: right;
+}
+
+.signRight text {
+  font-size: 34rpx;
+}
+
+.hoverSign {
+  color: #1aad19;
+}

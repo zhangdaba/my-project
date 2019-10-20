@@ -1,0 +1,30 @@
+<view class="chapterCatalog">章节目录</view>
+
+<!-- 文字 -->
+<view class="text">
+  <text>{{ chap.chapter }}</text>
+</view>
+
+<view class="chapterAnd">
+  <view class="chapter" wx:for="{{ chapterInfo }}" wx:key="{{ index }}" wx:for-item="chap" data-chap="{{ chap }}" catchtap="chapter">
+    <text>{{ chap.chapter }}</text>
+    <view 
+    class="chapter_list"
+    wx:for="{{ chap.children }}"
+    wx:key="{{ index }}"
+    wx:for-item="chap_list"
+    data-chap="{{ chap_list }}"
+    catchtap="chapter">
+     <text>{{ chap_list.chapter }}</text>
+
+     <view class="chapter_list_item"
+           wx:for="{{ chap_list.children }}"
+           wx:key="{{ index }}"
+           wx:for-item="chapter_list_item"
+           data-chap="{{ chapter_list_item }}"
+           catchtap="chapter">{{ chapter_list_item.chapter }}</view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{ !chapterInfo.length }}"> <no_msg text="暂无章节信息" /> </view>

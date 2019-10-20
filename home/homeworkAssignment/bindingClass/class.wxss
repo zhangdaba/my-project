@@ -1,0 +1,59 @@
+.blue {
+  color: #1AAD19;
+}
+
+.black {
+  color: #000;
+}
+
+.cls {
+  width: 190rpx;
+  height: 60rpx;
+  background-color: #ccc;
+  line-height: 50rpx;
+  text-align: center;
+  margin:20rpx 30rpx 20rpx 0rpx;
+  border-radius: 24rpx;
+  display: inline-block;
+  margin-left: 26rpx;
+  transition: all .2s;
+  -moz-transition: all .2s;	/* Firefox 4 */
+  -webkit-transition: all .2s;	/* Safari 和 Chrome */
+  -o-transition: all .2s;	/* Opera */
+}
+
+.cls text {
+  font-size: 24rpx;
+}
+
+.viewInput {
+  height: 56rpx;
+  line-height: 56rpx;
+  border: 1px solid #00CD8A;
+  font-size: 32rpx;
+  border-radius: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-left: 2em;
+}
+
+.please {
+  margin-left: 20rpx;
+  padding-top: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.please text {
+  font-size: 30rpx;
+}
+
+button {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 30rpx;
+  border-radius: 20rpx;
+}
+
+button text {
+  font-size: 32rpx;
+}

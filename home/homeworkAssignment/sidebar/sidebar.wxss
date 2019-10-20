@@ -1,0 +1,270 @@
+/* 侧边栏样式 */
+
+/* 当屏幕向左滑动，出现侧边栏的时候，主页的动画样式 */
+
+/* scale：取值范围 0~1 ，表示屏幕大小是原来的百分之几，可以自己修改成 0.8 试下*/
+
+/* translate(60%,0%) 表示向左滑动的时候，侧边栏占用平时的宽度为 60%   */
+
+.c-state {
+  transform: rotate(0deg) scale(1) translate(60%, 0%);
+  -webkit-transform: rotate(0deg) scale(1) translate(80%, 0%);
+}
+
+/* 主页样式 */
+
+.page-top {
+  height: 100%;
+  position: fixed;
+  width: 750rpx;
+  background-color: white;
+  z-index: 0;
+  transition: All 0.4s ease;
+  -webkit-transition: All 0.4s ease;
+}
+
+/* 左上角图标的样式 */
+
+.page-top icon {
+  position: absolute;
+  width: 68rpx;
+  height: 68rpx;
+  left: 20rpx;
+  top: 20rpx;
+}
+
+/* 遮盖层样式 */
+
+.cover {
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 0.5;
+  z-index: 9000;
+}
+
+
+.page-slidebar {
+  height: 100%;
+  width: 950rpx;
+  position: fixed;
+  background-color: white;
+  z-index: 0;
+}
+
+/* 控制侧边栏的内容距离顶部的距离 */
+
+.page-content {
+  padding-top: 30rpx;
+}
+
+/* 侧边栏样式 end */
+
+
+/* 主题内容 */
+
+.content1 {
+  margin-top: 100rpx;
+}
+
+.a {
+  float: right;
+}
+
+.scroll-view {
+  height: 100%;
+}
+
+/* 主题内容end */
+
+/* 侧边栏 */
+
+.top {
+  display: flex;
+}
+
+.top .content {
+  width: 278rpx;
+  margin-left: 40rpx;
+}
+
+.top .content text:nth-child(1) {
+  font-size: 38rpx;
+}
+
+.top .content text:nth-child(2) {
+  font-size: 30rpx;
+}
+
+.top .images {
+  width: 256rpx;
+  height: 300rpx;
+  background: #ccc;
+}
+
+.top .images image {
+  width: 100%;
+  height: 100%
+}
+
+.page-content .wc:nth-child(2) {
+  margin-top: 16rpx;
+}
+
+.wc {
+  width: 600rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.wc .one {
+  font-size: 38rpx;
+  font-weight: 700;
+}
+
+.wc .two {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  margin-left:32rpx;
+}
+
+.wc .two:last-child {
+  margin-bottom: 20rpx;
+}
+
+.wc .two text:nth-child(2) {
+  float: right;
+  padding-right: 30rpx;
+}
+
+/* 按钮 */
+.complete-box {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 20rpx;
+}
+
+.complete {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.complete text {
+  font-size: 36rpx;
+}
+/* 侧边栏 end */
+
+
+/* 主样式 */
+.books {
+  margin-bottom: 20rpx;
+  margin-top: 40rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.all {
+  padding-top: 80rpx;
+}
+
+.btn {
+  width: 80%;
+  margin: 30rpx auto;
+}
+
+.btn text {
+  font-size: 34rpx;
+}
+
+/* 主样式 end */
+
+/* 开头 start */
+
+.splice {
+  height: 80rpx;
+  width: 100%;
+  line-height: 80rpx;
+  background: #F5F5F5;
+  font-size: 34rpx;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+.splice text {
+  padding-left: 20rpx;
+}
+
+.icon_none {
+  width: 36rpx;
+  height: 36rpx;
+  border: 1px solid #FF5E3B;
+  border-radius: 50%;
+}
+
+.block {
+  width: 36rpx;
+  position: relative;
+  right: -620rpx;
+}
+
+.topic-right {
+  float: right; 
+  padding-right: 42rpx; 
+  font-size: 30rpx;
+  color: #44A9FF;
+}
+
+.topic-right-item {
+  color: #f00;
+}
+
+.topic-left {
+  font-size: 30rpx;
+}
+
+/* 题型字体大小 */
+.taskItem {
+  background: #fff;
+  overflow: hidden;
+  font-size: 26rpx;
+  padding: 20rpx 10rpx;
+}
+
+.choice {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.choice_item {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+}
+
+.rich-text,.author-info {
+  vertical-align: middle;
+}
+
+.choice text {
+  padding-left: 4rpx;
+}
+
+.xiaoti {
+  padding-left: 30rpx;
+}
+
+.position {
+  position: relative;
+  left: 32rpx;
+  top: -34rpx;
+  width: 620rpx;
+  height: 100%;
+}
+
+/* 结束 end */

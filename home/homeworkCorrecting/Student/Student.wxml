@@ -1,0 +1,43 @@
+<view>
+  <view class="students"> <text>未提交学生列表</text></view>
+  <view class="view" wx:if="{{ !notRes.length }}"> <text>暂无提交作业</text></view>
+  <view
+    class="view" 
+    wx:for="{{ notRes }}" 
+    wx:index="{{ index }}" 
+    wx:key="{{ index }}"
+    data-item="{{ item }}"
+  >
+    <text>{{ item.stuName }} <text class="weitijiao">未提交</text></text>
+  </view>
+  
+  <view class="students"><text>未批改学生列表</text></view>
+  <view class="view" wx:if="{{ !readyRes.length }}"><text>暂无未批改作业</text></view>
+  <view
+    class="view"
+    wx:for="{{ readyRes }}"
+    wx:index="{{ index }}"
+    wx:key="{{ index }}"
+    data-item="{{ item }}"
+    data-pigai="{{ '未批改' }}"
+    bindtap="bind_comRes"
+  >
+    <text>{{ item.stuName }} <text class="weipigai">未批改</text></text>
+  </view>
+
+  <view class="students"><text>已批改学生列表</text></view>
+
+  <view class="view" wx:if="{{ !comRes.length }}"> <text> 暂无已批改作业 </text> </view>
+
+  <view
+    class="view"
+    wx:for="{{ comRes }}" 
+    wx:index="{{ index }}" 
+    wx:key="{{ index }}"
+    data-item="{{ item }}"
+    data-pigai="{{ '已批改' }}"
+    bindtap="bind_comRes"
+  ><text>{{ item.stuName }}<text class="yitijiao">已批改</text></text>
+  </view>
+
+</view>

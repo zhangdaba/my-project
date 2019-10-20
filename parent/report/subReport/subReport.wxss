@@ -1,0 +1,118 @@
+@import "../../../home/teacherError/errorItem/errorItem.wxss";
+
+.select {
+  font-size: 36rpx;
+  font-weight: 700;
+  padding: 26rpx;
+}
+
+.view {
+  width: 96%;
+  margin: 0 auto;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+.view .view_list {
+  width: 30%;
+  height: 220rpx;
+  line-height: 220rpx;
+  text-align: center;
+  margin: 10rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  box-shadow: 6rpx 6rpx 6rpx #F2F2F2;
+  position: relative;
+}
+
+.view .view_list .view_list_item {
+  position: absolute;
+  left: 16rpx;
+  top: -70rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.view .view_list icon {
+  color: #44A9FF;
+  font-weight: 600;
+  font-size: 80rpx;
+}
+
+
+/* page {
+  background: #F8F8F8;
+}
+
+.subject {
+  height: 110rpx;
+  line-height: 110rpx;
+  padding-left: 30rpx;
+  background: #fff;
+}
+
+scroll-view {
+  height: 100%;
+}
+
+.view {
+  width: 80%;
+  height: 300rpx;
+  margin: 130rpx auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.view text {
+  font-size: 30rpx;
+  padding: 30rpx;
+  background: #DFDFDF;
+  border-radius: 50rpx;
+  margin-left: 30rpx;
+}
+
+.subject text {
+  font-size: 32rpx;
+}
+
+.subject_Item {
+  color: #f00;
+}
+
+.select_box {
+  background-color: #eee;
+  padding: 0 10rpx;
+  width: 93%;
+  position: absolute;
+  top: 130rpx;
+  z-index: 1;
+  overflow: hidden;
+  animation: myfirst 0.5s;
+}
+
+.cls {
+  margin-top: 100rpx;
+}
+
+.vie {
+  padding: 10rpx;
+  height: 500rpx;
+  max-height: 500rpx;
+}
+
+.vie text {
+  font-size: 30rpx;
+  display: block;
+  float: left;
+  margin-left: 40rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  background: #DFDFDF;
+  border-radius: 20rpx;
+}
+
+.ple {
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+} */

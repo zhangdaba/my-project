@@ -1,0 +1,4 @@
+<view class="empty">
+  <icon class="iconfont icon-empty"></icon>
+  <text> \n {{ text }}</text>
+</view>

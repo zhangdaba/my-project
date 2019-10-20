@@ -1,0 +1,99 @@
+.view {
+  padding: 60rpx;
+}
+
+.text text {
+  font-size: 30rpx;
+}
+
+.text {
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.placeholderStyle {
+  color:#ccc;
+  font-size: 24rpx;
+}
+
+.text icon {
+  position: absolute;
+  left: 0;
+  top: 66rpx;
+}
+
+/* @media (min-width:320px) and (max-width: 667px) {
+  .text icon {
+    position: absolute;
+    left: 0;
+    top: 94rpx;
+  }
+}
+
+@media (min-width:667px) and (max-width: 1024px) {
+  .text icon {
+    position: absolute;
+    left: 0;
+    top: 78rpx;
+  }
+}
+
+@media (min-width:834px) and (max-width: 1366px) {
+  .text icon {
+    position: absolute;
+    left: 0;
+    top: 80rpx;
+  }
+} */
+
+.text .verification {
+  position: absolute;
+  right: 0;
+  top: 50rpx;
+}
+
+.identity {
+  font-size: 36rpx;
+}
+
+.identity .cls {
+  width: 90rpx;
+  height: 60rpx;
+  background-color: #ccc;
+  line-height: 50rpx;
+  text-align: center;
+  margin:20rpx 30rpx 20rpx 0rpx;
+  border-radius: 24rpx;
+  display: inline-block;
+}
+
+.identity .cls text {
+  font-size: 24rpx;
+}
+
+.blue {
+  color: #1AAD19;
+}
+
+.black {
+  color: #000;
+}
+
+.input {
+  border-bottom: 1px dotted #D8D8D8;
+  padding-left: 50rpx;
+  height: 58rpx;
+}
+
+.huoqu {
+  margin-right: 274rpx;
+}
+
+.good {
+  margin-top: 54rpx;
+  width: 210rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 30rpx;
+  float: left;
+}

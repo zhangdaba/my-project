@@ -1,0 +1,40 @@
+ <view class="page">
+
+  <view class="login">
+    <icon class="iconfont icon-huaban"></icon>
+  </view>
+  
+  <view>
+    <form bindsubmit="handleLogin">
+      <view class="handle">
+        <view class="box">手机号</view>
+        <icon class="icon iconfont icon-yonghu"></icon>
+        <input type="number" class="input-radius" name="phone" placeholder="请输入您的账号" placeholder-class="placeholderStyle"></input>
+      </view>
+
+      <view class="handle">
+        <view class="box">密码</view>
+        <icon class="i icon iconfont icon-mima"></icon>
+
+        <input type="text" 
+              class="input-radius" 
+              name="password" 
+              password 
+              placeholder="请输入您的密码" 
+              placeholder-class="placeholderStyle">
+              </input>
+      </view>
+      
+      <!-- 登录 注册 样式 -->
+      <view class="sign">
+        <button class="signLift" form-type="submit" size="mini" type="primary" style="background:#44A9FF;">
+          <text>登录</text>
+        </button>
+<!-- <view class="signRight" hover-class="hoverSign" bindtap="register">
+        <text>注册</text></view> -->
+
+      </view>
+      <!-- <button>登录</button> -->
+    </form>
+  </view>
+  </view>

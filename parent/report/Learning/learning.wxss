@@ -1,0 +1,133 @@
+@import '/utils/CommonStyle/subject/treeCom.wxss';
+@import '/utils/CommonStyle/subject/errCom.wxss';
+
+page {
+  background: #EFF2F6;
+}
+
+scroll-view {
+  height: 100%;
+}
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+.swiper-tab-item {
+  width: 30%;
+}
+
+#indx {
+  border-bottom: 2px solid #1693FF;
+  color: #1693FF;
+  font-size: 30rpx;
+}
+
+.Knowledge {
+  display: flex;
+  display: -webkit-flex;
+  align-items: baseline;
+  justify-content: space-around;
+  background: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  border-radius: 10rpx;
+  margin: 20rpx 30rpx 0;
+  position: relative;
+}
+
+.knowledgeItem {
+  position: absolute;
+  right: 22rpx;
+  top: -42rpx;
+  font-size: 24rpx;
+  color: #49A5FF;
+  transform:rotate(10deg);
+  -webkit-transform:rotate(10deg);
+}
+
+.knowledgeColor {
+  color: #FF575D;
+}
+
+.xiangqing {
+  position: relative;
+}
+
+
+
+
+.Topics {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  line-height: 62rpx;
+}
+
+.Rightkey {
+  display: flex;
+  display: -webkit-flex;
+  align-items: baseline;
+}
+
+/* 内容 */
+.student {
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 20rpx 0;
+  position: relative;
+  text-align: center;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.student .student_list {
+  width: 33.333%;
+  word-break: all;
+  white-space: nowrap;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.student_first {
+  position: absolute;
+  left:32px;
+  top:-42rpx;
+}
+
+.InClass {
+  position: absolute;
+  left: 6rpx;
+  bottom: 46rpx;
+  font-size: 24rpx;
+}
+
+.flex {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-around;
+  font-size: 28rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+}
+
+.flex .flex_list {
+  width: 20%;
+  text-align: center;
+}

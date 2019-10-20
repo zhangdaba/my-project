@@ -1,0 +1,13 @@
+<view>
+
+  <view class="setting">{{ chapItemContent.chapter }}</view>
+
+  <view class="content" bindlongtap="settinGlong" bindtap="settingClick">
+    <view class="{{ index == idx ? 'color' : '' }}" 
+          wx:for="{{ setting }}"
+          data-item="{{ item }}"
+          data-idx="{{ index }}"
+          wx:key="{{ index }}">{{ item.tacticName }}</view>
+  </view>
+
+</view>

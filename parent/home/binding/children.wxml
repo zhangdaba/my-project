@@ -1,0 +1,30 @@
+<form bindsubmit="submit">
+
+  <view>
+    <view class="please"><text>请选择班级</text></view>
+    <view
+      class="{{ index + 1 == idx ? 'blue':'black' }} cls" 
+      wx:for="{{ className }}"
+      wx:key="index"
+      bindtap="goIndex"
+      data-index="{{ index }}"
+      data-item="{{ item }}"
+      ><text> {{ item.grade }} {{ item.className }}</text>
+    </view>
+    <view class="please" wx:if="{{ !className.length }}"><text>暂无班级选择!</text></view>
+
+     <view>
+      <view class="please"><text>请输入学生真实姓名</text></view>
+      <view class="viewInput">
+        <input name="name" placeholder="请输入学生真实姓名" />
+      </view>
+
+      <view class="please"><text>请输入学生学号</text></view>
+      <view class="viewInput">
+        <input name="curriculum" placeholder="请输入学生学号" />
+      </view>
+     </view>
+  </view>
+  
+  <button form-type="submit" type="primary"><text>绑定班级</text></button>
+</form>

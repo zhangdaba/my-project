@@ -1,0 +1,28 @@
+<template name="subject_select">
+  <view class="subject">
+    <view class="choice">
+      <view class="choice_item" wx:if="{{ item.optionA != '' }}">
+        <view class="author-info">A:</view>
+        <view class="rich-text">
+          <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionA }}"></rich-text>
+        </view>
+      </view>
+      <view class="choice_item" wx:if="{{ item.optionB != '' }}">
+        <text> B:</text>
+        <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionB }}"></rich-text>
+      </view>
+      <view class="choice_item" wx:if="{{ item.optionC != '' }}">
+        <text> C: </text>
+        <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionC }}"></rich-text>
+      </view>
+      <view class="choice_item" wx:if="{{ item.optionD != '' }}">
+        <text> D: </text>
+        <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionD }}"></rich-text>
+      </view>
+      <view class="choice_item" wx:if="{{ item.optionE != '' }}">
+        <text> E: </text>
+        <rich-text type="nodes*" space="&nbsp" nodes="{{ item.optionE }}"></rich-text>
+      </view>
+    </view>
+  </view>
+</template>

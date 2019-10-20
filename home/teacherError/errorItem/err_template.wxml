@@ -1,0 +1,76 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<import src="/template/subject/subject_title.wxml"></import>
+<import src="/template/subject/subject_select.wxml"></import>
+<import src="/template/subject/subject_answer.wxml"></import>
+<import src="/template/subject/subject_parse.wxml"></import>
+
+<template name="err_template">
+  <view class="subject">
+    <view wx:for="{{ wholes }}" wx:key="{{ index }}" data-item='{{ item }}' data-indx="{{ index }}" bindtap="father">
+      <view class="top-content">
+        <view>第{{ index + 1 }}题.</view>
+        <view>错误率:{{ dateFr.parseInt(item.chapterErrorRate * 100) + '%' }}</view>
+      </view>
+
+      <template is="subject_title" data="{{ item }}"></template>
+      
+      <!-- 大题 的 情况 -->
+      <view wx:if="{{ item.isSub == 0 }}">
+
+        <template is="subject_select" data="{{ item }}"></template>
+       
+        <!-- 正确答案 的 情况 -->
+        <view class="viewParsing" data-idx="{{ index }}" bindtap="viewParsing"> {{ !item.isTrue ? '查看解析':'收起解析' }}</view>
+
+        <view hidden="{{ !item.isTrue }}">
+
+           <template is="subject_answer" data="{{ item }}"></template>
+
+          <!--  答题解析 -->
+           <template is="subject_parse" data="{{ item }}"></template>
+          
+        </view>
+
+      </view>
+
+      <!-- 子题 的 情况 -->
+      <view wx:else="{{ item.isSub == 1 }}">
+
+        <view wx:for="{{ item.newSubquestionAnswers }}" wx:key="index">
+
+          <template is="subject_title" data="{{ item }}"></template>
+
+          <template is="subject_select" data="{{ item }}"></template>
+
+        </view>
+
+        <view class="viewParsing" data-idx="{{ index }}" bindtap="viewParsing"> {{ !item.isTrue ? '查看解析':'收起解析' }}</view>
+
+        <view hidden="{{ !item.isTrue }}">
+          <block wx:for="{{ item.newSubquestionAnswers }}" wx:key="index">
+
+            <view class="solution">
+              <view>( {{ index + 1 }} )</view>
+              <view>【正确答案】</view>
+              <view class="text_indent">
+                <view wx:if="{{ item.answer1.length != 0 }}">
+                  <rich-text type="nodes*" space="&nbsp" nodes="{{ item.answer1 }}"></rich-text>
+                </view>
+                <view wx:elif="{{ item.answer2 != 0 }}">
+                  <rich-text type="nodes*" space="&nbsp" nodes="{{ item.answer2 }}"></rich-text>
+                </view>
+                <view wx:else>
+                  <view>略</view>
+                </view>
+              </view>
+            </view>
+
+              <template is="subject_parse" data="{{ item }}"></template>
+          </block>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+</template>

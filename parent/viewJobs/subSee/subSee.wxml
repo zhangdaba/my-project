@@ -1,0 +1,97 @@
+<import src="/template/subject/subject_select"></import>
+<import src="/template/subject/subject_answer"></import>
+<import src="/template/subject/subject_title"></import>
+<import src="/template/subject/subject_stuAnswer"></import>
+
+<swiper style="height: {{ windowHeight }}px;" current="{{ next }}" duration="180">
+  <swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
+
+    <scroll-view scroll-y="true">
+
+      <view class="stuName">
+        <text>第{{ item.queNo }}题.</text>
+        <rich-text type="nodes" space="nbsp" nodes="{{ item.queBody }}"></rich-text>
+      </view>
+
+      <view>
+      
+        <view wx:if="{{ item.isSub == 1 }}">
+          <!-- 循环遍历子题 -->
+          <view wx:for="{{ item.subQuestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
+
+            <!-- 子题标题 -->
+            <view class="title">
+              <rich-text type="nodes" space="nbsp" nodes="{{ item.title }}"></rich-text>
+            </view>
+
+            <!-- 选择 内容 逻辑 -->
+            <template is="subject_select" data="{{ item }}"></template>
+
+            <!-- 大题 学生 答案逻辑 -->
+            <template is="subject_answer" data="{{ item }}"></template>
+            
+            <!-- 学生答案逻辑 -->
+            <view>
+
+              <view>学生答案:</view>
+              <view class="stuAnswer" wx:if="{{ item.stuAnswer != '' }}">
+                <rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
+              </view>
+
+              <view class="stuAnswer" wx:elif="{{ item.pictureAnswer != '' }}">
+                <view class="image">
+                  <image mode="widthFix" 
+                         data-index="{{ index }}" 
+                         src="{{ item.pictureAnswer }}" 
+                         data-img="imgTopic" 
+                         bindtap='previewImg'>
+                  </image>
+                </view>
+              </view>
+
+              <view class="stuAnswer" wx:else>
+                <text>暂无答案</text>
+              </view>
+
+            </view>
+
+            <!-- 批改结果 -->
+            <view class="istrue">
+              <text>批改结果:</text>
+              <icon wx:if="{{ item.isTrue == 0 }}" class='iconfont icon-cuo-copy-copy'></icon>
+              <icon wx:elif="{{ item.isTrue == 1 }}" class='iconfont icon-duiconverted'></icon>
+              <icon wx:elif="{{ item.isTrue == 2 }}" class='iconfont icon--banduibancuo-copy'></icon>
+              <text wx:else>暂无批改</text>
+            </view>
+
+          </view>
+        </view>
+
+        <view wx:if="{{ item.isSub == 0 }}">
+
+          <!-- 选择 内容 逻辑 -->
+          <template is="subject_select" data="{{ item }}"></template>
+
+          <!-- 大题 学生 答案逻辑 -->
+          <template is="subject_answer" data="{{ item }}"></template>
+          
+          <view>\n <text>答案相似度{{ item.sameRate * 100 + '%' }}</text></view>
+          
+          <!-- 学生 答题 逻辑 -->
+          <template is="subject_stuAnswer" data="{{ item }}"></template>
+
+          <!-- 判断 对 错 半对半错 -->
+          <view class="istrue">
+            <text>批改结果:</text>
+            <icon wx:if="{{ item.isTrue == 0 }}" class='iconfont icon-cuo-copy-copy'></icon>
+            <icon wx:elif="{{ item.isTrue == 1 }}" class='iconfont icon-duiconverted'></icon>
+            <icon wx:elif="{{ item.isTrue == 2 }}" class='iconfont icon--banduibancuo-copy'></icon>
+            <text wx:else>暂无批改</text>
+          </view>
+        </view>
+
+      </view>
+
+    </scroll-view>
+  </swiper-item>
+</swiper>

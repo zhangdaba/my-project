@@ -1,0 +1,129 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
+<view class="top-tab" bindtap="switchTab">
+  <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{ task }}" data-index="{{ index }}" wx:key="index">
+    {{ item }}
+  </view>
+</view>
+
+<swiper style="height:{{ swiperHeight }}px" current="{{ currentTabInde }}" bindchange="handleChange">
+
+  <swiper-item>
+    <scroll-view scroll-y="true">
+
+      <block wx:if="{{ !oldparen.length }}">
+        <No_news text='暂无未提交作业...' />
+      </block>
+
+      <checkbox-group class="class_radio" bindchange="radioChange">
+
+        <view class="classNum">
+          <view class="class" wx:for="{{ oldparen }}" wx:key="{{ index }}">
+            <view class="class_name">
+            
+              <view class="class_title">
+                <view>{{ item.homeworkName }}</view>
+                <view class="checkbox">
+                  <label>
+                    <checkbox value="{{ item.submitHomeworkId }}" checked="{{ item.checked }}" />
+                  </label>
+                </view>
+              </view>
+
+              <view class="class_center">
+                <view>
+                  <icon class="iconfont {{ dateFr.icon() }}"></icon>
+                </view>
+                <view>
+                  <text>{{ item.subject }} \n {{ item.grade }} \t ( {{ item.homeworkSource }} )</text>
+                </view>
+              </view>
+
+              <view class="class_bottom">
+                <view>开始时间: {{ item.createdDate }}</view>
+                <view>结束时间: {{ item.operationEndTime }}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <button wx:if="{{ oldparen.length }}" disabled="{{ disabled }}" loading="{{ disabled }}" class="btn" hover-class="none" bindtap="submit" type="primary" style="background-color: #44a9ff;">
+          <text>提交作业</text>
+        </button>
+
+      </checkbox-group>
+
+    </scroll-view>
+  </swiper-item>
+
+  <swiper-item>
+    <scroll-view scroll-y="true">
+
+      <block wx:if="{{ !newparen.length }}">
+        <No_news text='暂无已提交作业...' />
+      </block>
+
+      <view class="classNum">
+        <view class="class" wx:for="{{ newparen }}" wx:key="{{ index }}">
+          <view class="class_name">
+
+            <view class="class_title">
+              <view>{{ item.homeworkName }}</view>
+            </view>
+
+            <view class="class_center">
+              <view>
+                <icon class="iconfont {{ dateFr.icon() }}"></icon>
+              </view>
+              <view>
+                <text>{{ item.subject }} \n {{ item.grade }} \t ( {{ item.homeworkSource }} )</text>
+              </view>
+            </view>
+
+            <view class="class_bottom">
+              <view>开始时间: {{ item.createdDate }}</view>
+              <view>结束时间: {{ item.operationEndTime }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+  <swiper-item>
+
+    <scroll-view scroll-y="true">
+
+      <block wx:if="{{ !already.length }}">
+        <No_news text='暂无已批改作业...' />
+      </block>
+      
+      <view class="classNum">
+        <view class="class" wx:for="{{ already }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="See_work">
+          <view class="class_name">
+
+            <view class="class_title">
+              <view>{{ item.homeworkName }}</view>
+            </view>
+
+            <view class="class_center">
+              <view>
+                <icon class="iconfont {{ dateFr.icon() }}"></icon>
+              </view>
+              <view>
+                <text>{{ item.subject }} \n {{ item.grade }} \t ( {{ item.homeworkSource }} )</text>
+              </view>
+            </view>
+
+            <view class="class_bottom">
+              <view>开始时间: {{ item.createdDate }}</view>
+              <view>结束时间: {{ item.operationEndTime }}</view>
+            </view>
+            
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+</swiper>

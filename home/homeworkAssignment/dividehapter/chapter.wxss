@@ -1,0 +1,98 @@
+.chapterCatalog {
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  font-size: 34rpx;
+}
+
+/* 章节结构 */
+.view {
+  width: 100%;
+  height: 120rpx;
+  background: #fff;
+  border-top: 1px dotted #CDCDCD;
+}
+
+.view:last-child {
+  border-bottom: 1px dotted #CDCDCD;
+}
+
+.hoverview {
+  background: #EDEDED;
+}
+
+.view image {
+  width: 100rpx;
+  height: 100rpx;
+  padding-left: 10rpx;
+  border-radius: 4px;
+  float: left;
+}
+
+.view .text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  float: left;
+  padding-left: 20rpx;
+}
+
+.text-item {
+  font-weight: 700;
+}
+
+.text-itemName {
+  font-size: 26rpx;
+  color: #f00;
+}
+
+.view .text text:nth-child(2) {
+  color: #ccc;
+}
+
+.icon {
+  float: right;
+  color: #BFBFBF;
+  padding-top: 20rpx;
+}
+
+@media screen and (min-width:768px) and (max-width:1366px){
+  .icon {
+    color:#BFBFBF;
+    padding-top:32rpx;
+  }
+}
+/* 章节结构结束 */
+
+.chapterAnd {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column; 
+}
+
+.chapterAnd view {
+  margin-top: 10rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.chapterAnd .chapter {
+  width: 95%;
+  background: #fff;
+  line-height: 80rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+  border-radius: 16rpx;
+}
+
+.chapterAnd .chapter .chapter_list {
+  padding-left: 40rpx;
+  font-size: 28rpx;
+}
+
+.chapterAnd .chapter .chapter_list .chapter_list_item {
+  padding-left: 40rpx;
+  font-size: 26rpx;
+}

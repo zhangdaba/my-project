@@ -1,0 +1,65 @@
+var DateFr = {
+
+  getName: function(time, and) {
+    time1 = time.slice(1, time.length - 1)
+    return time1;
+  },
+
+  username: function(username) {
+    time2 = username.charAt(username.length - 1)
+    return time2;
+  },
+
+  substring: function(username) {
+    time3 = username.substring(username.length - 2)
+    return time3;
+  },
+
+  substringList: function(username) {
+    trim = username.trim()
+    time3 = trim.substring(trim.length - 1)
+    return time3;
+  },
+
+  parseInt: function(par) {
+    time4 = Math.abs(par.toFixed(2));
+    return time4;
+  },
+
+  errorRate: function(err) {
+    err = err.toFixed(2) * 100;
+    err = Math.abs(Math.floor(err));
+    return err;
+  },
+
+  toFixed: function(fixed) {
+    time5 = fixed.toFixed(2);
+    return time5;
+  },
+
+  // 随机颜色
+  random: function() {
+    randomArr = ['#339999', '#F5777B', '#44a9ff'];
+    randomColor = randomArr[Math.floor(Math.random() * randomArr.length)]
+    return randomColor;
+  },
+
+  // 随机icon
+  icon: function () {
+    randomArr = ['icon-shuben', 'icon-kaishishijian', 'icon-sheji', 'icon-premium', 'icon-xiaoyuan-','icon-wodebiji'];
+    randomColor = randomArr[Math.floor(Math.random() * randomArr.length)]
+    return randomColor;
+  }
+}
+
+module.exports = {
+  getName: DateFr.getName,
+  username: DateFr.username,
+  substring: DateFr.substring,
+  substringList: DateFr.substringList,
+  parseInt: DateFr.parseInt,
+  errorRate: DateFr.errorRate,
+  toFixed: DateFr.toFixed,
+  random: DateFr.random, //随机颜色
+  icon: DateFr.icon
+}

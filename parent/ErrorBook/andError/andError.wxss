@@ -1,0 +1,61 @@
+scroll-view {
+  height: 100%;
+}
+
+.errorNum {
+  width: 92%;
+  margin: 0 auto;
+  padding: 10rpx 0;
+}
+
+.errorNum .subject {
+  width: 100%;
+  height: 180rpx;
+  line-height: 180rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 2rpx 4rpx 6rpx #ccc;
+  margin-bottom: 10rpx;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+}
+
+.subject .left {
+  margin: auto 20rpx auto 60rpx;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #f6f7fb;
+}
+
+.subject .left icon {
+  text-shadow:6rpx 6rpx 8rpx #44a9ff;
+  font-size: 56rpx;
+}
+
+.subject .center {
+  margin-right: auto;
+  font-weight: 600;
+}
+
+.subject .right {
+  padding-right: 60rpx;
+  color: #ccc;
+}
+
+.empty {
+  text-align: center;
+  padding-top: 150rpx;
+  color: #ccc;
+}
+
+.empty text {
+  font-size: 36rpx;
+}
+
+.empty icon {
+  font-size: 160rpx;
+}

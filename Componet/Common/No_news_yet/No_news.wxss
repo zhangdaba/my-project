@@ -1,0 +1,15 @@
+@import "/app.wxss";
+
+.empty {
+  text-align: center;
+  padding-top: 150rpx;
+  color: #ccc;
+}
+
+.empty text {
+  font-size: 36rpx;
+}
+
+.empty icon {
+  font-size: 160rpx;
+}
