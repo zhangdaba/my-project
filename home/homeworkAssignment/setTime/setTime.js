@@ -84,6 +84,7 @@ Page({
   // 提交布置
   submit() {
     if (this.data.evTask === null) {
+
       wx.showToast({
         title: '请选择课中 | 预习 | 课后作业',
         icon: 'none',
@@ -109,7 +110,7 @@ Page({
       })
       return;
     }
-
+    
     // 获取本地token
     const value = wx.getStorageSync('Token')
 
@@ -127,11 +128,11 @@ Page({
       "classId": selection.id,
       "bookId": selection.bookId,
       "editionId": selection.editionId,
-      'chapterId': chapItem.id,
-      "queIds": assignment,
       "operationEndTime": String(time),
       "resourceName": evTaskName,
-      "homeworkType": this.data.evTask.id
+      'chapterId': chapItem.id,
+      "homeworkType": this.data.evTask.id,
+      "queIds": assignment
     }
 
     wx.request({

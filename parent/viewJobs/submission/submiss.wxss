@@ -48,7 +48,7 @@ scroll-view {
 }
 
 .class .class_title {
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-weight: 600;
   margin: 20rpx 0;
   display: flex;
@@ -56,10 +56,40 @@ scroll-view {
   justify-content: space-between;
 }
 
+.class_title view:first-child {
+  width: 50%;
+  background: #8ccaff;
+  color: #fff;
+  padding: 12rpx 0;
+  border-radius: 0 50rpx 50rpx 0;
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+  white-space:normal;
+  position: relative;
+}
+
+.class_title view::after {
+  content: '';
+  display: block;
+  clear: both;
+  height: 0;
+}
+
+.class_title view::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -28rpx;
+  top: 0rpx;
+  width: 30rpx;
+  height: 100%;
+  background: #8ccaff;
+}
+
 .class .class_center {
   height: 120rpx;
   width: 100%;
-  margin-top: 50rpx;
+  margin-top: 20rpx;
   display: flex;
   display: -webkit-flex;
 }

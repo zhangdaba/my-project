@@ -18,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中'
+    });
     this.generative(); //获取生成的题型
   },
 
@@ -58,10 +61,11 @@ Page({
         let resName = res.data.data;
         
         for(let k in resName) {
-          // resName[k].title = resName[k].title.replace(/<img/g,'<img style="max-width:100%;height:auto;');
-          resName[k].title = resName[k].title.replace(/vertical-align:middle/g,'max-width:100%;height:auto');
-          // resName[k].title = resName[k].title.replace(/style="/g,'style="max-width:100%;height:auto;');
+          resName[k].title = resName[k].title.replace(/<img/g,'<img style="max-width:100%;height:auto;"');
         }
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 800);
 
         _this.setData({
           books: resName
@@ -138,6 +142,17 @@ Page({
           })
 
         } else if (res.data.code == 3012) {
+          
+          let newBook = _this.data.books;
+
+          for (let k in newBook) {
+            newBook[k].flag = false;
+          }
+
+          _this.setData({
+            books: newBook
+          })
+          
           wx.showToast({
             title: '没有更多的题可以再换了！',
             icon: 'none',

@@ -157,19 +157,22 @@
 
 /* 主样式 */
 .books {
-  margin-bottom: 20rpx;
-  margin-top: 40rpx;
+  margin-top: 15rpx;
   padding-left: 20rpx;
   padding-right: 20rpx;
 }
 
 .all {
   padding-top: 80rpx;
+  margin-bottom: 120rpx;
 }
 
 .btn {
-  width: 80%;
-  margin: 30rpx auto;
+  width: 100%;
+  border-radius: 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }
 
 .btn text {
@@ -184,7 +187,7 @@
   height: 80rpx;
   width: 100%;
   line-height: 80rpx;
-  background: #F5F5F5;
+  background: #fff;
   font-size: 34rpx;
   position: fixed;
   top: 0;
@@ -198,8 +201,10 @@
 .icon_none {
   width: 36rpx;
   height: 36rpx;
-  border: 1px solid #FF5E3B;
+  border: 1px solid #44a9ff;
   border-radius: 50%;
+  position: relative;
+  z-index: 98;
 }
 
 .block {
@@ -216,7 +221,7 @@
 }
 
 .topic-right-item {
-  color: #f00;
+  color: #44a9ff;
 }
 
 .topic-left {

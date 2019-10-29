@@ -1,5 +1,3 @@
-<view class="chapterCatalog">章节目录</view>
-
 <!-- 文字 -->
 <view class="text">
   <text>{{ chap.chapter }}</text>
@@ -16,7 +14,7 @@
     data-chap="{{ chap_list }}"
     catchtap="chapter">
      <text>{{ chap_list.chapter }}</text>
-
+     
      <view class="chapter_list_item"
            wx:for="{{ chap_list.children }}"
            wx:key="{{ index }}"

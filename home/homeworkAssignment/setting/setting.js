@@ -56,6 +56,10 @@ Page({
     }
 
     let ev = e.target.dataset;
+    
+    ev.item.difficult = ev.item.difficult / 100;
+
+    delete ev.item.errorQueCount;
 
     this.setData({
       idx: ev.idx,

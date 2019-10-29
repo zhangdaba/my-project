@@ -25,7 +25,7 @@
         </view>
 
         <view class="block" hidden="{{ !item.flag }}">
-          <icon type="success" size="20" color="#f00"></icon>
+          <icon type="success" size="20" color="#44a9ff"></icon>
         </view>
       </view>
 
@@ -105,10 +105,12 @@
       </view>
     </view>
   </view>
-  <button class="btn" bindtap="Arrangement" wx:if="{{ books.length }}" style="background: #44A9FF;" type="primary">
-    <text>点击布置</text>
-  </button>
+  
 </view>
+
+<button class="btn" bindtap="Arrangement" wx:if="{{ books.length }}" style="background: #44A9FF;" type="primary">
+  <text>点击布置</text>
+</button>
 
 <view wx:if="{{ !books.length }}">
   <no_news text="空空如也"/>

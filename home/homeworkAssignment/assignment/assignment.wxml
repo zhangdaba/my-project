@@ -1,24 +1,21 @@
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
 <view class="cox">
-  <view 
-    class="box"
-    hover-class='boxHover'
-    wx:for="{{ books }}"
-    wx:key="{{ index }}"
-    data-item="{{ item }}"
-    data-index="{{ index }}"
-    bindtap="taskone">
-    
-   <view class="boxone">
-    <view class="cls">
-      <text> {{ item.className }}</text>
-      <text decode="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;{{ item.subject }}</text>
+  <view class="box" wx:for="{{ books }}" wx:key="{{ index }}" data-item="{{ item }}" data-index="{{ index }}" bindtap="taskone">
+    <view class="box_list">
+      <view class="box_list_item">
+        <view class="box_item">
+          <view><icon class="iconfont {{ dateFr.icon() }}"></icon></view>
+          <view class="box_subject">{{ item.subject }}</view>
+        </view>
+        <view>
+          <view> <text class="font_weight">{{ item.className }}</text> <text>（{{ item.schoolName }})</text></view>
+          <view>{{ item.book }}</view>
+        </view>
+        <view class="Arrow_right">
+          <icon class="iconfont icon-youjiantou"></icon>
+        </view>
+      </view>
     </view>
-    
-    <view class="server"><text> {{ item.book }}</text></view>
-    <view class="school"><text>{{ item.schoolName }}</text></view>
-    <view class="into">进入布置</view>
-   </view>
   </view>
 </view>
-
-

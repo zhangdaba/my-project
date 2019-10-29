@@ -1,19 +1,34 @@
-page {
-  background: #FDFDFD;
-}
-
 .setting {
-  line-height: 110rpx;
-  padding-left: 50rpx;
+  line-height: 80rpx;
+  padding-left: 30rpx;
   background: #fff;
+  font-weight: 700;
 }
 
 .content {
   display: flex;
   display: -webkit-flex;
-  flex-wrap: wrap;
-  margin-bottom: 20rpx;
+  flex-direction: column;
 }
+
+.content view {
+  width: 90%;
+  height: 150rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 2rpx 4rpx 14rpx #ccc;
+  color: #44a9ff;
+  font-size: 32rpx;
+  font-weight: 600;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
 
 .content view {
   width: 50%;
@@ -35,4 +50,4 @@ page {
 
 .color {
   color: #fff;
-}
+} */

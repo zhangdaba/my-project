@@ -28,6 +28,8 @@
   display: flex;
   display: -webkit-flex;
   align-items: baseline;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .solution .text_indent {
