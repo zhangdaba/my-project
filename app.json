@@ -1,52 +1,38 @@
 {
   "pages": [
-    "home/homeworkAssignment/sidebar/sidebar",
-    
     "pages/index/index",
 
-    "home/homeworkCorrecting/divide/divide",
-    
-    "home/homeworkCorrecting/Correction/correction",
-    
-    "home/homeworkCorrecting/Question/question",
+    "parent/viewJobs/subSee/subSee",
+    "parent/viewJobs/submission/submiss",
 
     "home/homeworkCorrecting/Correcting/Correcting",
-
-    "home/homeworkCorrecting/Student/Student",
-
-
-
-    "home/homeworkAssignment/setTime/setTime",
+    "home/homeworkAssignment/sidebar/sidebar",
     
+    "home/homeworkCorrecting/Question/question",
+    "home/homeworkCorrecting/divide/divide",    
+    
+    "home/homeworkCorrecting/Student/Student",
+    "home/homeworkCorrecting/Correction/correction",
+    
+    "pages/home/Teacher/teacher",
+    "pages/home/Parent/Parent",
+    "home/homeworkAssignment/setTime/setTime",
     "home/homeworkAssignment/setting/setting",
-
     "home/homeworkAssignment/assignment/assignment",
-
     "home/homeworkAssignment/divideKnowledge/Knowledge",
     "home/homeworkAssignment/bindingClass/class",
     "home/homeworkAssignment/bindingSchool/school",
     
     "home/homeworkAssignment/dividehapter/chapter",
-
-    
-
     "home/Report/Report/Report",
     "home/Report/emotion/emotion",
-
-    "pages/home/Parent/Parent",
-    "pages/home/Teacher/teacher",
-
     "home/teacherError/error/error",
     "home/teacherError/errorItem/errorItem",
-
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
 
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
-
-    "parent/viewJobs/submission/submiss",
-    "parent/viewJobs/subSee/subSee",
     
     "parent/home/binding/children",
     "pages/register/register",

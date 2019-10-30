@@ -39,7 +39,7 @@
         <icon class="iconfont icon-cuoti"></icon>
         <view>
           <text>错题本\n</text>
-          <text>错了什么一目了然</text>
+          <!-- <text>错了什么一目了然</text> -->
         </view>
       </view>
 
@@ -47,7 +47,7 @@
         <icon class="iconfont icon-xueqing"></icon>
         <view>
           <text>学情报告\n</text>
-          <text>随时查看班级情况</text>
+          <!-- <text>随时查看班级情况</text> -->
         </view>
       </view>
     </view>

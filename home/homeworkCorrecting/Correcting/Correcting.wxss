@@ -17,7 +17,8 @@ swiper-item {
 }
 
 #topic {
-  color: #00f;
+  color: #fff;
+  background: #44A9FF;
 }
 
 .stuName {
@@ -55,13 +56,14 @@ swiper-item {
 
 .btnClass {
   display: flex;
-  margin-bottom: 20rpx;
+  margin: 20rpx 0;
 }
 
 .btnClass .btn {
-  width: 100rpx;
+  width: 40%;
   height: 100rpx;
-  line-height: 100rpx;
+  border-right: 1px solid #E0E0E0;
+  border-radius: 0;
 }
 
 .Submission {
@@ -70,11 +72,6 @@ swiper-item {
   display:flex;
   justify-content:center;
   align-items:center;
-}
-
-.image {
-  font-size: 32rpx;
-  margin-bottom: 50rpx;
 }
 
 .topicIndex {

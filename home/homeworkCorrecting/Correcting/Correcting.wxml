@@ -2,15 +2,17 @@
 <import src="/template/subject/subject_select.wxml"></import>
 <import src="/template/subject/subject_answer.wxml"></import>
 <import src="/template/subject/subject_stuAnswer.wxml"></import>
+<import src="/template/subject/subject_similarity.wxml"></import>
 
 <swiper style="height: {{ windowHeight }}px;" bindchange="bind" current="{{ next }}" duration="180">
   <swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
 
     <scroll-view scroll-y="true">
 
-      <template is="subject_title" data="{{ item }}"></template>
+      <template is="subject_title" data="{{ item, index }}"></template>
 
       <view>
+
         <!-- 大题的情况 -->
         <view wx:if="{{ item.isSub == 0 }}">
 
@@ -18,47 +20,35 @@
 
           <template is="subject_answer" data="{{ item }}"></template>
 
+          <template is="subject_similarity" data="{{ item }}"></template>
+
           <template is="subject_stuAnswer" data="{{ item }}"></template>
 
-          <view class="btnClass">
 
-            <button class="btn"
-              wx:for="{{ wrong }}"
-              wx:for-item="large_item"
-              data-index="{{ index }}"
-              data-item="{{ large_item.id }}"
-              data-judging="large_judging"
-              bindtap="large_list"
-              id="{{ item.isTrue == index  ? 'topic' : ''  }}"
-              wx:key="{{ index }}">
+          <view class="btnClass">
+            <button class="btn" wx:for="{{ wrong }}" wx:for-item="large_item" data-index="{{ index }}" data-item="{{ large_item.id }}" data-judging="large_judging" bindtap="large_list" id="{{ item.isTrue == index  ? 'topic' : ''  }}" wx:key="{{ index }}">
               <icon class="iconfont {{ large_item.icon }}"></icon>
             </button>
-          
           </view>
-          
+
         </view>
 
         <!-- 子题的情况 -->
         <view wx:if="{{ item.isSub == 1 }}">
-          <view wx:for="{{ item.subQuestionAnswers }}" 
-                wx:key="{{ index }}" 
-                data-twoIndx="{{ index }}" 
-                data-item="{{ item }}"
-                bindtap="wrong_List">
+          <view wx:for="{{ item.subQuestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
 
-            <template is="subject_title" data="{{ item }}"></template>
+            <template is="subject_title" data="{{ item,index }}"></template>
 
             <template is="subject_select" data="{{ item }}"></template>
 
             <template is="subject_answer" data="{{ item }}"></template>
 
+            <template is="subject_similarity" data="{{ item }}"></template>
+
             <view class="stuName1">
 
               <view>
-                <text>学生答案: 
-                <text style="float: right;padding-right: 30rpx;">
-                  答案相似度{{ item.sameRate * 100 + '%' }}</text>
-                </text>
+                <text>【学生答案】</text>
               </view>
 
               <view class="image" wx:if="{{ item.stuAnswer != ''}}">
@@ -66,42 +56,40 @@
               </view>
 
               <view class="image" wx:elif="{{ item.pictureAnswer != '' }}">
-
                 <view class="imgCenter">
-                  <image mode="widthFix"
-                         data-index="{{ index }}"
-                         src="{{ item.pictureAnswer }}"
-                         data-img="imgTopic"
-                         bindtap='previewImg'>
+                  <image mode="widthFix" 
+                    data-index="{{ index }}" 
+                    src="{{ item.pictureAnswer }}" 
+                    data-img="imgTopic" 
+                    bindtap='previewImg'>
                   </image>
                 </view>
               </view>
 
-              <view class="image" wx:else>
+              <view class="image" style="text-index: 1rem;" wx:else>
                 <text>空</text>
               </view>
             </view>
-
+            
             <!-- <template is="subject_stuAnswer" data="{{ item }}"></template> -->
-
+            
             <view class="btnClass">
-
-              <button class="btn"
-                      wx:for="{{ wrong }}"
-                      wx:for-item="wrong_list"
-                      data-index="{{ index }}"
-                      data-item="{{ wrong_list.id }}"
-                      bindtap="wrong_Item"
-                      data-judging="large_judging"
+              <button class="btn" wx:for="{{ wrong }}" 
+                      wx:for-item="wrong_list" 
+                      data-index="{{ index }}" 
+                      data-item="{{ wrong_list.id }}" 
+                      bindtap="wrong_Item" 
+                      data-judging="large_judging" 
                       id="{{ item.isTrue == index  ? 'topic' : ''  }}" 
                       wx:key="{{ index }}">
-                  <icon class="iconfont {{ wrong_list.icon }}"></icon>
-              </button>
 
+                <icon class="iconfont {{ wrong_list.icon }}"></icon>
+              </button>
             </view>
 
           </view>
         </view>
+
       </view>
     </scroll-view>
   </swiper-item>
@@ -114,5 +102,7 @@
 </swiper>
 
 <view class="topicIndex">
-  <view wx:for="{{ arrNum }}" wx:key="index" data-item="{{ item }}" bindtap="arrNumClick">{{ item }}</view>
+  <view wx:for="{{ notCorrectedss }}" wx:key="index" data-item="{{ item.index }}" bindtap="arrNumClick">
+   <text style="color:{{ item.isMap?'blue':'red' }}">{{ item.index+1 }}</text>
+  </view>
 </view>

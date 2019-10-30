@@ -1,0 +1,9 @@
+<template name="subject_correction">
+  <view class="istrue">
+    <text>批改结果:</text>
+    <icon wx:if="{{ item.isTrue == 0 }}" class='iconfont icon-cuo-copy-copy'></icon>
+    <icon wx:elif="{{ item.isTrue == 1 }}" class='iconfont icon-duiconverted'></icon>
+    <icon wx:elif="{{ item.isTrue == 2 }}" class='iconfont icon--banduibancuo-copy'></icon>
+    <text wx:else>空</text>
+  </view>
+</template>

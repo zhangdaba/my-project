@@ -1,20 +1,20 @@
 import config from '../../../utils/config.js'
 
 let choice = [{
-  id: 0,
-  title: '对',
-  icon: 'icon-cuo-copy-copy'
-}, {
-  id: 1,
-  title: '错',
-  icon: 'icon-duiconverted'
-}
-// ,
-//  {
-//   id: 2,
-//   title: '半对半错',
-//   icon: 'icon--banduibancuo-copy'
-// }
+    id: 0,
+    title: '对',
+    icon: 'icon-cuo-copy-copy'
+  }, {
+    id: 1,
+    title: '错',
+    icon: 'icon-duiconverted'
+  }
+  // ,
+  //  {
+  //   id: 2,
+  //   title: '半对半错',
+  //   icon: 'icon--banduibancuo-copy'
+  // }
 ]
 
 Page({
@@ -51,15 +51,13 @@ Page({
     img_indx: null,
 
     // 图片
-    imgTopic: null,
-
-    arrNum: [] //每到题的索引
+    imgTopic: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  
+
   onLoad: function(e) {
     wx.setNavigationBarTitle({
       title: e.title
@@ -70,19 +68,30 @@ Page({
 
   // 家长要批改的作业
   stuCor() {
-    let _this = this;
     let notCorrectedss = wx.getStorageSync('notCorrectedss');
-    let num = -1;
-    let arrNum = [];
-    for (let k in notCorrectedss) {
-      num++;
-      notCorrectedss[k].index = num;
-      arrNum.push(num);
-    };
-    _this.setData({
-      notCorrectedss: notCorrectedss,
-      arrNum: arrNum
+
+    let myMap = notCorrectedss.map((item, index) => {
+      item.index = index;
+      if (item.isSub === 0) {
+        return item.isTrue !== null;
+      } else {
+        let subQuestion = item.subQuestionAnswers;
+        const isEvent = item => item.isTrue !== null;
+        let every = subQuestion.every(isEvent);
+        return every;
+      }
     });
+
+    for (let k in notCorrectedss) {
+      notCorrectedss[k].isMap = myMap[k]
+    }
+
+    console.log(myMap, '>>>>>>>>');
+
+    this.setData({
+      notCorrectedss: notCorrectedss
+    });
+
   },
 
   /**
@@ -121,7 +130,7 @@ Page({
     let threeIndex = e.currentTarget.dataset.indx; //索引
     let notCorrectedss = _this.data.notCorrectedss; //后台数据
     let imgTopic = _this.data.imgTopic;
-    
+
     let large_judging = _this.data.large_judging; //大题对错
 
     // 判断当前点击的是否为图片
@@ -252,7 +261,7 @@ Page({
     let _this = this;
     let notC = _this.data.notCorrectedss;
     console.log(notC, 'notC');
-    
+
     // for(let k in notC) {
     //   if (notC[k].isSub == 1) {
     //     for (let i in notC[k].subQuestionAnswers) {

@@ -1,0 +1,10 @@
+<template name="subject_similarity">
+  <view class="solution" wx:if="{{ item.sameRate != null }}">
+    <view class="stuName">
+      <view>
+        <text>【答案相似度】</text>
+      </view>
+      <view class="text_indent">{{ item.sameRate * 100 + '%' }}</view>
+    </view>
+  </view>
+</template>

@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function(options) {
     wx.showLoading({
-      title: '加载中'
+      title: '出题中'
     });
     this.generative(); //获取生成的题型
   },
@@ -58,19 +58,19 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        let resName = res.data.data;
-        
-        for(let k in resName) {
-          resName[k].title = resName[k].title.replace(/<img/g,'<img style="max-width:100%;height:auto;"');
+        if(res.data.code === 200) {
+          let resName = res.data.data;
+          for(let k in resName) {
+            resName[k].title = resName[k].title.replace(/<img/g,'<img style="max-width:100%;height:auto;"');
+          }
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 800);
+
+          _this.setData({
+            books: resName
+          });
         }
-        setTimeout(function () {
-          wx.hideLoading()
-        }, 800);
-
-        _this.setData({
-          books: resName
-        });
-
       }
     })
   },
