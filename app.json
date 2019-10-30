@@ -1,5 +1,9 @@
 {
   "pages": [
+    "home/homeworkAssignment/sidebar/sidebar",
+    
+    "pages/index/index",
+
     "home/homeworkCorrecting/divide/divide",
     
     "home/homeworkCorrecting/Correction/correction",
@@ -10,9 +14,7 @@
 
     "home/homeworkCorrecting/Student/Student",
 
-    "pages/index/index",
 
-    "home/homeworkAssignment/sidebar/sidebar",
 
     "home/homeworkAssignment/setTime/setTime",
     
