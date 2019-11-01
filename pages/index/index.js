@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    loadinGdis: false
   },
 
   /**
@@ -16,11 +16,12 @@ Page({
   onLoad: function(options) {
 
   },
-
+  
   handleLogin: function(e) {
+    let _this = this;
     var user = e.detail.value;
     // 手机的校验
-    var phoneReg = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
+    var phoneReg = /^1([34578][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
     // 密码的校验
     var mima = /^(\w){6,12}$/
     if (!user.phone.trim()) {
@@ -38,9 +39,10 @@ Page({
       return;
     } else {
       // 登录用户名返回Token
-      wx.showLoading({
-        title: '登录中...'
-      });
+
+      _this.setData({
+        loadinGdis: true
+      })
 
       util.post(`/user/login?phone=${user.phone}&password=${user.password}`, null, {
           header: {
@@ -51,22 +53,13 @@ Page({
           if (res.data.code == 200) {
             // 保存token
             wx.setStorageSync('Token', res.data.data);
-
             const Token = wx.getStorageSync('Token');
-
             // 登录成功
-            setTimeout(function() {
-              wx.hideLoading();
-            }, 2000)
-
             util.showTextToast('登录成功', 1000, 'success');
-
             util.getUser('/user/info', null, {
               "Token": Token
             }, function(res) {
-
               wx.setStorageSync('user', res.data.data);
-
               if (res.data.data.role == '教师') {
                 // 登录成功跳转首页
                 const Token = wx.getStorageSync('Token');
@@ -117,12 +110,22 @@ Page({
                   }
                 })
               }
+              setTimeout(()=> {
+                _this.setData({
+                  loadinGdis: false
+                });
+              }, 800);
             })
           } else if (res.data.code === 4001) {
-            util.showTextToast('该账户还没有注册');
+            util.showTextToast('账号或密码错误');
+            _this.setData({
+              loadinGdis: false
+            })
           } else {
-            wx.hideLoading();
             util.showTextToast('登录失败');
+            _this.setData({
+              loadinGdis: false
+            })
           }
         })
     }

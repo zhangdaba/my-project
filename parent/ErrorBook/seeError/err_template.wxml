@@ -1,9 +1,9 @@
- <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+<wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 
- <import src="/template/subject/subject_title.wxml"></import>
- <import src="/template/subject/subject_select.wxml"></import>
- <import src="/template/subject/subject_answer.wxml"></import>
- <import src="/template/subject/subject_parse.wxml"></import>
+<import src="/template/subject/subject_title.wxml"></import>
+<import src="/template/subject/subject_select.wxml"></import>
+<import src="/template/subject/subject_answer.wxml"></import>
+<import src="/template/subject/subject_parse.wxml"></import>
 
 <template name="err_template">
 
@@ -18,8 +18,8 @@
       <template is="subject_title" data="{{ item }}"></template>
 
       <view wx:if="{{ item.isSub == 0 }}">
-        <template is="{{ subject_select }}" data="{{ item }}"></template>
-        
+        <template is="subject_select" data="{{ item }}"></template>
+
         <view wx:for="{{ item.studentResps }}" wx:key="index" wx:for-item="list">
           <view class="homeworkName f32">{{ list.homeworkName }} {{ list.homeworkSource }} 学生答案:</view>
           <view wx:if="{{ list.picturePath != '' }}">
@@ -51,11 +51,11 @@
 
       <view wx:else="{{item.isSub == 1}}">
 
-        <view wx:for="{{ item.newSubquestionAnswers }}" wx:for-item="itemName" wx:key="index">
+        <view wx:for="{{ item.newSubquestionAnswers }}" wx:for-item="item" wx:key="index">
 
           <template is="subject_title" data="{{ item }}"></template>
 
-          <template is="{{ subject_select }}" data="{{ item }}"></template>
+          <template is="subject_select" data="{{ item }}"></template>
 
         </view>
 
@@ -87,7 +87,7 @@
         <!-- 正确答案 与 答题解析 -->
         <view hidden="{{ !item.isTrue }}">
           <view wx:for="{{ item.newSubquestionAnswers }}" wx:key="index">
-          
+
             <template is="subject_answer" data="{{ item }}"></template>
             <template is="subject_parse" data="{{ item }}"></template>
 

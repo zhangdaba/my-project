@@ -5,7 +5,7 @@ let history = [];
 Page({
 
   data: {
-    
+
     books: [], // 从题库拿到的题
 
     newBooks: [], //用户选择的数据
@@ -47,7 +47,7 @@ Page({
       'questionType': setting.questionType, // 获取题型和数量
       'wx': 'wx'
     };
-    
+
     wx.request({
       url: config.listURL + '/message/getQ2',
       data: item,
@@ -58,12 +58,21 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        if(res.data.code === 200) {
+        if (res.data.code === 200) {
           let resName = res.data.data;
-          for(let k in resName) {
-            resName[k].title = resName[k].title.replace(/<img/g,'<img style="max-width:100%;height:auto;"');
+          for (let k in resName) {
+            resName[k].title = resName[k].title.replace(/<img/g, '<img style="max-width:100%;height:auto;"');
           }
-          setTimeout(function () {
+
+          for (let k in resName) {
+            resName[k].title = resName[k].title.replace(/style=";"/g, '');
+          }
+
+          for(let k in resName) {
+            resName[k].title = resName[k].title.replace(/px/g, 'rpx');
+          }
+
+          setTimeout(function() {
             wx.hideLoading()
           }, 800);
 
@@ -97,19 +106,19 @@ Page({
     if (!newBooksLength) {
       return;
     }
-    
+
     let booksAnd = _this.data.books;
 
     let newBooksAnd = JSON.stringify(booksAnd, ['diff', 'flag', 'index', 'questionId', 'knowledgeId', 'qTypeId']);
 
     let parseBooksAnd = JSON.parse(newBooksAnd);
-    
+
     let c = {
       "historyQuestionId": history,
       "questionParameters": parseBooksAnd,
       wx: "wx"
     }
-    
+
     wx.request({
       url: config.anyuanURL + '/message/getNewChangeQue',
       data: c,
@@ -128,7 +137,7 @@ Page({
           for (let k in newRes) {
             history.push(newRes[k].questionId);
           }
-          
+
           for (let i in newBook) {
             for (let k in newRes) {
               if (newBook[i].index == newRes[k].index) {
@@ -142,7 +151,7 @@ Page({
           })
 
         } else if (res.data.code == 3012) {
-          
+
           let newBook = _this.data.books;
 
           for (let k in newBook) {
@@ -152,7 +161,7 @@ Page({
           _this.setData({
             books: newBook
           })
-          
+
           wx.showToast({
             title: '没有更多的题可以再换了！',
             icon: 'none',

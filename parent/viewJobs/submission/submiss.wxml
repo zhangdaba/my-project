@@ -1,13 +1,14 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 
-<view class="top-tab" bindtap="switchTab">
-  <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{ task }}" data-index="{{ index }}" wx:key="index">
-    {{ item }}
+<view class="top_tab_number">
+  <view class="top-tab" bindtap="switchTab">
+    <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{ task }}" data-index="{{ index }}" wx:key="index">
+      {{ item }}
+    </view>
   </view>
 </view>
 
 <swiper style="height:{{ swiperHeight }}px" current="{{ currentTabInde }}" bindchange="handleChange">
-
   <swiper-item>
     <scroll-view scroll-y="true">
 

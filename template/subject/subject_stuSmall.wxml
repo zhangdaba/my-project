@@ -1,4 +1,4 @@
-<template name="subject_stuAnswer">
+<template name="subject_stuSmall">
 
   <view class="solution">
     <view>
@@ -6,24 +6,22 @@
     </view>
     
     <view class="text_indent">
-    
       <view wx:if="{{ item.stuAnswer != ''}}">
         <rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
       </view>
-      
+
       <view wx:elif="{{ item.pictureAnswer != '' }}">
         <view class="imgCenter">
-          <image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic1" bindtap='previewImg'>
+          <image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic" bindtap='previewImg'>
           </image>
         </view>
       </view>
-      
+
       <view wx:else>
         <text>空</text>
       </view>
-
     </view>
 
   </view>
-
+  
 </template>

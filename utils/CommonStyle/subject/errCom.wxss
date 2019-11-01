@@ -3,6 +3,16 @@
   margin: 0 auto;
 }
 
+.contentName {
+  width: 80%;
+  margin: 20rpx auto;
+  font-weight: 600;
+  display:flex;
+  display:-webkit-flex;
+  justify-content:space-between;
+  align-items:baseline;
+}
+
 .subject .top-content {
   display: flex;
   display: -webkit-flex;
@@ -30,6 +40,11 @@
   align-items: baseline;
   word-wrap: break-word;
   /* word-break: break-all; */
+}
+
+.imgCenter {
+  text-align: center;
+  margin-top: 10rpx;
 }
 
 .solution .text_indent {

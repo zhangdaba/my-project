@@ -6,9 +6,18 @@
 <import src="/template/subject/subject_answer.wxml"></import>
 
 <scroll-view scroll-y="true">
-  <view class="swiper-tab">
-    <view class="swiper-tab-item" catchtap="clickTab" wx:for="{{ questions }}" wx:key="{{ index }}" id="{{ indx == index ? 'indx': '' }}" data-indx="{{ index }}" data-item="{{ item }}">{{ item.error }}</view>
+
+  <view class="top_tab_number">
+    <view class="top-tab" catchtap="clickTab">
+      <view class="top-tab-item {{ indx == index?'':'active' }}" wx:for="{{ questions }}" data-index="{{ index }}" wx:key="index">
+        {{ item.error }}
+      </view>
+    </view>
   </view>
+
+  <!-- <view class="swiper-tab">
+    <view class="swiper-tab-item" catchtap="clickTab" wx:for="{{ questions }}" wx:key="{{ index }}" id="{{ indx == index ? 'indx': '' }}" data-indx="{{ index }}" data-item="{{ item }}">{{ item.error }}</view>
+  </view> -->
 
   <template is="template" data="{{ chapterItem }}"></template>
 
@@ -48,7 +57,7 @@
     <view style="display: {{ item.is === true ? 'block' : 'none' }}">
 
       <template is="subject_title" data="{{ item }}"></template>
-      
+
       <view wx:if="{{ item.isSub === 0 }}">
         <!-- 大题选项 -->
         <template is="subject_select" data="{{ item }}"></template>

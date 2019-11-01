@@ -29,6 +29,8 @@ Page({
 
     windowHeight: null,
 
+    loadinGdis: false,
+
     // 第一次执行
     wrong_Index: null,
 
@@ -260,7 +262,12 @@ Page({
   Submission: function() {
     let _this = this;
     let notC = _this.data.notCorrectedss;
-    console.log(notC, 'notC');
+
+    this.setData({
+      loadinGdis: true
+    });
+
+    // console.log(notC, 'notC');
 
     // for(let k in notC) {
     //   if (notC[k].isSub == 1) {
@@ -295,6 +302,9 @@ Page({
       responseType: 'text',
       success: function(res) {
         if (res.data.code == 200) {
+          _this.setData({
+            loadinGdis: false
+          });
           wx.showToast({
             title: '提交成功',
             icon: 'success',
@@ -305,7 +315,7 @@ Page({
           }, 300);
         }
       }
-    })
+    });
   },
 
   // index 找到当前题型

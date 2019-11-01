@@ -1,11 +1,14 @@
+@import "/utils/CommonStyle/subject/nav.wxss";
+
 scroll-view {
   height: 100%;
 }
 
-.top-tab {
+/* .top-tab {
   height: 64rpx;
   width: 100%;
   display: flex;
+  z-index: 999;
   flex-flow: row nowrap;
   justify-content: space-around;
   -webkit-justify-content: space-around;
@@ -25,7 +28,7 @@ scroll-view {
 .active {
   color: #44a9ff;
   border-bottom: 3px solid #44a9ff;
-}
+} */
 
 .classNum {
   width: 92%;

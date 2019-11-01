@@ -1,11 +1,12 @@
 @import '/utils/CommonStyle/subject/treeCom.wxss';
 @import '/utils/CommonStyle/subject/errCom.wxss';
+@import '/utils/CommonStyle/subject/nav.wxss';
 
 scroll-view {
   height: 100%;
 }
 
-.top-tab {
+/* .top-tab {
   height: 64rpx;
   line-height: 64rpx;
   width: 100%;
@@ -33,11 +34,11 @@ scroll-view {
 .top-top-item {
   position: relative;
   z-index: 999;
-}
+} */
 
-.chapterContent {
+/* .chapterContent {
   padding-top: 80rpx;
-}
+} */
 
 .images {
   margin: 0 auto;

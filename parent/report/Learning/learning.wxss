@@ -1,14 +1,12 @@
 @import '/utils/CommonStyle/subject/treeCom.wxss';
 @import '/utils/CommonStyle/subject/errCom.wxss';
-
-page {
-  background: #EFF2F6;
-}
+@import '/utils/CommonStyle/subject/nav.wxss';
 
 scroll-view {
   height: 100%;
 }
 
+/*
 .swiper-tab {
   width: 100%;
   text-align: center;
@@ -23,13 +21,13 @@ scroll-view {
 
 .swiper-tab-item {
   width: 30%;
-}
+} */
 
-#indx {
+/* #indx {
   border-bottom: 2px solid #1693FF;
   color: #1693FF;
   font-size: 30rpx;
-}
+} */
 
 .Knowledge {
   display: flex;

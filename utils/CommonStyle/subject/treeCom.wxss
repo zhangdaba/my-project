@@ -1,12 +1,39 @@
 .ChapterRecursions {
-  width: 88%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 10rpx auto;
   background: #fff;
 }
 
 .ChapterRecursions .ChapterRecursionsNum {
-  width: 96%;
+  width: 80%;
   margin: 0 auto;
+}
+
+.ChapterRecursions .ChapterRecursionsNum > view {
+  border-bottom: 4rpx solid #f6f7fb;
+  position: relative;
+}
+
+.ChapterRecursions .ChapterRecursionsNum > view:before {
+ content: "";
+ display: block;
+ position: absolute;
+ bottom: -3rpx;
+ left: -110rpx;
+ width: 20%;
+ height: 4rpx;
+ background: #f6f7fb;
+}
+
+.ChapterRecursions .ChapterRecursionsNum > view::after {
+ content: "";
+ display: block;
+ position: absolute;
+ bottom: -3rpx;
+ right: -110rpx;  
+ width: 20%;
+ height: 4rpx;
+ background: #f6f7fb;
 }
 
 .contentName {
@@ -36,8 +63,10 @@
 
 .list-container {
   margin-left: 20rpx;
+  color: #5c5c5c;
 }
 
 .item-container {
   margin-left: 40rpx;
+  color: #999;
 }

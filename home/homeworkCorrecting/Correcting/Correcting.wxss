@@ -21,18 +21,6 @@ swiper-item {
   background: #44A9FF;
 }
 
-.stuName {
-  font-size: 32rpx;
-  margin-top: 10rpx;
-}
-
-.imgCenter {
-  text-align: center;
-}
-
-.imgCenter image {
-  padding-top: 30rpx;
-}
 
 .viewImg {
   margin-bottom:20rpx;

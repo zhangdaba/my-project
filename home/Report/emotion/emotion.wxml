@@ -5,14 +5,18 @@
 <import src="/template/subject/subject_answer.wxml"></import>
 <import src="/template/subject/subject_parse.wxml"></import>
 
-<view class="swiper-tab">
-  <view class="swiper-tab-item" catchtap="clickTab" wx:for="{{ questions }}" wx:key="{{ index }}" data-indx="{{ index }}" id="{{ switchindx == index ? 'indx': '' }}" data-item="{{ item }}">{{ item.error }}</view>
+<view class="top_tab_number">
+  <view class="top-tab" catchtap="clickTab">
+    <view class="top-tab-item {{ switchindx == 0 ?'active':'' }}" 
+      wx:for="{{ questions }}" data-index="{{ index }}" data-item="{{ item }}" wx:key="index" data-current="0">
+      {{ item.error }}
+    </view>
+  </view>
 </view>
 
 <template is="template" data="{{ reportAll }}"></template>
 
 <view>
-
   <view class="student" wx:if="{{ knowledgeTopAll.length }}">
     <view class="student_list">作业</view>
     <view class="student_list">平均时间</view>

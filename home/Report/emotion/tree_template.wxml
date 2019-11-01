@@ -1,11 +1,13 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 <template name="template">
+
+    <view class="contentName" wx:if="{{ reportAll.length }}">
+      <view>章节目录</view>
+      <view>章节正确率</view>
+    </view>
+
     <view class="ChapterRecursions">
     <view class="ChapterRecursionsNum">
-      <view class="contentName" wx:if="{{ reportAll.length }}">
-        <view>章节目录</view>
-        <view>章节正确率</view>
-      </view>
       <view wx:for="{{ reportAll }}" wx:key="{{ index }}" data-item="{{ item }}" catchtap='reportAll'>
 
         <view class="flex-container">
@@ -30,6 +32,7 @@
               <view> {{ item_list_item.chapterAccuracy == null ? '' : dateFr.parseInt( item_list_item.chapterAccuracy * 100) + '%' }}</view>
             </view>
           </view>
+          
         </view>
       </view>
     </view>

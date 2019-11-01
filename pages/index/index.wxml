@@ -27,7 +27,12 @@
       
       <!-- 登录 注册 样式 -->
       <view class="sign">
-        <button class="signLift" form-type="submit" size="mini" type="primary" style="background:#44A9FF;">
+        <button class="signLift" form-type="submit" 
+                disabled="{{ loadinGdis }}" 
+                loading="{{ loadinGdis }}" 
+                size="mini" 
+                type="primary" 
+                style="background:#44A9FF;">
           <text>登录</text>
         </button>
 <!-- <view class="signRight" hover-class="hoverSign" bindtap="register">

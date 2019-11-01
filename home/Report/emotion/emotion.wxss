@@ -1,8 +1,9 @@
 @import "/utils/CommonStyle/Common/common.wxss";
 @import '/utils/CommonStyle/subject/treeCom.wxss';
 @import '/utils/CommonStyle/subject/errCom.wxss';
+@import '/utils/CommonStyle/subject/nav.wxss';
 
-.swiper-tab {
+/* .swiper-tab {
   width: 100%;
   text-align: center;
   height: 88rpx;
@@ -18,7 +19,7 @@
   width: 30%;
   color: #434343;
   font-size: 30rpx;
-}
+} */
 
 .view {
   height: 90rpx;
@@ -49,11 +50,11 @@
   text-align: center;
 }
 
-#indx {
+/* #indx {
   border-bottom: 2px solid #1693FF;
   color: #1693FF;
   font-size: 34rpx;
-}
+} */
 
 
 /* -----------------start-------------------- */

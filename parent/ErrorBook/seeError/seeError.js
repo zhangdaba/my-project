@@ -68,7 +68,6 @@ Page({
 
   // 章节下的 错题
   divide: function(e) {
-    console.log('divide');
     let _this = this;
     let chapterId = e.currentTarget.dataset.item.chapterId;
     const ChildList = wx.getStorageSync('ChildrenItem');
@@ -269,6 +268,5 @@ Page({
     this.setData({
       wholes: wholesRes
     })
-    console.log(wholesRes, ">>>>>>>>");
   }
 })

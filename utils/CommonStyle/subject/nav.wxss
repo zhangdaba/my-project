@@ -1,0 +1,32 @@
+.top_tab_number {
+  height: 64rpx;
+}
+
+.top-tab {
+  height: 64rpx;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+  background-color: #fff;
+  align-items: stretch;
+  font-size: 32rpx;
+  color: #7b7b7b;
+}
+
+.top-tab .top-tab-item {
+  flex-grow: 1;
+  text-align: center;
+  height: 64rpx;
+  line-height: 64rpx;
+}
+
+.active {
+  color: #44a9ff;
+  border-bottom: 3px solid #44a9ff;
+}

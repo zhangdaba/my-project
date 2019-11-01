@@ -5,6 +5,7 @@
 <import src="/template/subject/subject_parse.wxml"></import>
 
 <template name="err_template">
+
   <view class="subject">
     <view wx:for="{{ wholes }}" wx:key="{{ index }}" data-item='{{ item }}' data-indx="{{ index }}" bindtap="father">
       <view class="top-content">
@@ -49,9 +50,11 @@
         <view hidden="{{ !item.isTrue }}">
           <block wx:for="{{ item.newSubquestionAnswers }}" wx:key="index">
 
+
             <view class="solution">
-              <view>( {{ index + 1 }} )</view>
-              <view>【正确答案】</view>
+              <view>({{ index + 1 }})</view>
+              <template is="subject_answer" data="{{ item }}"></template>
+              <!-- <view>【正确答案】</view>
               <view class="text_indent">
                 <view wx:if="{{ item.answer1.length != 0 }}">
                   <rich-text type="nodes*" space="&nbsp" nodes="{{ item.answer1 }}"></rich-text>
@@ -62,7 +65,8 @@
                 <view wx:else>
                   <view>略</view>
                 </view>
-              </view>
+              </view> -->
+
             </view>
 
               <template is="subject_parse" data="{{ item }}"></template>

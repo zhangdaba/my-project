@@ -5,15 +5,17 @@
 <scroll-view scroll-y="true">
 
   <view class="top-and">
-    <view class="top-top">
-      <view class="top-top-item">
-        <view class="top-tab">
-          <text catchtap="switchTab" data-item="{{ item }}" wx:for="{{ questions }}" wx:key="{{ index }}">{{ item.error }}</text>
+
+    <view class="top_tab_number">
+      <view class="top-tab" bindtap="switchTab">
+        <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{ questions }}" 
+              data-index="{{ index }}" 
+              wx:key="index">
+          {{ item.error }}
         </view>
-        <!-- top-tab -->
       </view>
     </view>
-    
+
     <!-- 章节下 start -->
     <view class="chapterContent">
       <template is="template" data="{{ chapters }}"></template>

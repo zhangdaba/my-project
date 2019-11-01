@@ -25,7 +25,7 @@
         </view>
 
         <view class="block" hidden="{{ !item.flag }}">
-          <icon type="success" size="20" color="#44a9ff"></icon>
+          <icon type="success" size="38rpx" color="#44a9ff"></icon>
         </view>
       </view>
 
