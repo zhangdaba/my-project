@@ -1,13 +1,21 @@
 {
   "pages": [
-    "home/homeworkAssignment/sidebar/sidebar",
     
     "pages/index/index",
-    "parent/report/subReport/subReport",
-    "parent/report/Learning/learning",
-    
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
+    
+    "home/homeworkAssignment/assignment/assignment",
+    "home/homeworkAssignment/setTime/setTime",
+    "home/homeworkAssignment/setting/setting",
+    "home/homeworkAssignment/divideKnowledge/Knowledge",
+    "home/homeworkAssignment/bindingClass/class",
+    "home/homeworkAssignment/bindingSchool/school",
+
+    "home/homeworkAssignment/sidebar/sidebar",
+
+    "parent/report/subReport/subReport",
+    "parent/report/Learning/learning",
     
     "home/Report/Report/Report",
     "home/Report/emotion/emotion",
@@ -17,7 +25,7 @@
     
     "home/homeworkCorrecting/Correction/correction",
     "home/homeworkCorrecting/Correcting/Correcting",
-
+    
     "pages/home/Teacher/teacher",
     "pages/home/Parent/Parent",
     
@@ -30,12 +38,6 @@
     "parent/viewJobs/subSee/subSee",
     "parent/viewJobs/submission/submiss",
     
-    "home/homeworkAssignment/setTime/setTime",
-    "home/homeworkAssignment/setting/setting",
-    "home/homeworkAssignment/assignment/assignment",
-    "home/homeworkAssignment/divideKnowledge/Knowledge",
-    "home/homeworkAssignment/bindingClass/class",
-    "home/homeworkAssignment/bindingSchool/school",
     
     "home/homeworkAssignment/dividehapter/chapter",
 

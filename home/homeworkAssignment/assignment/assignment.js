@@ -25,7 +25,7 @@ Page({
       url: '../dividehapter/chapter',
     });
   },
-  
+
   // 年级
   schoolName: function() {
     let _this = this;
@@ -33,15 +33,24 @@ Page({
     wx.request({
       url: config.itemURL + '/grade/getClass',
       data: '',
-      header: {'Token': Token },
+      header: {
+        'Token': Token
+      },
       method: 'GET',
       success: function(res) {
-        let resData = res.data.data;
-        _this.setData({
-          books: resData.reverse()
-        })
+        console.log();
+        if (res.data.code === 200 || res.data.message === "SUCCESS") {
+          let resData = res.data.data;
+          _this.setData({
+            books: resData.reverse()
+          })
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index'
+          })
+        }
       }
     })
   }
-  
+
 })
