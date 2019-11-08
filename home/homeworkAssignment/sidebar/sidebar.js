@@ -44,7 +44,7 @@ Page({
     let item = {
       'chapterId': chapItem.id, //知识点获取
       'coefficient': setting.difficult, // 难易程度 和 对应的数量
-      'questionType': setting.questionType, // 获取题型和数量
+      'questionTypeList': setting.questionType, // 获取题型和数量
       'wx': 'wx'
     };
 
