@@ -1,7 +1,7 @@
 {
   "pages": [
-    "home/homeworkAssignment/sidebar/sidebar",
     "pages/index/index",
+    "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/setTime/setTime",
     "home/homeworkAssignment/assignment/assignment",
@@ -39,6 +39,5 @@
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": false
   },
-  "sitemapLocation": "sitemap.json",
-  //sss
+  "sitemapLocation": "sitemap.json"
 }
