@@ -109,7 +109,7 @@ Page({
 
     let booksAnd = _this.data.books;
 
-    let newBooksAnd = JSON.stringify(booksAnd, ['diff', 'flag', 'index', 'questionId', 'knowledgeId', 'qTypeId']);
+    let newBooksAnd = JSON.stringify(booksAnd, ['diff', 'flag', 'index', 'questionId', 'knowledgeId', 'questionTypeId']);
 
     let parseBooksAnd = JSON.parse(newBooksAnd);
 
