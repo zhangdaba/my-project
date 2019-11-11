@@ -29,8 +29,10 @@ Page({
     let _this = this;
     // 知识点获取
     let chapItem = wx.getStorageSync('chapItem');
+
     // 获取题型和数量json
     let taskDataNumber = wx.getStorageSync('taskDataNumber');
+
     // 获取百分比json
     let newArr = wx.getStorageSync("newArr");
 
@@ -75,7 +77,7 @@ Page({
           setTimeout(function() {
             wx.hideLoading()
           }, 800);
-
+          
           _this.setData({
             books: resName
           });
@@ -113,11 +115,15 @@ Page({
 
     let parseBooksAnd = JSON.parse(newBooksAnd);
 
+    let chapItem = wx.getStorageSync('chapItem');
+
     let c = {
+      "chapterId": chapItem.id,
       "historyQuestionId": history,
       "questionParameters": parseBooksAnd,
       wx: "wx"
     }
+
 
     wx.request({
       url: config.anyuanURL + '/message/getNewChangeQue',

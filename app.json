@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/index",
     "home/homeworkAssignment/sidebar/sidebar",
-    "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/setTime/setTime",
+    "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/assignment/assignment",
     "home/homeworkAssignment/divideKnowledge/Knowledge",
     "home/homeworkAssignment/bindingClass/class",
