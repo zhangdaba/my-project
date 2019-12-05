@@ -47,7 +47,7 @@ Page({
         } else {
           wx.reLaunch({
             url: '/pages/index/index'
-          })
+          });
         }
       }
     })

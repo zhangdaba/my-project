@@ -133,8 +133,8 @@ Page({
       'chapterId': chapItem.id,
       "homeworkType": this.data.evTask.id,
       "queIds": assignment
-    }
-
+    };
+    
     wx.request({
       url: config.itemURL + '/homework/create',
       data: msgTopic,
@@ -144,14 +144,17 @@ Page({
       },
 
       success(res) {
-        if (res.statusCode == 200) {
+        if (res.data.code == 200) {
           utils.showTextToast('布置成功', 1500, 'success');
           setTimeout(function() {
             wx.navigateBack({
               delta: 8
             });
           }, 800)
-
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index'
+          });
         }
       }
     })

@@ -31,9 +31,15 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        that.setData({
-          getClass: res.data.data
-        });
+        if(res.data.code == 200) {
+          that.setData({
+            getClass: res.data.data
+          });
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index'
+          });
+        }
       },
     });
   },

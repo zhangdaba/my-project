@@ -35,9 +35,16 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: res => {
-        this.setData({
-          setting: res.data.data.reverse()
-        })
+        console.log(res);
+        if(res.data.code == 200) {
+          this.setData({
+            setting: res.data.data.reverse()
+          })
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index'
+          });
+        }
       }
     })
   },

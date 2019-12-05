@@ -42,6 +42,10 @@ Page({
           _this.setData({
             errors: res.data.data
           })
+        } else {
+          wx.reLaunch({
+            url: '/pages/index/index'
+          });
         }
       }
     })
