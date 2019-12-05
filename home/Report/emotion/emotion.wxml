@@ -53,13 +53,13 @@
 
   <view wx:for="{{ whiles }}" wx:key="index" data-item="{{ item }}" data-idx="{{ index }}" bindtap="whilesBind">
 
-    <view class="student_subject">
+    <view class="student_subject" bindtap="xiangqing" data-indx="{{ index }}">
       <view class="student_list_item">{{ index + 1 }}</view>
       <view class="student_list_item">
         {{ item.avgAnswerTime === null ? '空' : item.avgAnswerTime +'s' }}
       </view>
       <view class="student_list_item">{{ dateFr.parseInt(item.accuracy * 100) + '%' }}</view>
-      <view class="student_list_item" bindtap="xiangqing" data-indx="{{ index }}">{{ item.is === true ? '收起' : '详情' }}</view>
+      <view class="student_list_item">{{ item.is === true ? '收起' : '详情' }}</view>
     </view>
 
     <view class="zhengque m12" style="display: {{ item.is === true ? 'block' : 'none' }}">
