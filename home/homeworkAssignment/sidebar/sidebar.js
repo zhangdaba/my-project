@@ -1,4 +1,5 @@
-import config from '../../../utils/config.js'
+import config from '../../../utils/config.js';
+import { subjectImg } from '../../../utils/util.js';
 
 let history = [];
 
@@ -62,17 +63,8 @@ Page({
       success: function(res) {
         if (res.data.code === 200) {
           let resName = res.data.data;
-          for (let k in resName) {
-            resName[k].title = resName[k].title.replace(/<img/g, '<img style="max-width:100%;height:auto;"');
-          }
-
-          for (let k in resName) {
-            resName[k].title = resName[k].title.replace(/style=";"/g, '');
-          }
-
-          for(let k in resName) {
-            resName[k].title = resName[k].title.replace(/px/g, 'rpx');
-          }
+          
+          subjectImg(resName);
 
           setTimeout(function() {
             wx.hideLoading()

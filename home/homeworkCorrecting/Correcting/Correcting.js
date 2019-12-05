@@ -1,4 +1,5 @@
-import config from '../../../utils/config.js'
+import config from '../../../utils/config.js';
+import { subjectImg } from '../../../utils/util.js';
 
 let choice = [{
     id: 0,
@@ -86,9 +87,12 @@ Page({
 
     for (let k in notCorrectedss) {
       notCorrectedss[k].isMap = myMap[k]
-    }
+      // notCorrectedss[k].pictureAnswer = notCorrectedss[k].pictureAnswer.replace('');
+    };
 
-    console.log(myMap, '>>>>>>>>');
+    // subjectImg(notCorrectedss);
+
+    console.log(myMap, '>>>>>>>>', notCorrectedss);
 
     this.setData({
       notCorrectedss: notCorrectedss

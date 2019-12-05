@@ -73,13 +73,9 @@
                 <icon class="iconfont {{ wrong_list.icon }}"></icon>
               </button>
             </view>
-
           </view>
         </view>
-
-
       </view>
-
     </scroll-view>
   </swiper-item>
 

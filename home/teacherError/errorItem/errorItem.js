@@ -1,4 +1,6 @@
-import config from '../../../utils/config.js'
+import config from '../../../utils/config.js';
+import { subjectImg } from '../../../utils/util.js';
+
 import {
   convert,
   IterationDelateMenuChildren
@@ -64,10 +66,14 @@ Page({
       responseType: 'text',
       success: function(res) {
         let resWholes = res.data.data;
+        
         for (let k in resWholes) {
           resWholes[k].isTrue = 0;
+          resWholes[k].title = resWholes[k].title
         }
-        console.log(resWholes);
+
+        subjectImg(resWholes);
+
         _this.setData({
           wholes: resWholes,
           knowledgePoints: []

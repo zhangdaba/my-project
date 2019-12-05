@@ -222,6 +222,21 @@ function NavigationBarTitle(barTitle) {
   return title;
 }
 
+// 解决图片超出屏幕视口大小
+function subjectImg(resName) {
+  for (let k in resName) {
+    resName[k].title = resName[k].title.replace(/<img/g, '<img style="max-width:100%;height:auto;overflow: auto;"');
+  }
+
+  for (let k in resName) {
+    resName[k].title = resName[k].title.replace(/style=";"/g, '');
+  }
+
+  for (let k in resName) {
+    resName[k].title = resName[k].title.replace(/px/g, 'rpx');
+  }
+};
+
 module.exports = {
   formatTime: formatTime,
   showTextToast: showTextToast,
@@ -235,5 +250,6 @@ module.exports = {
   IterationDelateMenuChildren: IterationDelateMenuChildren,
   throttle, // 函数节流与函数防抖
   formatSeconds: formatSeconds,
-  NavigationBarTitle
+  NavigationBarTitle,
+  subjectImg: subjectImg
 }
