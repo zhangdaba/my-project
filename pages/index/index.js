@@ -21,7 +21,7 @@ Page({
     let _this = this;
     var user = e.detail.value;
     // 手机的校验
-    var phoneReg = /^1([34578][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
+    var phoneReg = /^1([23456789][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
     // 密码的校验
     var mima = /^(\w){6,12}$/
     if (!user.phone.trim()) {
@@ -42,7 +42,7 @@ Page({
 
       _this.setData({
         loadinGdis: true
-      })
+      });
 
       util.post(`/user/login?phone=${user.phone}&password=${user.password}`, null, {
           header: {
@@ -74,14 +74,12 @@ Page({
                   success: function(res) {
                     let resLength = res.data.data.length;
                     if (resLength) {
-
                       let schoolClass = res.data.data[0];
                       wx.setStorageSync('getClass', res.data.data);
                       wx.setStorageSync('school', schoolClass);
-                      //登录成功后将教师的班级保存进本地存储
+                      // 登录成功后将教师的班级保存进本地存储
                       const school = wx.getStorageSync('school');
                       wx.redirectTo({url: "../home/Teacher/teacher"});
-                      
                     } else {
                       wx.navigateTo({
                         url: "../../home/homeworkAssignment/bindingSchool/school"

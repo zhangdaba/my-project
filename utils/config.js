@@ -13,4 +13,4 @@ module.exports = {
   reportURL: app + '/gateway/report',
   anyuanURL: app + '/gateway/question',
   webSocketURL: wss + '/websocket'
-}
+};
