@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "parent/report/subReport/subReport",
+    "parent/report/Learning/learning",
+
     "home/teacherError/error/error",
     "home/teacherError/errorItem/errorItem",
     
@@ -25,9 +28,6 @@
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
     
-    "parent/report/subReport/subReport",
-    "parent/report/Learning/learning",
-
     "pages/home/Teacher/teacher",
     "pages/home/Parent/Parent",
     "parent/viewJobs/subSee/subSee",

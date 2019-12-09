@@ -156,7 +156,12 @@ function throttle(fn, gapTime) {
 
 // 时间转换 60s 转 01:00
 function formatSeconds(value) {
+  var result = '';
 
+  if(!value) {
+    return result = '空';
+  }
+  
   var theTime = parseInt(value); // 秒
 
   var middle = 0; // 分
@@ -182,7 +187,6 @@ function formatSeconds(value) {
 
   }
 
-  var result = ''
   if (parseInt(theTime) >= 10) {
     result = "0" + ":" + parseInt(theTime);
   } else {

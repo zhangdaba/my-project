@@ -136,6 +136,7 @@ Page({
       responseType: 'text',
       success: (res) => {
         let reself = res.data.data;
+        console.log(reself, '>>>>>>>>>>');
         for(let k in reself) {
           reself[k].ownerAnswerTime = formatSeconds(reself[k].ownerAnswerTime)
         }

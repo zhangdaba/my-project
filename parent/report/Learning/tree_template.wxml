@@ -21,7 +21,12 @@
             <view>{{ item_list.chapterAccuracy == null ? '' : dateFr.parseInt( item_list.chapterAccuracy * 100) + '%' }}</view>
           </view>
 
-          <view catchtap='chapterTop' wx:for="{{ item_list.children }}" wx:key="{{ index }}" wx:for-item="item_list_item" data-item="{{ item_list_item }}">
+          <view catchtap='chapterTop' 
+                wx:for="{{ item_list.children }}" 
+                wx:key="{{ index }}" 
+                wx:for-item="item_list_item" 
+                data-item="{{ item_list_item }}">
+                
             <view class="flex-container item-container">
               <view> {{ item_list_item.chapterName }}</view>
               <view> {{ item_list_item.chapterAccuracy == null ? '' : dateFr.parseInt( item_list_item.chapterAccuracy * 100) + '%' }}</view>

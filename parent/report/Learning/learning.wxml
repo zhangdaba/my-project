@@ -29,7 +29,9 @@
 
   <view class="student" wx:for="{{ tasks }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="taskOnBind">
     <view class="student_list">{{ item.homeworkName }}</view>
+
     <view class="student_list">{{ item.ownerAnswerTime }}</view>
+
     <view class="student_list">{{ item.ownerAccuracy === null ? '空': dateFr.parseInt( item.ownerAccuracy * 100) + '%' }}</view>
     <view class="knowledgeItem {{ item.submit ? '' : 'knowledgeColor' }}">{{ item.submit ? '已提交':'未提交' }}</view>
     <view class="InClass">{{ item.source }}</view>
