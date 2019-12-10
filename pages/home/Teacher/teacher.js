@@ -26,7 +26,6 @@ let advImage = [{
 
 Page({
   data: {
-
     // 家长端
     advImage,
     indicatorColor: 'white',
@@ -36,7 +35,6 @@ Page({
     duration: 1000,
 
     // 家长端
-
     dialogShow: false,
     buttons: [{
       text: '取消'
@@ -44,12 +42,11 @@ Page({
       text: '确定'
     }],
     tabChange: {},
-
     list: list,
+    windowHeight: null
   },
 
   onLoad() {
-
     let tab = {
       detail: {
         index: 0,
@@ -61,7 +58,19 @@ Page({
         }
       }
     };
+    this.windowHeight();
     this.tabChange(tab);
+  },
+
+  windowHeight: function () {
+    let _this = this;
+    wx.getSystemInfo({
+      success(res) {
+        _this.setData({
+          windowHeight: res.windowHeight
+        });
+      }
+    })
   },
 
   onShow: function() {
@@ -77,10 +86,6 @@ Page({
     })
   },
 
-  onReady() {
-    
-  },
-
   // onReachBottom: function () {
   //   this.my_msgProp = this.selectComponent("#my_msgProp");
   //   this.my_msgProp.my_msgProp();
@@ -94,16 +99,7 @@ Page({
 
     wx.setNavigationBarTitle({
       title: util.NavigationBarTitle(e.detail.index)
-    })
-
-    // 监听当前页面渲染 需求 负责消息模块的实时数据更新
-    if (e.detail.index === 1) {
-      this.my_msgProp = this.selectComponent("#my_msgProp");
-      console.log('onReady', this.my_msgProp);
-      this.my_msgProp.my_msgProp();
-    } else {
-      return;
-    }
+    });
   },
 
   //布置作业

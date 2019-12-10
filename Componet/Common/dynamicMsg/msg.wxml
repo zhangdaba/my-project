@@ -1,9 +1,10 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 
-
+<scroll-view scroll-y="true" bindscrolltolower="loadMore"
+ style="height:{{windowHeight}}px;">
 
   <view class="view">
-    <scroll-view scroll-y="true">
+
     <view class="view_num" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
       <view class="view-list" style="background: {{ dateFr.random() }}">
         <view>
@@ -18,9 +19,14 @@
         </view>
       </view>
     </view>
+
+    <view wx:if="{{ touchTottom }}" style="text-align: center;">到底了...</view>
+
     <view wx:if="{{ !my_msgPropArr.length }}" class="empty">
       <icon class="iconfont icon-empty"></icon>
       <text> \n 空空如也...</text>
     </view>
-    </scroll-view>
+
   </view>
+
+</scroll-view>

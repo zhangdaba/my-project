@@ -1,6 +1,9 @@
 {
   "pages": [
+    "pages/home/Teacher/teacher",
     "pages/index/index",
+    "pages/home/Parent/Parent",
+
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
 
@@ -9,13 +12,13 @@
 
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
-
+    
     "home/homeworkCorrecting/Question/question",
     "home/homeworkCorrecting/Correcting/Correcting",
     "home/homeworkCorrecting/Correction/correction",
     "home/homeworkCorrecting/Student/Student",
     "home/homeworkCorrecting/divide/divide",
-    
+
     "home/homeworkAssignment/setTime/setTime",
     "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/assignment/assignment",
@@ -27,9 +30,7 @@
 
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
-    
-    "pages/home/Teacher/teacher",
-    "pages/home/Parent/Parent",
+
     "parent/viewJobs/subSee/subSee",
     "parent/viewJobs/submission/submiss",
     "parent/home/binding/children",
