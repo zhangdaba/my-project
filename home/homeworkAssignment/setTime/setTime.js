@@ -128,6 +128,7 @@ Page({
       "classId": selection.id,
       "bookId": selection.bookId,
       "editionId": selection.editionId,
+      "subjectId": selection.subjectId,
       "operationEndTime": String(time),
       "resourceName": evTaskName,
       'chapterId': chapItem.id,

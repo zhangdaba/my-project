@@ -125,7 +125,6 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: res => {
-        console.log(res);
         if (res.data.code == 200) {
           //需要换题的数据
           let newBook = _this.data.books;
@@ -143,7 +142,7 @@ Page({
               }
             }
           }
-
+          
           _this.setData({
             books: newBook
           })

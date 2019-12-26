@@ -4,7 +4,7 @@
  style="height:{{windowHeight}}px;">
 
   <view class="view">
-
+  
     <view class="view_num" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
       <view class="view-list" style="background: {{ dateFr.random() }}">
         <view>

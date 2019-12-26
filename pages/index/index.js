@@ -64,7 +64,7 @@ Page({
                 // 登录成功跳转首页
                 const Token = wx.getStorageSync('Token');
                 wx.request({
-                  url: config.itemURL + '/grade/getClass',
+                  url: config.basisURL + '/teacher/getTeacher',
                   data: '',
                   header: {
                     Token: Token
@@ -89,7 +89,7 @@ Page({
                 })
               } else if (res.data.data.role == '家长') {
                 wx.request({
-                  url: config.itemURL + '/student/getStudent',
+                  url: config.basisURL + '/student/getStudent',
                   data: '',
                   header: {
                     Token: Token

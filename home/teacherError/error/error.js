@@ -28,7 +28,7 @@ Page({
     let _this = this;
     const token = wx.getStorageSync('Token');
     wx.request({
-      url: config.itemURL + '/grade/getClass',
+      url: config.basisURL + '/teacher/getTeacher',
       data: '',
       header: {
         'Token': token

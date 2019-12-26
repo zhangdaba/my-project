@@ -15,7 +15,7 @@ Page({
   onLoad: function(options) {
     const ChildList = wx.getStorageSync('ChildrenItem');
     wx.request({
-      url: config.itemURL + '/report/selectSubject?stuId=' + ChildList.id,
+      url: config.basisURL + '/student/selectSubject?stuId='+ChildList.id,
       data: '',
       header: {},
       method: 'GET',

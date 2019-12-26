@@ -1,14 +1,33 @@
 import config from "../../../utils/config.js";
 
 Component({
+
   /**
    * 组件的属性列表
    */
-  properties: {
-    msg: {
-      type: Array,
-      value: ''
+  
+  pageLifetimes: {
+    
+    show: function () {
+
+      // this.setData({
+      //   my_msgPropArr: [],
+      //   num: 1,
+      //   touchTottom: false
+      // });
+
+      // this.my_msgProp();
+
     },
+
+    resize: function (size) {}
+  },
+
+  properties: {
+    // msg: {
+    //   type: Array,
+    //   value: ''
+    // },
 
     windowHeight: {
       type: Number,
@@ -17,15 +36,6 @@ Component({
 
   },
 
-  // lifetimes: {
-    attached:function() {
-      console.log('>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<');
-    },
-  // },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
     my_msgPropArr: [],
     // windowHeight: null,
@@ -41,7 +51,6 @@ Component({
   },
 
   created() {
-    // this.windowHeight();
     this.my_msgProp();
   },
 
@@ -49,17 +58,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // windowHeight: function() {
-    //   let _this = this;
-    //   wx.getSystemInfo({
-    //     success(res) {
-    //       _this.setData({
-    //         windowHeight: res.windowHeight
-    //       });
-    //     }
-    //   })
-    // },
-
+    
     loadMore() {
       let _this = this;
       let num = this.data.num;
@@ -70,14 +69,14 @@ Component({
         console.log('到底了');
         return;
       };
-
+      
       num++;
       this.setData({
         num: num
       });
       this.my_msgProp();
     },
-
+    
     my_msgProp() {
       let _this = this;
       const token = wx.getStorageSync('Token');
@@ -97,7 +96,6 @@ Component({
               my_msgPropArr: [..._this.data.my_msgPropArr, ...res.data.data.items],
               totalPage: res.data.data.totalPage
             });
-
             setTimeout(function() {
               wx.hideLoading();
             }, 800);

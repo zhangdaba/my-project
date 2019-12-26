@@ -1,35 +1,42 @@
 {
   "pages": [
-    "pages/home/Teacher/teacher",
     "pages/index/index",
-    "pages/home/Parent/Parent",
-
+    "parent/ErrorBook/andError/andError",
+    "parent/ErrorBook/seeError/seeError",
+    
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
-
-    "home/teacherError/error/error",
-    "home/teacherError/errorItem/errorItem",
+    
+    "home/homeworkAssignment/sidebar/sidebar",
+    
 
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
-    
-    "home/homeworkCorrecting/Question/question",
-    "home/homeworkCorrecting/Correcting/Correcting",
-    "home/homeworkCorrecting/Correction/correction",
-    "home/homeworkCorrecting/Student/Student",
-    "home/homeworkCorrecting/divide/divide",
 
+
+    "pages/home/Parent/Parent",
+    
     "home/homeworkAssignment/setTime/setTime",
-    "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/assignment/assignment",
-    "home/homeworkAssignment/sidebar/sidebar",
+    "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/divideKnowledge/Knowledge",
     "home/homeworkAssignment/bindingClass/class",
     "home/homeworkAssignment/bindingSchool/school",
     "home/homeworkAssignment/dividehapter/chapter",
+    
+    "home/homeworkCorrecting/divide/divide",
+    "home/homeworkCorrecting/Question/question",
+    "home/homeworkCorrecting/Correcting/Correcting",
+    "home/homeworkCorrecting/Correction/correction",
+    "home/homeworkCorrecting/Student/Student",
+    
+    
 
-    "parent/ErrorBook/andError/andError",
-    "parent/ErrorBook/seeError/seeError",
+    "home/teacherError/error/error",
+    "home/teacherError/errorItem/errorItem",
+
+    "pages/home/Teacher/teacher",
+
 
     "parent/viewJobs/subSee/subSee",
     "parent/viewJobs/submission/submiss",
@@ -37,6 +44,7 @@
     "pages/register/register",
     "home/details/details"
   ],
+  
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3A5898",

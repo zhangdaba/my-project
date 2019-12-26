@@ -152,12 +152,13 @@ Page({
   // 每份作业
   taskOnBind(e) {
     let ev = e.currentTarget.dataset.item;
-    console.log(ev, 'neirong');
     const ChildList = wx.getStorageSync('ChildrenItem');
+
     if (!ev.submit) {
       showToast('未提交 暂无数据', null, 1000);
       return;
-    }
+    };
+    
     wx.request({
       url: config.reportURL + '/report/getQuestionByStu?homeworkId=' + ev.homeworkId + '&source=' + ev.source + '&stuId=' + ChildList.id,
       data: { wx: 'wx' },

@@ -2,7 +2,7 @@
 <template name="template">
   <view class="contentName" wx:if="{{ chapterItem.length }}">
     <view>章节目录</view>
-    <view>班级正确率</view>
+    <view>学生正确率</view>
   </view>
   
   <view class="ChapterRecursions">

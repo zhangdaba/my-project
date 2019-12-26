@@ -41,10 +41,10 @@ Page({
     tabChange: {},
 
     list: list,
+    windowHeight: null
   },
 
   onLoad() {
-
     let tab = {
       detail: {
         index: 0,
@@ -59,6 +59,8 @@ Page({
     this.tabChange(tab);
 
     this.userParent();
+
+    this.windowHeight();
   },
 
   onShow: function() {
@@ -67,8 +69,20 @@ Page({
     })
   },
 
+  windowHeight: function () {
+    let _this = this;
+
+    wx.getSystemInfo({
+      success(res) {
+        _this.setData({
+          windowHeight: res.windowHeight
+        });
+      }
+    })
+  },
+
   tabChange(e) {
-    console.log('tab change', e.detail);
+    // console.log('tab change', e.detail);
     this.setData({
       tabChange: e.detail
     });
@@ -78,15 +92,13 @@ Page({
     })
 
     // 实时触发子组件更新
-    if (e.detail.index === 1) {
+    // if (e.detail.index === 1) {
       // 监听当前页面渲染 需求 负责消息模块的实时数据更新
-      this.my_msgProp = this.selectComponent("#my_msgProp");
-
-      this.my_msgProp.my_msgProp();
-
-    } else {
-      return;
-    }
+      // this.my_msgProp = this.selectComponent("#my_msgProp");
+      // this.my_msgProp.my_msgProp();
+    // } else {
+    //   return;
+    // }
     // end
   },
 
@@ -94,13 +106,13 @@ Page({
   //   this.my_msgProp = this.selectComponent("#my_msgProp");
   //   this.my_msgProp.my_msgProp();
   // },
-
+  
   // 获取学生信息
   userParent: function() {
     let _this = this;
     const token = wx.getStorageSync('Token');
     wx.request({
-      url: config.itemURL + '/student/getStudent',
+      url: config.basisURL + '/student/getStudent',
       data: '',
       header: {
         Token: token

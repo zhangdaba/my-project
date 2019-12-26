@@ -25,7 +25,7 @@ Page({
     let notCorrecteds = wx.getStorageSync('notCorrected');
 
     wx.request({
-      url: config.itemURL + '/student/getStuToTeacher',
+      url: config.itemURL + '/homework/getStuToTeacher',
       data: {
         homework_id: notCorrecteds.homeworkId
       },

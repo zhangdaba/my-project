@@ -3,7 +3,7 @@
 
   <view class="contentName" wx:if="{{ knowledgePoints.length }}">
     <view>章节目录</view>
-    <view>章节错误率</view>
+    <view>学生错误率</view>
   </view>
   
   <view class="ChapterRecursions">

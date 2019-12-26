@@ -20,7 +20,9 @@
             <view>{{ item_list.errorRate == null ? '' : dateFr.parseInt( item_list.errorRate * 100) + '%' }}</view>
           </view>
 
-          <view catchtap='Knowledge' wx:for="{{ item_list.children }}" wx:key="{{ index }}" wx:for-item="item_list_item" data-item="{{ item_list_item }}">
+          <view catchtap='Knowledge' 
+            wx:for="{{ item_list.children }}" 
+            wx:key="{{ index }}" wx:for-item="item_list_item" data-item="{{ item_list_item }}">
             <view class="flex-container item-container">
               <view> {{ item_list_item.chapterName }}</view>
               <view> {{ item_list_item.errorRate == null ? '' : dateFr.parseInt( item_list_item.errorRate * 100) + '%' }}</view>

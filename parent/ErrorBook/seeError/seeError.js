@@ -117,16 +117,21 @@ Page({
     let _this = this;
     const ChildList = wx.getStorageSync('ChildrenItem');
     const token = wx.getStorageSync('Token');
-    console.log(ChildList, token, this.data.subject);
+    // console.log(ChildList, token, this.data.subject);
     wx.request({
       url: config.errorURL + '/wrong/getChapterOfParent?classId=' + ChildList.classId + '&subjectId=' + _this.data.subject,
       data: '',
       header: {},
       method: 'GET',
       success: function(res) {
-        console.log(res);
         if (res.data.code == 200) {
           let wholeRes = res.data.data;
+          if (!wholeRes) {
+            wx.showToast({
+              title: '暂无错题',
+            })
+            return;
+          };
           wholeRes = convert(wholeRes, 0);
           wholeRes = IterationDelateMenuChildren(wholeRes);
           _this.setData({
@@ -143,7 +148,7 @@ Page({
     let chapterId = e.currentTarget.dataset.item.chapterId;
     const ChildList = wx.getStorageSync('ChildrenItem');
     let subject = _this.data.subject;
-
+    
     wx.request({
       url: config.errorURL + '/wrong/getErrorQueOfParent',
       data: { 'stuId': ChildList.id, 'chapterId': chapterId, 'subjectId': subject, wx: 'wx' },
@@ -153,7 +158,8 @@ Page({
       responseType: 'text',
       success: function(res) {
         if (res.data.code == 200) {
-          if (!res.data.data.length) {
+          let names = res.data.data;
+          if (!names || !names.length) {
             wx.showToast({
               title: '本章没有错题',
               icon: 'none',

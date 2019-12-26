@@ -22,7 +22,7 @@ Page({
     let that = this;
     let Token = wx.getStorageSync('Token');
     wx.request({
-      url: config.taskURL + '/grade/getClass',
+      url: config.basisURL+'/teacher/getTeacher',
       data: {},
       header: {
         'Token': Token
