@@ -39,7 +39,7 @@
 
   <view class="flex" wx:if="{{ whiles.length }}">
     <view class="flex_list">答题时间</view>
-    <view class="flex_list">班级时间</view>
+    <view class="flex_list"><view>平均时间</view></view>
     <view class="flex_list">正确率</view>
     <view class="flex_list">班级正确率</view>
     <view class="flex_list">查看</view>

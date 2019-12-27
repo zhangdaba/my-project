@@ -48,3 +48,21 @@ scroll-view {
 .homeworkName {
   margin-bottom: 20rpx;
 }
+
+.viewButton {
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius: 12rpx;
+  margin: 0 auto;
+  background: #44A9FF;
+}
+
+.viewButton-hover {
+  color: #A3D4FF;
+}

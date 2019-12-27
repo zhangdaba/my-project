@@ -9,6 +9,7 @@ Page({
     chapItem: '', // 名称
     evIndex: null,
     evTask: null,
+    loading: false,
     releases: [{
         id: 0,
         title: '预习作业'
@@ -83,6 +84,8 @@ Page({
 
   // 提交布置
   submit() {
+
+    let _this = this;
     if (this.data.evTask === null) {
 
       wx.showToast({
@@ -110,7 +113,7 @@ Page({
       })
       return;
     }
-    
+
     // 获取本地token
     const value = wx.getStorageSync('Token')
 
@@ -135,7 +138,13 @@ Page({
       "homeworkType": this.data.evTask.id,
       "queIds": assignment
     };
-    
+
+    setTimeout(() => {
+      _this.setData({
+        loading: true
+      });
+    }, 300);
+
     wx.request({
       url: config.itemURL + '/homework/create',
       data: msgTopic,
@@ -146,6 +155,11 @@ Page({
 
       success(res) {
         if (res.data.code == 200) {
+
+          _this.setData({
+            loading: false
+          });
+
           utils.showTextToast('布置成功', 1500, 'success');
           setTimeout(function() {
             wx.navigateBack({

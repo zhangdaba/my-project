@@ -35,9 +35,16 @@ Page({
     wholes: [], //全部错题
     as: [], //所有的题
     chapters: [], //所有章节
-    itemError: '' //知识点 学科 全部
+    itemError: '', //知识点 学科 全部
+    checkbox: []
   },
-
+  
+  checkboxChange(e) {
+    this.setData({
+      checkbox: e.detail.value
+    });
+  },
+  
   switchTab: function(e) {
     let _this = this;
     // 通过事件冒泡获取Id
@@ -75,7 +82,7 @@ Page({
 
     wx.request({
       url: config.errorURL + '/wrong/getErrorQueOfParent',
-      data: { 'stuId': ChildList.id, 'chapterId': chapterId, 'subjectId': subject },
+      data: { 'stuId': ChildList.id, 'chapterId': chapterId, 'subjectId': subject  },
       header: {},
       method: 'GET',
       dataType: 'json',
@@ -118,8 +125,9 @@ Page({
     const ChildList = wx.getStorageSync('ChildrenItem');
     const token = wx.getStorageSync('Token');
     // console.log(ChildList, token, this.data.subject);
+
     wx.request({
-      url: config.errorURL + '/wrong/getChapterOfParent?classId=' + ChildList.classId + '&subjectId=' + _this.data.subject,
+      url: config.errorURL + '/wrong/getChapterOfParent?classId=' + ChildList.classId + '&subjectId=' + _this.data.subject + '&stuId=' + ChildList.id,
       data: '',
       header: {},
       method: 'GET',

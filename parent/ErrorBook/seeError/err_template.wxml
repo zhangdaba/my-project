@@ -8,95 +8,101 @@
 <template name="err_template">
 
   <view class="subject">
-    <view wx:for="{{ wholes }}" wx:key="{{ index }}" data-item='{{ item }}' data-indx="{{ index }}" bindtap="father">
-
-      <view class="top-content">
-        <view>第{{ index + 1 }}题.</view>
-        <view>错误率:{{ dateFr.errorRate(item.chapterErrorRate) + '%' }}</view>
-      </view>
-
-      <template is="subject_title" data="{{ item }}"></template>
-
-      <view wx:if="{{ item.isSub == 0 }}">
-        <template is="subject_select" data="{{ item }}"></template>
-
-        <view wx:for="{{ item.studentResps }}" wx:key="index" wx:for-item="list">
-          <view class="homeworkName f32">{{ list.homeworkName }} {{ list.homeworkSource }} 学生答案:</view>
-          <view wx:if="{{ list.picturePath != '' }}">
-            <view class="images">
-              <image data-dati="dati" data-index="{{ index }}" bindtap='previewImg1' mode="widthFix" src="{{ list.picturePath }}">
-              </image>
-            </view>
-          </view>
-
-          <view wx:elif="{{ list.stuAnswer != '' }}">
-            <view>
-              <rich-text type="nodes*" space="&nbsp" nodes="{{ list.stuAnswer }}"></rich-text>
-            </view>
-          </view>
-
-          <view wx:else>
-            <text>暂无</text>
-          </view>
-
+    <checkbox-group bindchange="checkboxChange">
+      <view wx:for="{{ wholes }}" 
+            wx:key="{{ index }}" 
+            data-item='{{ item }}' 
+            data-indx="{{ index }}"
+            bindtap="father">
+            
+        <view class="top-content">
+          <view>第{{ index + 1 }}题.</view>
+          <!-- <view>错误率:{{ dateFr.errorRate(item.chapterErrorRate) + '%' }}</view> -->
+          <view><checkbox value="{{ item.homeworkId }}"/></view>
         </view>
 
-        <view class="viewParsing" data-idx="{{ index }}" bindtap="hidden">{{ !item.isTrue ? '答题解析':'收起解析' }}</view>
-
-        <view hidden="{{ !item.isTrue }}">
-          <template is="subject_answer" data="{{ item }}"></template>
-          <template is="subject_parse" data="{{ item }}"></template>
-        </view>
-      </view>
-
-      <view wx:else="{{item.isSub == 1}}">
-
-        <view wx:for="{{ item.newSubquestionAnswers }}" wx:for-item="item" wx:key="index">
-
-          <template is="subject_title" data="{{ item }}"></template>
-
+        <template is="subject_title" data="{{ item }}"></template>
+        
+        <view wx:if="{{ item.isSub == 0 }}">
           <template is="subject_select" data="{{ item }}"></template>
 
-        </view>
+          <!-- <view wx:for="{{ item.studentResps }}" wx:key="{{ index }}" wx:for-item="list"> -->
+            <view class="homeworkName f32">{{ item.homeworkName }}{{ item.homeworkSource }} 学生答案:</view>
 
-        <!-- 学生答案 -->
-        <view class="f32">
-          <view wx:for="{{ item.studentResps }}" wx:key="index" wx:for-item="list">
-            <view>{{ list.homeworkName }} {{ list.homeworkSource }} 学生答案:</view>
-
-            <view wx:if="{{ list.picturePath != '' }}">
+            <view wx:if="{{ item.picturePath != '' }}">
               <view class="images">
-                <image data-dati="dati" data-index="{{ index }}" bindtap='previewImg1' mode="widthFix" src="{{ list.picturePath }}">
+                <image data-dati="dati" data-index="{{ index }}" bindtap='previewImg1' mode="widthFix" src="{{ item.picturePath }}">
                 </image>
               </view>
             </view>
 
-            <view wx:elif="{{ list.stuAnswer != '' }}">
-              <rich-text type="nodes*" space="&nbsp" nodes="{{ list.stuAnswer }}"></rich-text>
+            <view wx:elif="{{ item.stuAnswer != '' }}">
+              <view>
+                <rich-text type="nodes*" space="&nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
+              </view>
             </view>
 
             <view wx:else>
               <text>暂无</text>
             </view>
+          <!-- </view> -->
 
-          </view>
-        </view>
+          <view class="viewParsing" data-idx="{{ index }}" bindtap="hidden">{{ !item.isTrue ? '答题解析':'收起解析' }}</view>
 
-        <view class="viewParsing" data-idx="{{ index }}" bindtap="hidden">{{ !item.isTrue ? '答题解析':'收起解析' }}</view>
-
-        <!-- 正确答案 与 答题解析 -->
-        <view hidden="{{ !item.isTrue }}">
-          <view wx:for="{{ item.newSubquestionAnswers }}" wx:key="index">
-
+          <view hidden="{{ !item.isTrue }}">
             <template is="subject_answer" data="{{ item }}"></template>
             <template is="subject_parse" data="{{ item }}"></template>
-
           </view>
+
         </view>
 
-      </view>
+        <view wx:else="{{item.isSub == 1}}">
 
-    </view>
+          <view wx:for="{{ item.errorQueSubRespList }}" wx:for-item="item" wx:key="index">
+            <template is="subject_title" data="{{ item }}"></template>
+            <template is="subject_select" data="{{ item }}"></template>
+          </view>
+          
+          <!-- 学生答案 -->
+          <view class="f32">
+            <!-- <view wx:for="{{ item.studentResps }}" wx:key="index" wx:for-item="list"> -->
+              <view>{{ item.homeworkName }}{{ item.homeworkSource }} 学生答案:</view>
+
+              <view wx:if="{{ item.picturePath != '' }}">
+                <view class="images">
+                  <image data-dati="dati" data-index="{{ index }}" bindtap='previewImg1' mode="widthFix" src="{{ item.picturePath }}">
+                  </image>
+                </view>
+              </view>
+
+              <view wx:elif="{{ item.stuAnswer != '' }}">
+                <rich-text type="nodes*" space="&nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
+              </view>
+
+              <view wx:else>
+                <text>暂无</text>
+              </view>
+
+            <!-- </view> -->
+          </view>
+
+          <view class="viewParsing" data-idx="{{ index }}" bindtap="hidden">{{ !item.isTrue ? '答题解析':'收起解析' }}</view>
+
+          <!-- 正确答案 与 答题解析 -->
+          <view hidden="{{ !item.isTrue }}">
+            <view wx:for="{{ item.errorQueSubRespList }}" wx:key="index">
+              <template is="subject_answer" data="{{ item }}"></template>
+              <template is="subject_parse" data="{{ item }}"></template>
+            </view>
+          </view>
+
+        </view>
+
+
+      </view>
+    </checkbox-group>
   </view>
+
+  <view hidden="{{ !wholes.length }}" class="viewButton" hover-class="viewButton-hover" type="primary">错题推送</view>
 
 </template>

@@ -39,7 +39,7 @@
   </view>
 
   <view class="btn-area">
-    <button class="complete" form-type="submit" type="primary" style="background: #44A9FF;">
+    <button class="complete" loading="{{ loading }}" disabled="{{ loading }}" form-type="submit" type="primary" style="background: #44A9FF;">
       <text>完成</text></button>
   </view>
 
