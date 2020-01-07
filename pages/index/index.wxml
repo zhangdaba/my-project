@@ -3,7 +3,7 @@
   <view class="login">
     <icon class="iconfont icon-huaban"></icon>
   </view>
-  
+
   <view>
     <form bindsubmit="handleLogin">
       <view class="handle">
@@ -40,6 +40,9 @@
 
       </view>
       <!-- <button>登录</button> -->
+    
+      <view></view>
+
     </form>
   </view>
   </view>
