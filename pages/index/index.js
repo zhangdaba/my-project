@@ -2,7 +2,7 @@ import util from '../../utils/util.js';
 import config from '../../utils/config.js'
 
 Page({
-
+  
   /**
    * 页面的初始数据
    */

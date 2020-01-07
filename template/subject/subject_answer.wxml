@@ -1,4 +1,5 @@
 <template name="subject_answer">
+
   <view class="solution">
     <view>【正确答案】</view>
     <view class="text_indent">
@@ -9,10 +10,11 @@
       <view wx:elif="{{ item.answer2 != 0 }}">
         <rich-text type="nodes*" space="&nbsp" nodes="{{ item.answer2 }}"></rich-text>
       </view>
-
+      
       <view wx:else>
         <view>略</view>
       </view>
     </view>
   </view>
+
 </template>
