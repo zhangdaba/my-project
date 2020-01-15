@@ -95,14 +95,11 @@
               <template is="subject_parse" data="{{ item }}"></template>
             </view>
           </view>
-
         </view>
-
-
       </view>
     </checkbox-group>
   </view>
-
-  <view hidden="{{ !wholes.length }}" class="viewButton" hover-class="viewButton-hover" type="primary">错题推送</view>
+  
+  <!-- <view hidden="{{ !wholes.length }}" class="viewButton" hover-class="viewButton-hover" type="primary">错题推送</view> -->
 
 </template>

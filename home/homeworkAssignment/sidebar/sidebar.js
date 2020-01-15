@@ -214,14 +214,14 @@ Page({
 
     let _this = this;
     let booksData = _this.data.books;
-    let bookItem = JSON.stringify(booksData, ['qTypeId', 'questionId']);
+    let bookItem = JSON.stringify(booksData, ['questionTypeId', 'questionId']);
     let bookItemName = JSON.parse(bookItem);
     let num = 0;
     for (let k in bookItemName) {
       num++;
       bookItemName[k].index = num;
-    }
-
+    };
+    
     let bookfilter = bookItemName;
 
     // 本地缓存要布置的作业

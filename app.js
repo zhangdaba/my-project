@@ -1,9 +1,53 @@
-import util from './utils/util.js'
+// import util from './utils/util.js';
+function log(msg, msg1, msg2) {
+  console.log(msg, msg1 ,msg2);
+};
 
 App({
-  onLaunch: function() {
+  onLaunch: function () {
+
+    wx.getNetworkType({
+      success (res) {
+        if(res.networkType == 'none') {
+          wx.showToast({
+            title: '请打开网络',
+            icon: 'none',
+            duration: 2000
+          });
+          return;
+        } else {
+          wx.showToast({
+            title: `当前网络来源${res.networkType}`,
+            icon: 'none',
+            duration: 2000
+          });
+          return;
+        };
+      }
+    });
+
+    wx.onNetworkStatusChange(function(res) {
+      if(!res.isConnected) {
+        // 无网络
+        wx.showToast({
+          title: '请打开网络',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      } else {
+        // res.networkType
+        wx.showToast({
+          title: `当前网络来源${res.networkType}`,
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      };
+    });
+
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
+    var logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
     // 登录
@@ -12,7 +56,7 @@ App({
         console.log(res);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
-    })
+    });
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -32,11 +76,23 @@ App({
           })
         }
       }
-    })
+    });
   },
-  
+
+  onShow: function () {
+    log('onShow');
+  },
+
+  onHide: function() {
+    log('onHide');
+  },
+
+  onPageNotFound: function() {
+    log('onPageNotFound');
+  },
+
   globalData: {
     userInfo: null
   }
 
-})
+});

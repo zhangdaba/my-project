@@ -119,6 +119,7 @@ Page({
 
     // 获取设置的作业
     let assignment = wx.getStorageSync('assignment');
+    // console.log(assignment);
 
     // 获取班级的id
     const selection = wx.getStorageSync('Selection');
@@ -138,7 +139,7 @@ Page({
       "homeworkType": this.data.evTask.id,
       "queIds": assignment
     };
-
+    
     setTimeout(() => {
       _this.setData({
         loading: true

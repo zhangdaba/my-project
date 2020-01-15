@@ -1,18 +1,20 @@
 {
   "pages": [
     "pages/index/index",
+    "home/homeworkAssignment/sidebar/sidebar",
+    "home/homeworkAssignment/setTime/setTime",
+    
+    "parent/ErrorBook/andError/andError",
+    "parent/ErrorBook/seeError/seeError",
+    
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
     
-    "parent/ErrorBook/andError/andError",
-    "parent/ErrorBook/seeError/seeError",
     "parent/viewJobs/subSee/subSee",
     "parent/viewJobs/submission/submiss",
-    "home/homeworkAssignment/setTime/setTime",
     
-    "home/homeworkAssignment/sidebar/sidebar",
     "pages/home/Parent/Parent",
     "home/homeworkAssignment/assignment/assignment",
     "home/homeworkAssignment/setting/setting",
