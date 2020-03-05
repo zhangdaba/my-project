@@ -3,7 +3,6 @@
     "pages/index/index",
     "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setTime/setTime",
-    
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
     
@@ -11,7 +10,6 @@
     "home/Report/Report/Report",
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
-    
     "parent/viewJobs/subSee/subSee",
     "parent/viewJobs/submission/submiss",
     
@@ -22,7 +20,7 @@
     "home/homeworkAssignment/bindingClass/class",
     "home/homeworkAssignment/bindingSchool/school",
     "home/homeworkAssignment/dividehapter/chapter",
-    
+
     "home/homeworkCorrecting/divide/divide",
     "home/homeworkCorrecting/Question/question",
     "home/homeworkCorrecting/Correcting/Correcting",
@@ -34,7 +32,6 @@
     "parent/home/binding/children",
 
     "pages/home/Teacher/teacher",
-
     "pages/register/register",
     "home/details/details"
   ],
