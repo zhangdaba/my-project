@@ -1,41 +1,36 @@
 {
   "pages": [
+    "pages/home/Parent/Parent",
     "pages/index/index",
+    "parent/viewJobs/submission/submiss",
+    "pages/forget/forget",
     "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setTime/setTime",
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
-    
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
     "parent/viewJobs/subSee/subSee",
-    "parent/viewJobs/submission/submiss",
-    
-    "pages/home/Parent/Parent",
     "home/homeworkAssignment/assignment/assignment",
     "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/divideKnowledge/Knowledge",
     "home/homeworkAssignment/bindingClass/class",
     "home/homeworkAssignment/bindingSchool/school",
     "home/homeworkAssignment/dividehapter/chapter",
-
     "home/homeworkCorrecting/divide/divide",
     "home/homeworkCorrecting/Question/question",
     "home/homeworkCorrecting/Correcting/Correcting",
     "home/homeworkCorrecting/Correction/correction",
     "home/homeworkCorrecting/Student/Student",
-
     "home/teacherError/error/error",
     "home/teacherError/errorItem/errorItem",
     "parent/home/binding/children",
-
     "pages/home/Teacher/teacher",
     "pages/register/register",
     "home/details/details"
   ],
-  
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3A5898",

@@ -14,33 +14,51 @@ page {
   width: 80%;
   height: 100rpx;
   padding-top: 60rpx;
+  position: relative;
 }
 
 .box {
   font-size: 30rpx;
+  margin-bottom: 20rpx;
   position: relative;
 }
 
 .icon {
   font-size: 40rpx;
   position: absolute;
-  left: 84rpx;
+  left: 16rpx;
 }
 
 .placeholderStyle {
-  font-size: 30rpx;
+  font-size: 24rpx;
   padding-right: 50rpx;
 }
 
 .input-radius {
   height: 60rpx;
-  border-bottom: 1px solid #F6F7FB;
+  /* border-bottom: 1px solid #F6F7FB; */
   padding-left: 80rpx;
+  border-bottom: 1px solid #44A9FF;
+  position: relative;
 }
 
-.input-radius:hover {
-  border-bottom: 1px solid #44A9FF;
+.input-error {
+  position: absolute;
+  right: 0;
+  bottom: -10rpx;
+  font-size: 42rpx;
+  z-index: 99;
+  padding: 0 20rpx;
 }
+
+.input-text {
+  position: absolute;
+  z-index: 99;
+}
+
+/* .input-radius:hover {
+
+} */
 
 /* 登录 注册 样式 */
 
@@ -63,16 +81,13 @@ page {
 }
 
 .signRight {
-  width: 100rpx;
-  height: 100rpx;
-  font-size: 30rpx;
   float: right;
 }
 
 .signRight text {
-  font-size: 34rpx;
+  font-size: 26rpx;
 }
 
 .hoverSign {
-  color: #1aad19;
+  color: #44A9FF;
 }

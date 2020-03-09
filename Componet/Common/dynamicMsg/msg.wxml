@@ -1,12 +1,14 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 
+<view class="AllRead" bindtap="AllReadClick">全部已读</view>
+
 <scroll-view scroll-y="true" bindscrolltolower="loadMore"
  style="height:{{windowHeight}}px;">
-
+ 
   <view class="view">
-  
-    <view class="view_num" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
-      <view class="view-list" style="background: {{ dateFr.random() }}">
+    <view class="view_num" data-id="{{ item.id }}"  bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
+      <!-- <view class="view-list" style="background: {{ dateFr.random() }}"> -->
+      <view class="view-list" style="background: {{ item.subjectId === 1 ?  '#005EFF' : (item.subjectId === 2 ? '#F00': '#0F0' ) }}">
         <view>
           <icon class="iconfont icon-tongyixiaoxi"></icon>
         </view>
@@ -15,14 +17,19 @@
       <view class="view-last">
         <text>{{ item.subjectName }}作业</text> {{ item.content }}
         <view class="view-last-float">
-          <text>{{ item.createTime }}</text>
+          <text>{{ item.createTime }} {{ item.stateId === 1 ? '未读':'已读' }} </text>
+          <!-- <text class="circle"></text> -->
         </view>
       </view>
     </view>
 
-    <view wx:if="{{ touchTottom }}" style="text-align: center;">到底了...</view>
+    <!-- wx:if="{{ !my_msgPropArr.length }}" -->
 
-    <view wx:if="{{ !my_msgPropArr.length }}" class="empty">
+    <view wx:if="{{ my_msgPropArr.length }}">
+      <view style="text-align: center;"> {{ touchTottom ? '到底了...':'加载中...' }} </view>
+    </view>
+
+    <view wx:else class="empty">
       <icon class="iconfont icon-empty"></icon>
       <text> \n 空空如也...</text>
     </view>

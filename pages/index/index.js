@@ -2,142 +2,176 @@ import util from '../../utils/util.js';
 import config from '../../utils/config.js'
 
 Page({
-  
+
   /**
    * 页面的初始数据
    */
   data: {
-    loadinGdis: false
+    loadinGdis: false,
+    // 手机号
+    CellPhoneInput: '',
+    CellPasswordInput: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function () {
 
   },
-  
-  handleLogin: function(e) {
+
+  handleLogin: function (e) {
     let _this = this;
     var user = e.detail.value;
-    // 手机的校验
-    var phoneReg = /^1([23456789][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
-    // 密码的校验
-    var mima = /^(\w){6,12}$/
-    if (!user.phone.trim()) {
-      util.showTextToast('账号不能为空', 1000);
+    var num = /^1(3|4|5|7|8)\d{9}$/;
+    if (!num.test(user.phone)) {
+      util.showTextToast('手机号错误，请重试！', 1000);
       return;
-    } else if (!user.password.trim()) {
-      util.showTextToast('密码不能为空', 1000);
-      return;
-    } else if (!phoneReg.test(user.phone)) {
-      util.showTextToast('手机格式不正确', 1000);
-      return;
-    } else
-    if (!mima.test(user.password)) {
-      util.showTextToast('密码格式不正确', 1000);
-      return;
-    } else {
-      // 登录用户名返回Token
+    };
 
-      _this.setData({
-        loadinGdis: true
-      });
+    _this.setData({
+      loadinGdis: true
+    });
 
-      util.post(`/user/login?phone=${user.phone}&password=${user.password}`, null, {
-          header: {
-            'content-type': 'application/json'
-          }
-        },
-        function(res) {
-          if (res.data.code == 200) {
-            // 保存token
-            wx.setStorageSync('Token', res.data.data);
-            const Token = wx.getStorageSync('Token');
-            // 登录成功
-            util.showTextToast('登录成功', 1000, 'success');
-            util.getUser('/user/info', null, {
-              "Token": Token
-            }, function(res) {
-              wx.setStorageSync('user', res.data.data);
-              if (res.data.data.role == '教师') {
-                // 登录成功跳转首页
-                const Token = wx.getStorageSync('Token');
-                wx.request({
-                  url: config.basisURL + '/teacher/getTeacher',
-                  data: '',
-                  header: {
-                    Token: Token
-                  },
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function(res) {
-                    let resLength = res.data.data.length;
-                    if (resLength) {
-                      let schoolClass = res.data.data[0];
-                      wx.setStorageSync('getClass', res.data.data);
-                      wx.setStorageSync('school', schoolClass);
-                      // 登录成功后将教师的班级保存进本地存储
-                      const school = wx.getStorageSync('school');
-                      wx.redirectTo({url: "../home/Teacher/teacher"});
-                    } else {
-                      wx.navigateTo({
-                        url: "../../home/homeworkAssignment/bindingSchool/school"
-                      })
-                    }
-                  }
-                })
-              } else if (res.data.data.role == '家长') {
-                wx.request({
-                  url: config.basisURL + '/student/getStudent',
-                  data: '',
-                  header: {
-                    Token: Token
-                  },
-                  method: 'GET',
-                  dataType: 'json',
-                  success: function(res) {
-                    let reslength = res.data.data.length;
-                    if (reslength) {
-                      wx.redirectTo({ url: "../home/Parent/Parent" });
-                    } else {
-                      wx.navigateTo({
-                        url: "../../home/homeworkAssignment/bindingSchool/school"
-                      })
-                    }
-                  }
-                })
-              }
-              setTimeout(()=> {
-                _this.setData({
-                  loadinGdis: false
-                });
-              }, 800);
-            })
-          } else if (res.data.code === 4001) {
-            util.showTextToast('账号或密码错误');
-            _this.setData({
-              loadinGdis: false
-            })
-          } else {
-            util.showTextToast('登录失败');
-            _this.setData({
-              loadinGdis: false
-            })
-          }
-        })
-    }
+    wx.request({
+      url: `${ config.baseURL }/user/login`,
+      complete: (res) => {},
+      data: {
+        phone: user.phone,
+        password: user.password
+      },
+      dataType: '',
+      fail: (res) => {},
+      method: "POST",
+      success: (res) => {
+        if (res.data.code == 200) {
+          // 保存token
+          wx.setStorageSync('Token', res.data.data);
+          const Token = wx.getStorageSync('Token');
+          util.showTextToast('登录成功', 1000, 'success');
+          /**
+           * 请求token成功, 判断用户身份
+           */
+          this.loginSuccessfully(Token);
+        } else if (res.data.code === 4001) {
+          util.showTextToast('账号或密码错误');
+          _this.setData({
+            loadinGdis: false
+          })
+        } else {
+          util.showTextToast('登录失败');
+          _this.setData({
+            loadinGdis: false
+          })
+        }
+      },
+    });
   },
 
+  // 判断身份
+  loginSuccessfully(Token) {
+    let that = this;
+    util.getUser('/user/info', null, {
+      "Token": Token
+    }, function (res) {
+      wx.setStorageSync('user', res.data.data);
+      if (res.data.data.role == '教师') {
+        that.Teacher(Token);
+      } else if (res.data.data.role == '家长') {
+        that.Parent(Token);
+      }
+      setTimeout(() => {
+        that.setData({
+          loadinGdis: false
+        });
+      }, 800);
+    })
+  },
+
+  CellPhone(e) {
+    this.setData({
+      CellPhoneInput: e.detail.value
+    });
+  },
+
+  clearPhone() {
+    this.setData({
+      CellPhoneInput: ''
+    });
+  },
+
+  CellPassword(e) {
+    this.setData({
+      CellPasswordInput: e.detail.value
+    });
+  },
+
+  clearPassword() {
+    this.setData({
+      CellPasswordInput: ''
+    });
+  },
+
+  Teacher(Token) {
+    // 登录成功跳转首页
+    wx.request({
+      url: config.basisURL + '/teacher/getTeacher',
+      data: '',
+      header: {
+        Token: Token
+      },
+      method: 'GET',
+      dataType: 'json',
+      success: function (res) {
+        let resLen = res.data.data.length;
+        if (resLen) {
+          // 登录成功后将教师的班级保存进本地存储
+          wx.setStorageSync('getClass', res.data.data);
+          wx.redirectTo({
+            url: "../home/Teacher/teacher"
+          });
+        } else {
+          wx.navigateTo({
+            url: "../../home/homeworkAssignment/bindingSchool/school"
+          })
+        }
+      }
+    })
+  },
+
+  Parent(Token) {
+    wx.request({
+      url: config.basisURL + '/student/getStudent',
+      data: '',
+      header: {
+        Token: Token
+      },
+      method: 'GET',
+      dataType: 'json',
+      success: function (res) {
+        let reslen = res.data.data.length;
+        if (reslen) {
+          wx.redirectTo({
+            url: "../home/Parent/Parent"
+          });
+        } else {
+          wx.navigateTo({
+            url: "../../home/homeworkAssignment/bindingSchool/school"
+          })
+        }
+      }
+    })
+  },
+  
   // 注册页面
-  register: function() {
+  forget: function () {
     wx.navigateTo({
-      url: '../register/register'
+      url: '../forget/forget'
     })
   },
 
   // 分享
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return {
       title: '智能笔小程序',
       desc: '智能笔',

@@ -150,7 +150,9 @@ Page({
       };
 
       let img_indx = _this.data.img_indx;
-      console.log(imgArr, img_indx);
+      
+      // console.log(imgArr, img_indx);
+
       wx.previewImage({
         current: imgArr[img_indx], //当前图片地址
         urls: imgArr, //所有要预览的图片的地址集合 数组形式

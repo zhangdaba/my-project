@@ -32,7 +32,7 @@ scroll-view {
 
 .classNum {
   width: 92%;
-  margin: 20rpx auto 0;
+  margin: 20rpx auto 120rpx;
 }
 
 .class {
@@ -137,4 +137,8 @@ scroll-view {
   width: 60%;
   border-radius: 50rpx;
   margin-top: 50rpx;
+  margin-left: -30%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
 }

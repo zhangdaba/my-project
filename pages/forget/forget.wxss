@@ -1,0 +1,55 @@
+.forget {
+  width: 90%;
+  margin: 50rpx auto;
+}
+
+.input-radius {
+  height: 100rpx;
+  line-height: 100rpx;
+  border: 4px solid #FBFFFF;
+  padding-left: 34rpx;
+}
+
+.verification {
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.verification .FiftyFive {
+  width: 55%;
+  border: 4px solid #FBFFFF;
+}
+
+.verification .FiftyFive input {
+  height: 100%;
+  line-height: 100%;
+  padding-left: 34rpx;
+}
+
+.verification .ThirtyFive {
+  /* height: 100%;
+  width: 30%;
+  color:#FFF;
+  background: #009BFF;
+  text-align: center;
+  border-radius: 4px; */
+  font-size: 36rpx;
+}
+
+.newpsd {
+  line-height: 100rpx;
+}
+
+.NextStep {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #53D0D6;
+  color: #fff;
+  border-radius: 4px;
+}

@@ -1,0 +1,48 @@
+<view class="forget">
+
+	<view class="handle" hidden="{{ isHidden }}">
+
+		<input type="number" class="input-radius" maxlength="11" focus bindinput="CellPhone" placeholder="请输入手机号">
+		</input>
+
+		<view class="verification">
+			<view class="FiftyFive">
+				<input type="number" bindinput="CellPhoneText" placeholder="请输入验证码" maxlength="6"></input>
+			</view>
+
+			<button type="primary" 
+              form-type="submit" 
+              class="ThirtyFive" 
+              disabled="{{ disabledCode }}" 
+              bindtap="GetVerification"
+              >
+        获取验证码
+			</button>
+		</view>
+
+		<view class="NextStep" bindtap="isDisabledCode">下一步</view>
+	</view>
+
+	<view class="handle" hidden="{{ !isHidden }}">
+		<text class="newpsd">设置新密码</text>
+		  <input type="text"
+             password 
+             class="input-radius"
+             maxlength="24" 
+             focus 
+             bindinput="CellPassword"
+             placeholder="请输入新密码">
+		</input>
+
+		<text class="newpsd">确认新密码</text>
+		  <input type="text" password 
+             class="input-radius" 
+             maxlength="24"
+             focus 
+             bindinput="ConfirmCellPassword" 
+             placeholder="请确认新密码">
+		</input>
+
+    <view class="NextStep" bindtap="ispwdCode">完成</view>
+	</view>
+</view>

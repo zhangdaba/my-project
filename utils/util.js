@@ -83,6 +83,7 @@ function getUser(url, data, header, success) {
 
 // post 发送
 function post(url, data, header, success) {
+  
   wx.request({
     url: config.baseURL + url,
     data: data,

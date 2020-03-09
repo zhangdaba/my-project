@@ -6,7 +6,7 @@ Page({
    */
 
   data: {
-    task: ['未提交','已提交','已批改'],
+    task: ['未提交', '已提交', '已批改'],
     currentTabInde: 0,
     checked: false,
 
@@ -16,7 +16,7 @@ Page({
     // 真实数据
     parenTast: [], // 未提交作业
 
-    radioChoice:null, // 选择未提交的作业
+    radioChoice: null, // 选择未提交的作业
 
     disabled: false
     // 数据格式 end
@@ -25,7 +25,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.swiperHeight(); //获取屏幕可视高度
 
     this.submission(); //获取未提交作业信息
@@ -41,32 +41,31 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     // 获取
     this.setNavigationBarTitle();
   },
-  
+
   // 动态设置当前导航栏
-  setNavigationBarTitle: function() {
+  setNavigationBarTitle: function () {
     const childList = wx.getStorageSync('ChildrenItem');
     wx.setNavigationBarTitle({
       title: childList.name + ' — 作业'
     })
   },
 
-  switchTab: function(e) {
-    let _this = this;
+  switchTab: function (e) {
     this.setData({
       currentTabInde: e.target.dataset.index
     })
   },
 
   // 获取屏幕高度
-  swiperHeight: function() {
-    let _this = this;
+  swiperHeight: function () {
+    let that = this;
     wx.getSystemInfo({
       success(res) {
-        _this.setData({
+        that.setData({
           swiperHeight: (res.windowHeight - 34)
         })
       }
@@ -74,8 +73,7 @@ Page({
   },
 
   // 滑动
-  handleChange: function(e) {
-    let _this = this;
+  handleChange: function (e) {
     if (e.detail.source == "touch") {
       this.setData({
         currentTabInde: e.detail.current
@@ -84,11 +82,11 @@ Page({
   },
 
   // 获取后台信息
-  submission: function() {
+  submission: function () {
 
-    let _this = this;
+    let that = this;
     let token = wx.getStorageSync('Token');
-    
+
     const childList = wx.getStorageSync('ChildrenItem');
 
     let parentTast = {
@@ -104,9 +102,11 @@ Page({
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success: function(res) {
+      success: function (res) {
         let parenTast = res.data.data;
-        let oldparen = [], newparen = [], already = [];
+        let oldparen = [],
+          newparen = [],
+          already = [];
 
         for (let k in parenTast) {
           if (parenTast[k].status == 0) {
@@ -118,7 +118,7 @@ Page({
           }
         }
 
-        _this.setData({
+        that.setData({
           oldparen: oldparen.reverse(),
           newparen: newparen.reverse(),
           already: already.reverse(),
@@ -130,20 +130,20 @@ Page({
   },
 
   // 单选 多选 全选
-  radioChange: function(e) {
-    let _this = this;
-    console.log(e);
-    _this.setData({
+  radioChange: function (e) {
+    let that = this;
+    that.setData({
       radioChoice: e.detail.value
     })
   },
 
   // 提交作业
-  submit: function() {
-    let _this = this;
-    let radioChoice = _this.data.radioChoice;
+  submit: function () {
 
-    if (radioChoice === null || radioChoice.length === 0 ) {
+    let that = this;
+    let radioChoice = that.data.radioChoice;
+
+    if (radioChoice === null || radioChoice.length === 0) {
       wx.showToast({
         title: '暂无提交信息',
         icon: 'none',
@@ -152,9 +152,24 @@ Page({
       return;
     }
 
-    // 把数组中的每一项转换为数字,传递给后台
+    wx.showModal({
+      title: '提示',
+      content: '请确认是否完成所有答题并提交',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.userDetermine(radioChoice, that);
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+          return;
+        }
+      }
+    })
+  },
 
-    _this.setData({
+  userDetermine(radioChoice, that) {
+    // 把数组中的每一项转换为数字,传递给后台
+    that.setData({
       disabled: true
     })
 
@@ -167,7 +182,7 @@ Page({
 
     let submit = {
       submitHomework_id: newradioChoice //作业id
-    }    
+    }
 
     wx.request({
       url: config.itemURL + '/submitHomework/submitHomework',
@@ -176,20 +191,20 @@ Page({
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success: function(res) {
-        
+      success: function (res) {
+
         if (res.data.code == 200) {
-          _this.setData({
+          that.setData({
             disabled: true
           })
-          
+
           wx.showToast({
             title: '提交成功',
             icon: 'success',
             duration: 800
           })
 
-          setTimeout(function() {
+          setTimeout(function () {
 
             wx.navigateBack({
               delta: 1
@@ -199,7 +214,6 @@ Page({
         }
       }
     })
-
   },
 
   // 查看作业
@@ -208,15 +222,18 @@ Page({
     let submitHomeworkId = e.currentTarget.dataset.item.submitHomeworkId;
     wx.request({
       url: config.itemURL + '/correction/get_que',
-      data: { submitHomeworkId: submitHomeworkId, wx: 'wx' },
+      data: {
+        submitHomeworkId: submitHomeworkId,
+        wx: 'wx'
+      },
       header: {},
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
-      success: function(res) {
-        if( res.data.code == 200 ) {
+      success: function (res) {
+        if (res.data.code == 200) {
           wx.setStorageSync('subSee', res.data.data);
-          setTimeout(function() {
+          setTimeout(function () {
             wx.navigateTo({
               url: '../subSee/subSee'
             });

@@ -35,6 +35,8 @@ Component({
     // 组件所在页面的生命周期函数
     show: function() {
       console.log('show');
+      this.Identity();
+      
     },
     hide: function() {
       console.log('hide');
@@ -56,10 +58,22 @@ Component({
    */
   methods: {
 
-    makePhone() {
-      wx.makePhoneCall({
-        phoneNumber: '18651571984'
+    Identity() {
+      const user = wx.getStorageSync('user');
+      this.setData({
+        user
       })
+    },
+
+    makePhone() {
+      wx.previewImage({
+        current: 0, //当前图片地址
+        urls: ['http://47.103.35.30/WeChat/yang.41ba3e7.png'], //所有要预览的图片的地址集合 数组形式
+        success: function(res) {}
+      });
+      // wx.makePhoneCall({
+      //   phoneNumber: '18651571984'
+      // })
     },
 
     // 获取头像信息
@@ -67,9 +81,18 @@ Component({
       if (e.detail.errMsg == 'getUserInfo:ok') {
         app.globalData.userInfo = e.detail.userInfo;
         this.setData({
-          userInfo: e.detail.userInfo,
+          userInfo: {
+            avatarUrl: 'http://47.103.35.30/WeChat/timg.jpg',
+            nickName: ''
+          },
           hasUserInfo: true
-        })
+        });
+        setTimeout(()=> {
+          this.setData({
+            userInfo: e.detail.userInfo,
+            hasUserInfo: true
+          });
+        }, 10);
       } else return;
     },
 
@@ -98,9 +121,9 @@ Component({
         })
       }
     },
-
+    
     cache() {
-      util.showTextModal('', '请确认', '', function(res) {
+      util.showTextModal('', '确认是否退出登录', '', function(res) {
         if (res.confirm) {
           wx.removeStorageSync('Token');
           wx.clearStorageSync();

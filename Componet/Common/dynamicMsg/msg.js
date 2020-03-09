@@ -1,13 +1,15 @@
 import config from "../../../utils/config.js";
 
+let flagBit = 0; //标志位 判断用户是已读 还是 下拉
+
 Component({
 
   /**
    * 组件的属性列表
    */
-  
+
   pageLifetimes: {
-    
+
     show: function () {
 
       // this.setData({
@@ -51,6 +53,7 @@ Component({
   },
 
   created() {
+    flagBit = 1;
     this.my_msgProp();
   },
 
@@ -69,19 +72,36 @@ Component({
         console.log('到底了');
         return;
       };
-      
       num++;
       this.setData({
         num: num
       });
+      flagBit = 1;
       this.my_msgProp();
     },
     
+    AllReadClick() {
+      let _this = this;
+      const Token = wx.getStorageSync('Token');
+      wx.request({
+        url: config.itemURL + '/message/updateMess',
+        header: { Token },
+        data: '',
+        method: "POST",
+        success: (res) => {
+          console.log(res, ">>>>>>>>>>>>>>");
+          if(res.data.code === 200) {
+            _this.triggerEvent("nUnRead" ,0);
+          }
+        },
+      })
+    },
+
     my_msgProp() {
       let _this = this;
       const token = wx.getStorageSync('Token');
       wx.request({
-        url: config.taskURL + '/test/getMess',
+        url: config.taskURL + '/message/getMess',
         header: {
           'Token': token
         },
@@ -92,18 +112,40 @@ Component({
         method: 'GET',
         success: function(res) {
           if (res.data.code == 200) {
-            _this.setData({
-              my_msgPropArr: [..._this.data.my_msgPropArr, ...res.data.data.items],
-              totalPage: res.data.data.totalPage
-            });
-            setTimeout(function() {
-              wx.hideLoading();
-            }, 800);
-
+            if(flagBit) {
+              _this.setData({
+                my_msgPropArr: [..._this.data.my_msgPropArr, ...res.data.data.informationPageResult.items],
+                totalPage: res.data.data.totalPage
+              });
+            } else {
+              _this.setData({
+                totalPage: res.data.data.totalPage
+              });
+            }
+            _this.triggerEvent("nUnRead", res.data.data.nUnRead);
+            // setTimeout(function() {
+            //   wx.hideLoading();
+            // }, 800);
           }
         }
       })
+    },
+
+    AlreadyRead(e) {
+      const id = e.currentTarget.dataset.id;
+      const Token = wx.getStorageSync('Token');
+      wx.request({
+        url: config.itemURL + '/message/updateMess?ids='+id,
+        header: { Token },
+        method: "POST",
+        success: (result) => {
+          if(result.data.code === 200) {
+            flagBit = 0;
+            this.my_msgProp();
+          };
+        }
+      })
+
     }
   }
-
 })

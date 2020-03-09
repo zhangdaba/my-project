@@ -51,13 +51,11 @@
         <text>随时掌握学习情况</text>
       </view>
     </view>
-
   </view>
-
 </view>
 
 <view hidden="{{ tabChange.index !== 1 }}">
-  <my_msg windowHeight="{{ windowHeight }}" />
+  <my_msg bind:nUnRead="nUnRead" windowHeight="{{ windowHeight }}" />
   <!-- id="my_msgProp"  -->
 </view>
 

@@ -9,37 +9,54 @@
       <view class="handle">
         <view class="box">手机号</view>
         <icon class="icon iconfont icon-yonghu"></icon>
-        <input type="number" class="input-radius" name="phone" placeholder="请输入您的账号" placeholder-class="placeholderStyle"></input>
+        <input type="number"
+               class="input-radius"
+               name="phone"
+               maxlength="11"
+               placeholder="请输入您的账号"
+               bindinput="CellPhone"
+               focus
+               value="{{ CellPhoneInput }}"
+               placeholder-class="placeholderStyle">
+              </input>
+        <text class="input-error" bindtap="clearPhone" hidden="{{ !CellPhoneInput.length }}">×</text>
+        <!-- <text class="input-text">×××××××××××××××××××××××××××××××××××××</text> -->
       </view>
 
       <view class="handle">
         <view class="box">密码</view>
         <icon class="i icon iconfont icon-mima"></icon>
 
-        <input type="text" 
-              class="input-radius" 
-              name="password" 
-              password 
-              placeholder="请输入您的密码" 
+        <input type="text"
+              class="input-radius"
+              name="password"
+              placeholder="请输入您的密码"
+              value="{{ CellPasswordInput }}"
+              bindinput="CellPassword"
+              maxlength="24"
+              password
               placeholder-class="placeholderStyle">
               </input>
+
+        <text class="input-error" bindtap="clearPassword" hidden="{{ !CellPasswordInput.length }}">×</text>
       </view>
-      
+
       <!-- 登录 注册 样式 -->
       <view class="sign">
-        <button class="signLift" form-type="submit" 
-                disabled="{{ loadinGdis }}" 
-                loading="{{ loadinGdis }}" 
-                size="mini" 
-                type="primary" 
+        <button class="signLift" form-type="submit"
+                disabled="{{ loadinGdis }}"
+                loading="{{ loadinGdis }}"
+                size="mini"
+                type="primary"
                 style="background:#44A9FF;">
           <text>登录</text>
         </button>
-<!-- <view class="signRight" hover-class="hoverSign" bindtap="register">
-        <text>注册</text></view> -->
+
+        <view class="signRight" hover-class="hoverSign" bindtap="forget">
+          <text>忘记密码?</text>
+        </view>
 
       </view>
-
     </form>
   </view>
   </view>

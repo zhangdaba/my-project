@@ -90,4 +90,8 @@ page {
   font-weight: 700;
 }
 
+.pcenter-hover {
+  box-shadow:rgba(255,255,255,0.5) 0px 0px 18px inset;
+}
+
 /* 当前版本 end */
