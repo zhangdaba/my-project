@@ -42,7 +42,8 @@ Component({
     my_msgPropArr: [],
     // windowHeight: null,
     num: 1,
-    touchTottom: false
+    touchTottom: false,
+    headerHide: true
   },
 
   // 监听 my_msgProp 的变化
@@ -61,11 +62,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+
     loadMore() {
       let _this = this;
       let num = this.data.num;
-      if (this.data.totalPage == num) {
+      if (this.data.totalPage == num || !this.data.my_msgPropArr.length) {
         _this.setData({
           touchTottom: true
         });
@@ -79,7 +80,19 @@ Component({
       flagBit = 1;
       this.my_msgProp();
     },
-    
+
+    loadMoreUp() {
+      console.log("上拉加载...");
+      this.setData({
+        headerHide: false
+      });
+      setTimeout(()=> {
+        this.setData({
+          headerHide: true
+        });
+      }, 300)
+    },
+
     AllReadClick() {
       let _this = this;
       const Token = wx.getStorageSync('Token');
@@ -89,9 +102,16 @@ Component({
         data: '',
         method: "POST",
         success: (res) => {
-          console.log(res, ">>>>>>>>>>>>>>");
-          if(res.data.code === 200) {
-            _this.triggerEvent("nUnRead" ,0);
+          if (res.data.code === 200) {
+            let PropArr = _this.data.my_msgPropArr;
+            PropArr.map((item, index, arr) => {
+              arr[index].stateId = !1;
+            });
+            _this.setData({
+              my_msgPropArr: PropArr
+            });
+            _this.triggerEvent("nUnRead", 0);
+            return;
           }
         },
       })
@@ -110,9 +130,9 @@ Component({
           rows: 10
         },
         method: 'GET',
-        success: function(res) {
+        success: function (res) {
           if (res.data.code == 200) {
-            if(flagBit) {
+            if (flagBit) {
               _this.setData({
                 my_msgPropArr: [..._this.data.my_msgPropArr, ...res.data.data.informationPageResult.items],
                 totalPage: res.data.data.totalPage
@@ -121,31 +141,36 @@ Component({
               _this.setData({
                 totalPage: res.data.data.totalPage
               });
-            }
+            };
             _this.triggerEvent("nUnRead", res.data.data.nUnRead);
-            // setTimeout(function() {
-            //   wx.hideLoading();
-            // }, 800);
           }
         }
       })
     },
 
     AlreadyRead(e) {
-      const id = e.currentTarget.dataset.id;
+      let that = this;
+      const dataset = e.currentTarget.dataset;
+      const id = dataset.id;
+      const idx = dataset.idx;
       const Token = wx.getStorageSync('Token');
       wx.request({
-        url: config.itemURL + '/message/updateMess?ids='+id,
-        header: { Token },
+        url: config.itemURL + '/message/updateMess?ids=' + id,
+        header: {
+          Token
+        },
         method: "POST",
         success: (result) => {
-          if(result.data.code === 200) {
+          if (result.data.code === 200) {
             flagBit = 0;
-            this.my_msgProp();
+            let my_msgPropIdx = that.data.my_msgPropArr;
+            my_msgPropIdx[idx].stateId = !1;
+            that.setData({
+              my_msgPropArr: my_msgPropIdx
+            });
           };
         }
       })
-
     }
   }
 })

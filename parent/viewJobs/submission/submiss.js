@@ -83,16 +83,12 @@ Page({
 
   // 获取后台信息
   submission: function () {
-
     let that = this;
     let token = wx.getStorageSync('Token');
-
     const childList = wx.getStorageSync('ChildrenItem');
-
     let parentTast = {
       stuId: childList.id
     };
-
     wx.request({
       url: config.itemURL + '/submitHomework/list',
       data: parentTast,
@@ -117,14 +113,12 @@ Page({
             already.push(parenTast[k]);
           }
         }
-
         that.setData({
           oldparen: oldparen.reverse(),
           newparen: newparen.reverse(),
           already: already.reverse(),
           parenTast
         })
-
       }
     })
   },
@@ -139,10 +133,8 @@ Page({
 
   // 提交作业
   submit: function () {
-
     let that = this;
     let radioChoice = that.data.radioChoice;
-
     if (radioChoice === null || radioChoice.length === 0) {
       wx.showToast({
         title: '暂无提交信息',
@@ -171,10 +163,9 @@ Page({
     // 把数组中的每一项转换为数字,传递给后台
     that.setData({
       disabled: true
-    })
+    });
 
     var newradioChoice = [];
-
     for (let k in radioChoice) {
       let numRadio = Number(radioChoice[k]);
       newradioChoice.push(numRadio)
@@ -192,56 +183,49 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-
         if (res.data.code == 200) {
           that.setData({
             disabled: true
           })
-
           wx.showToast({
             title: '提交成功',
             icon: 'success',
             duration: 800
           })
-
           setTimeout(function () {
-
             wx.navigateBack({
               delta: 1
             })
-
           }, 800)
         }
       }
-    })
+    });
+
   },
 
   // 查看作业
   See_work: function (e) {
-    console.log(e);
-    let submitHomeworkId = e.currentTarget.dataset.item.submitHomeworkId;
-    wx.request({
-      url: config.itemURL + '/correction/get_que',
-      data: {
-        submitHomeworkId: submitHomeworkId,
-        wx: 'wx'
-      },
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        if (res.data.code == 200) {
-          wx.setStorageSync('subSee', res.data.data);
-          setTimeout(function () {
-            wx.navigateTo({
-              url: '../subSee/subSee'
-            });
-          }, 500)
-        }
-      }
-    })
+    let item = e.currentTarget.dataset.item;
+    let homeworkId = item.homeworkId;
+    wx.navigateTo({
+      url: '../subSee/subSee?id=3&homeworkId='+homeworkId
+    });
+  },
 
-  }
+  viewUncorrected(e) {
+    let item = e.currentTarget.dataset.item;
+    let homeworkId = item.homeworkId;
+    wx.navigateTo({
+      url: '../subSee/subSee?id=1&homeworkId='+homeworkId
+    });
+  },
+
+  Submitte(e) {
+    let item = e.currentTarget.dataset.item;
+    let homeworkId = item.homeworkId;
+    wx.navigateTo({
+      url: '../subSee/subSee?id=2&homeworkId='+homeworkId
+    });
+  },
 
 })

@@ -1,4 +1,5 @@
-// import util from './utils/util.js';
+import util from './utils/util.js';
+
 function log(msg, msg1, msg2) {
   console.log(msg, msg1, msg2);
 };
@@ -10,6 +11,11 @@ App({
      * 获取手机信号
      */
     this.getNETworkType();
+
+    /**
+     * 验证身份
+     */
+    this.identity();
 
     /**
      * 
@@ -48,6 +54,32 @@ App({
         }
       }
     });
+  },
+
+  // 判断身份
+  identity() {
+    let Token = wx.getStorageSync('Token');
+    if (!Token) {
+      wx.redirectTo({
+        url: './pages/index/index'
+      });
+      return;
+    };
+    
+    util.getUser('/user/info', null, { "Token": Token }, (res) => {
+      if (res.data.data.role == '教师') {
+      } else if (res.data.data.role == '家长') {
+        wx.redirectTo({
+          url: './pages/home/Parent/Parent'
+        });
+        // console.log("家长");
+      } else {
+        wx.redirectTo({
+          url: './pages/index/index'
+        });
+      }
+    });
+
   },
 
   getNETworkType() {

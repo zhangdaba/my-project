@@ -17,13 +17,11 @@
           </image>
         </view>
       </view>
-      
+
       <view wx:else>
         <text>空</text>
       </view>
-
+      
     </view>
-
   </view>
-
 </template>

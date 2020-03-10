@@ -9,7 +9,7 @@ Page({
     correctingItem: null,
     next: 0,
     choices: ['半对半错', '对','错'],
-
+    state: null,
     // 真实数据
     notCorrectedss: [],
     indnx: null, //对 错 半对半错
@@ -19,9 +19,36 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+
   onLoad: function (options) {
     // 获取屏幕高度
     this.height();
+    this.setData({
+      state: options.id
+    });
+    this.aaa(options.homeworkId, options.id);
+  },
+
+  aaa(homeworkId, optionsId) {
+    let _this = this;
+    let ChildrenItem = wx.getStorageSync('ChildrenItem');
+    wx.request({
+      url: config.itemURL + '/homework/getQuestion',
+      data: {
+        homeworkId,
+        clickSource: optionsId,
+        stuId: ChildrenItem.id,
+        wx: 'wx'
+      },
+      method: 'GET',
+      success: function (res) {
+        if (res.data.code == 200) {
+          _this.setData({
+            notCorrectedss: res.data.data
+          });
+        }
+      }
+    })
   },
 
   /**
@@ -43,13 +70,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let _this = this;
-    let subSee = wx.getStorageSync('subSee');
     
-    _this.setData({
-      notCorrectedss: subSee
-    });
-
   },
 
   // 获取屏幕高度

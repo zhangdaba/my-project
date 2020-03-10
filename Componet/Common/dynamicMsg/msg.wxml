@@ -1,39 +1,51 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 
-<view class="AllRead" bindtap="AllReadClick">全部已读</view>
+<view class="header" hidden="{{ headerHide }}">
 
-<scroll-view scroll-y="true" bindscrolltolower="loadMore"
- style="height:{{windowHeight}}px;">
- 
-  <view class="view">
-    <view class="view_num" data-id="{{ item.id }}"  bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
-      <!-- <view class="view-list" style="background: {{ dateFr.random() }}"> -->
-      <view class="view-list" style="background: {{ item.subjectId === 1 ?  '#005EFF' : (item.subjectId === 2 ? '#F00': '#0F0' ) }}">
-        <view>
-          <icon class="iconfont icon-tongyixiaoxi"></icon>
-        </view>
-      </view>
+  <view>下拉刷新中……</view>
+  <!-- <view>{{refreshTime}}</view> -->
+</view>
 
-      <view class="view-last">
-        <text>{{ item.subjectName }}作业</text> {{ item.content }}
-        <view class="view-last-float">
-          <text>{{ item.createTime }} {{ item.stateId === 1 ? '未读':'已读' }} </text>
-          <!-- <text class="circle"></text> -->
-        </view>
-      </view>
-    </view>
+<view class="AllRead" wx:if="{{ my_msgPropArr.length }}" bindtap="AllReadClick">全部已读</view>
+<!-- bindscrolltoupper="loadMoreUp" -->
 
-    <!-- wx:if="{{ !my_msgPropArr.length }}" -->
+<scroll-view scroll-y="true"
+						 bindscrolltolower="loadMore"
+						 refresher-enabled="true" 
+						 refresher-default-style="white" 
+						 refresher-background="#fff" 
+						 refresher-triggered="true"
+						 style="height:{{windowHeight}}px;">
 
-    <view wx:if="{{ my_msgPropArr.length }}">
-      <view style="text-align: center;"> {{ touchTottom ? '到底了...':'加载中...' }} </view>
-    </view>
+	<view class="view">
+		<view class="view_num" data-id="{{ item.id }}" data-idx="{{ index }}" bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
+			<!-- <view class="view-list" style="background: {{ dateFr.random() }}"> -->
+			<view class="view-list" style="background: {{ item.subjectId === 1 ?  '#005EFF' : (item.subjectId === 2 ? '#F00': '#0F0' ) }}">
+				<view>
+					<icon class="iconfont icon-tongyixiaoxi"></icon>
+				</view>
+			</view>
 
-    <view wx:else class="empty">
-      <icon class="iconfont icon-empty"></icon>
-      <text> \n 空空如也...</text>
-    </view>
+			<view class="view-last">
+				<text>{{ item.subjectName }}作业</text> {{ item.content }}
+				<view class="view-last-float">
+					<text>{{ item.createTime }} {{ item.stateId === 1 ? '未读':'已读' }} </text>
+					<!-- <text class="circle"></text> -->
+				</view>
+			</view>
+		</view>
 
-  </view>
+		<!-- wx:if="{{ !my_msgPropArr.length }}" -->
+
+		<view wx:if="{{ my_msgPropArr.length }}">
+			<view style="text-align: center;"> {{ touchTottom ? '到底了...':'加载中...' }} </view>
+		</view>
+
+		<view wx:else class="empty">
+			<icon class="iconfont icon-empty"></icon>
+			<text> \n 空空如也...</text>
+		</view>
+
+	</view>
 
 </scroll-view>

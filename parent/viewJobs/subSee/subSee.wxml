@@ -6,73 +6,78 @@
 <import src="./correction"></import>
 
 <swiper style="height: {{ windowHeight }}px;" current="{{ next }}" duration="180">
-  <swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
+	<swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
 
-    <scroll-view scroll-y="true">
+		<scroll-view scroll-y="true">
+			<template is="subject_title" data="{{ item, index }}"></template>
 
-      <template is="subject_title" data="{{ item, index }}"></template>
+			<view>
+				<view wx:if="{{ item.isSub == 1 }}">
 
-      <view>
+					<!-- 循环遍历子题 -->
+					<view wx:for="{{ item.subQuestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
 
-        <view wx:if="{{ item.isSub == 1 }}">
-          <!-- 循环遍历子题 -->
-          <view wx:for="{{ item.subQuestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
+						<!-- 子题标题 -->
+						<template is="subject_title" data="{{ item, index }}"></template>
 
-            <!-- 子题标题 -->
-            <template is="subject_title" data="{{ item, index }}"></template>
+						<!-- 选择 内容 逻辑 -->
+						<template is="subject_select" data="{{ item }}"></template>
 
-            <!-- 选择 内容 逻辑 -->
-            <template is="subject_select" data="{{ item }}"></template>
+						<!-- 大题 学生 答案逻辑 -->
+						<template is="subject_answer" data="{{ item }}"></template>
 
-            <!-- 大题 学生 答案逻辑 -->
-            <template is="subject_answer" data="{{ item }}"></template>
+						<!-- 学生答案逻辑 -->
+						<view>
+							<view>学生答案:</view>
+							<view class="stuAnswer" wx:if="{{ item.stuAnswer != '' }}">
+								<rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
+							</view>
 
-            <!-- 学生答案逻辑 -->
-            <view>
-              <view>学生答案:</view>
-              <view class="stuAnswer" wx:if="{{ item.stuAnswer != '' }}">
-                <rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
-              </view>
+							<view class="stuAnswer" wx:elif="{{ item.pictureAnswer != '' }}">
+								<view class="image">
+									<image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic" bindtap='previewImg'>
+									</image>
+								</view>
+							</view>
 
-              <view class="stuAnswer" wx:elif="{{ item.pictureAnswer != '' }}">
-                <view class="image">
-                  <image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic" bindtap='previewImg'>
-                  </image>
-                </view>
-              </view>
+							<view class="stuAnswer" wx:else>
+								<text>空</text>
+							</view>
 
-              <view class="stuAnswer" wx:else>
-                <text>空</text>
-              </view>
+						</view>
 
-            </view>
+						<template is="subject_answer" data="{{ item }}"></template>
 
-            <template is="subject_answer" data="{{ item }}"></template>
+						<!-- 批改结果 -->
+						<template is="subject_correction" data="{{ item }}"></template>
 
-            <!-- 批改结果 -->
-            <template is="subject_correction" data="{{ item }}"></template>
+					</view>
+				</view>
 
-          </view>
-        </view>
+				<view wx:if="{{ item.isSub == 0 }}">
 
-        <view wx:if="{{ item.isSub == 0 }}">
+					<!-- 选择 内容 逻辑 -->
+					<template is="subject_select" data="{{ item }}"></template>
+					<!-- 大题 学生 答案逻辑 -->
+					
+					<view hidden="{{ state == 1 }}">
 
-          <!-- 选择 内容 逻辑 -->
-          <template is="subject_select" data="{{ item }}"></template>
+						<view hidden="{{ state == 2 }}">
+							<template is="subject_answer" data="{{ item }}"></template>
+							<template is="subject_similarity" data="{{ item }}"></template>
+						</view>
 
-          <!-- 大题 学生 答案逻辑 -->
-          <template is="subject_answer" data="{{ item }}"></template>
+						<!-- 学生 答题 逻辑 -->
+						<template is="subject_stuAnswer" data="{{ item }}"></template>
+						<view hidden="{{ state == 2 }}">
+							<!-- 批改结果 -->
+							<template is="subject_correction" data="{{ item }}"></template>
+						</view>
+					</view>
+					
+				</view>
+			</view>
 
-          <template is="subject_similarity" data="{{ item }}"></template>
-
-          <!-- 学生 答题 逻辑 -->
-          <template is="subject_stuAnswer" data="{{ item }}"></template>
-
-          <!-- 批改结果 -->
-          <template is="subject_correction" data="{{ item }}"></template>
-
-        </view>
-      </view>
-    </scroll-view>
-  </swiper-item>
+		</scroll-view>
+	</swiper-item>
 </swiper>

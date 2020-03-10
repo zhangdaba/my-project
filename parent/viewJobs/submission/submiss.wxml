@@ -15,16 +15,14 @@
 			<block wx:if="{{ !oldparen.length }}">
 				<No_news text='暂无未提交作业...' />
 			</block>
-
+			
 			<checkbox-group class="class_radio" bindchange="radioChange">
-
 				<view class="classNum">
-					<view class="class" wx:for="{{ oldparen }}" wx:key="{{ index }}">
+					<view class="class" wx:for="{{ oldparen }}" wx:key="{{ index }}" data-item="{{ item }}" catchtap="viewUncorrected">
 						<view class="class_name">
-
 							<view class="class_title">
 								<view>{{ item.homeworkName }}</view>
-								<view class="checkbox">
+								<view class="checkbox" catchtap>
 									<label>
 										<checkbox value="{{ item.submitHomeworkId }}" checked="{{ item.checked }}" />
 									</label>
@@ -44,20 +42,15 @@
 								<view>开始时间: {{ item.createdDate }}</view>
 								<view>结束时间: {{ item.operationEndTime }}</view>
 							</view>
+
 						</view>
 					</view>
 				</view>
 			</checkbox-group>
 		</scroll-view>
 
-		<button wx:if="{{ oldparen.length }}" 
-            disabled="{{ disabled }}" 
-            loading="{{ disabled }}" 
-            class="btn"
-            hover-class="none"
-            bindtap="submit" 
-            type="primary" 
-            style="background-color: #44a9ff;">
+		<button wx:if="{{ oldparen.length }}" disabled="{{ disabled }}" loading="{{ disabled }}" class="btn" hover-class="none" 
+		bindtap="submit" type="primary" style="background-color: #44a9ff;">
 			<text>提交作业</text>
 		</button>
 	</swiper-item>
@@ -70,7 +63,7 @@
 			</block>
 
 			<view class="classNum">
-				<view class="class" wx:for="{{ newparen }}" wx:key="{{ index }}">
+				<view class="class" wx:for="{{ newparen }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="Submitte">
 					<view class="class_name">
 
 						<view class="class_title">
@@ -99,11 +92,10 @@
 	<swiper-item>
 
 		<scroll-view scroll-y="true">
-
 			<block wx:if="{{ !already.length }}">
 				<No_news text='暂无已批改作业...' />
 			</block>
-
+			
 			<view class="classNum">
 				<view class="class" wx:for="{{ already }}" wx:key="{{ index }}" data-item="{{ item }}" bindtap="See_work">
 					<view class="class_name">

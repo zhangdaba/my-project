@@ -177,6 +177,11 @@ Page({
       method: "put",
       success: (result) => {
         if (result.data.code == 200) {
+          wx.showToast({
+            title: '重置成功',
+            icon: 'success',
+            duration: 1000
+          });
           wx.navigateBack({
             delta: 1
           })
