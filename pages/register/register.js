@@ -100,7 +100,7 @@ Page({
   onLoad: function (options) {
     this.identity();
   },
-
+  
   // 获取用户身份
   identity: function() {
     var _this = this;
