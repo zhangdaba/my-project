@@ -137,10 +137,10 @@ Page({
     let radioChoice = that.data.radioChoice;
     if (radioChoice === null || radioChoice.length === 0) {
       wx.showToast({
-        title: '暂无提交信息',
+        title: '请先选择需要提交的作业哦',
         icon: 'none',
         duration: 1200
-      })
+      });
       return;
     }
 
@@ -158,7 +158,7 @@ Page({
       }
     })
   },
-
+  
   userDetermine(radioChoice, that) {
     // 把数组中的每一项转换为数字,传递给后台
     that.setData({

@@ -1,6 +1,6 @@
 .subject {
   width: 94%;
-  margin: 0 auto 100rpx;
+  margin: 0 auto 10rpx;
 }
 
 .contentName {

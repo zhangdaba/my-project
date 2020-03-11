@@ -15,7 +15,7 @@
 			<block wx:if="{{ !oldparen.length }}">
 				<No_news text='暂无未提交作业...' />
 			</block>
-			
+
 			<checkbox-group class="class_radio" bindchange="radioChange">
 				<view class="classNum">
 					<view class="class" wx:for="{{ oldparen }}" wx:key="{{ index }}" data-item="{{ item }}" catchtap="viewUncorrected">
@@ -47,12 +47,14 @@
 					</view>
 				</view>
 			</checkbox-group>
-		</scroll-view>
 
+		</scroll-view>
+		
 		<button wx:if="{{ oldparen.length }}" disabled="{{ disabled }}" loading="{{ disabled }}" class="btn" hover-class="none" 
 		bindtap="submit" type="primary" style="background-color: #44a9ff;">
 			<text>提交作业</text>
 		</button>
+
 	</swiper-item>
 
 	<swiper-item>

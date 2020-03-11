@@ -13,7 +13,7 @@
 
 			<view>
 				<view wx:if="{{ item.isSub == 1 }}">
-
+				
 					<!-- 循环遍历子题 -->
 					<view wx:for="{{ item.subQuestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
 
@@ -43,7 +43,6 @@
 							<view class="stuAnswer" wx:else>
 								<text>空</text>
 							</view>
-
 						</view>
 
 						<template is="subject_answer" data="{{ item }}"></template>

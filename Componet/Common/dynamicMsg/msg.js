@@ -141,12 +141,13 @@ Component({
 
     AlreadyRead(e) {
       let that = this;
-      const dataset = e.currentTarget.dataset;
-      if (dataset.stateId !== 1) {
+      let item = e.currentTarget.dataset;
+      let dataset = item.item;
+      if (dataset.stateId != 1) {
         return;
       };
-      const id = dataset.id;
-      const idx = dataset.idx;
+      let id = dataset.id;
+      let idx = item.idx;
       const Token = wx.getStorageSync('Token');
       wx.request({
         url: config.itemURL + '/message/updateMess?ids=' + id,

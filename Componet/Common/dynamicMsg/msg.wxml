@@ -18,7 +18,7 @@
 						 style="height:{{windowHeight}}px;">
 						 
 	<view class="view">
-		<view class="view_num" data-id="{{ item.id }}" data-idx="{{ index }}" data-stateId="{{ stateId }}" bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
+		<view class="view_num" data-item="{{ item }}" data-idx="{{ index }}" bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
 			<!-- <view class="view-list" style="background: {{ dateFr.random() }}"> -->
 			<view class="view-list" style="background: {{ item.subjectId === 1 ?  '#005EFF' : (item.subjectId === 2 ? '#F00': '#0F0' ) }}">
 				<view>
