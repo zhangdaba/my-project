@@ -43,9 +43,11 @@ Page({
       method: 'GET',
       success: function (res) {
         if (res.data.code == 200) {
-          _this.setData({
-            notCorrectedss: res.data.data
-          });
+          const subSee = res.data.data;        
+          subSee.sort((a,b) => a.queNo - b.queNo)
+            _this.setData({
+              notCorrectedss: res.data.data
+            });
         }
       }
     })

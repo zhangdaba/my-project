@@ -61,7 +61,6 @@
 					<!-- 大题 学生 答案逻辑 -->
 					
 					<view hidden="{{ state == 1 }}">
-
 						<view hidden="{{ state == 2 }}">
 							<template is="subject_answer" data="{{ item }}"></template>
 							<template is="subject_similarity" data="{{ item }}"></template>

@@ -1,4 +1,4 @@
-@import "/utils/CommonStyle/subject/errCom";
+@import "/utils/CommonStyle/subject/errCom.wxss";
 
 scroll-view {
   height: 100%;

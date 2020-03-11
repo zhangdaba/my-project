@@ -1,7 +1,7 @@
 <template name="subject_title">
   <view class="subject">
     <view class="subject_title">
-      <!-- <view>{{ index + 1 }}.</view> -->
+      <view>{{ item.queNo }}.</view>
       <rich-text type="nodes" space="nbsp" nodes="{{ item.queBody || item.title }}"></rich-text>
     </view>
   </view>

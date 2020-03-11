@@ -15,7 +15,7 @@ App({
     /**
      * 验证身份
      */
-    this.identity();
+    // this.identity();
 
     /**
      * 

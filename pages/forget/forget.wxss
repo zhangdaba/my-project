@@ -36,7 +36,8 @@
   background: #009BFF;
   text-align: center;
   border-radius: 4px; */
-  font-size: 36rpx;
+  font-size: 32rpx;
+  padding-top: 10rpx;
 }
 
 .newpsd {

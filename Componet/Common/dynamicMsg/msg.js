@@ -1,7 +1,5 @@
 import config from "../../../utils/config.js";
 
-let flagBit = 0; //标志位 判断用户是已读 还是 下拉
-
 Component({
 
   /**
@@ -43,7 +41,8 @@ Component({
     // windowHeight: null,
     num: 1,
     touchTottom: false,
-    headerHide: true
+    headerHide: true,
+    nUnReadr: null
   },
 
   // 监听 my_msgProp 的变化
@@ -54,7 +53,6 @@ Component({
   },
 
   created() {
-    flagBit = 1;
     this.my_msgProp();
   },
 
@@ -66,7 +64,7 @@ Component({
     loadMore() {
       let _this = this;
       let num = this.data.num;
-      if (this.data.totalPage == num || !this.data.my_msgPropArr.length) {
+      if (this.data.totalPage == num) {
         _this.setData({
           touchTottom: true
         });
@@ -77,12 +75,10 @@ Component({
       this.setData({
         num: num
       });
-      flagBit = 1;
       this.my_msgProp();
     },
 
     loadMoreUp() {
-      console.log("上拉加载...");
       this.setData({
         headerHide: false
       });
@@ -132,16 +128,11 @@ Component({
         method: 'GET',
         success: function (res) {
           if (res.data.code == 200) {
-            if (flagBit) {
               _this.setData({
                 my_msgPropArr: [..._this.data.my_msgPropArr, ...res.data.data.informationPageResult.items],
-                totalPage: res.data.data.totalPage
+                totalPage: res.data.data.informationPageResult.totalPage,
+                nUnReadr: res.data.data.nUnRead
               });
-            } else {
-              _this.setData({
-                totalPage: res.data.data.totalPage
-              });
-            };
             _this.triggerEvent("nUnRead", res.data.data.nUnRead);
           }
         }
@@ -151,6 +142,9 @@ Component({
     AlreadyRead(e) {
       let that = this;
       const dataset = e.currentTarget.dataset;
+      if (dataset.stateId !== 1) {
+        return;
+      };
       const id = dataset.id;
       const idx = dataset.idx;
       const Token = wx.getStorageSync('Token');
@@ -162,12 +156,13 @@ Component({
         method: "POST",
         success: (result) => {
           if (result.data.code === 200) {
-            flagBit = 0;
             let my_msgPropIdx = that.data.my_msgPropArr;
             my_msgPropIdx[idx].stateId = !1;
             that.setData({
-              my_msgPropArr: my_msgPropIdx
+              my_msgPropArr: my_msgPropIdx,
+              nUnReadr: that.data.nUnReadr - 1
             });
+            that.triggerEvent("nUnRead", that.data.nUnReadr);
           };
         }
       })
