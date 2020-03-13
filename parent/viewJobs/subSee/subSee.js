@@ -145,7 +145,7 @@ Page({
       for (let i in imgArr2) {
         newArr.push(imgArr2[i].pictureAnswer);
       }
-
+      
       wx.previewImage({
         current: newArr[threeIndex],     //当前图片地址
         urls: newArr,           //所有要预览的图片的地址集合 数组形式

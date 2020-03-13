@@ -13,12 +13,14 @@
                class="input-radius"
                name="phone"
                maxlength="11"
+               disabled = "{{ loadinGdis }}"
                placeholder="请输入您的账号"
                bindinput="CellPhone"
                focus
                value="{{ CellPhoneInput }}"
                placeholder-class="placeholderStyle">
               </input>
+        <!-- <text class="input-error" bindtap="clearPhone" hidden="{{ !CellPhoneInput.length }}">×</text> -->
         <text class="input-error" bindtap="clearPhone" hidden="{{ !CellPhoneInput.length }}">×</text>
         <!-- <text class="input-text">×××××××××××××××××××××××××××××××××××××</text> -->
       </view>
@@ -34,6 +36,7 @@
               value="{{ CellPasswordInput }}"
               bindinput="CellPassword"
               maxlength="24"
+              disabled = "{{ loadinGdis }}"
               password
               placeholder-class="placeholderStyle">
               </input>

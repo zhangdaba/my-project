@@ -1,7 +1,7 @@
 const app = getApp();
 
 import util from '../../../utils/util.js';
-import config from '../../../utils/config.js';
+// import config from '../../../utils/config.js';
 
 let list = [{
     text: "首页",

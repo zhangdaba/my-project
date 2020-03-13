@@ -1,7 +1,6 @@
 <view hidden="{{ tabChange.index !== 0  }}">
 
   <view class='swiper_box'>
-
     <swiper class='swipers' 
             skip-hidden-item-layout="true" 
             display-multiple-items="1" 
@@ -18,7 +17,7 @@
 
   <view class="name_style">
     <view class="pswitch">
-
+    
       <view class="select" bindtap="task">
         <icon class="iconfont icon-jieshushijian"></icon>
         <view>
@@ -65,5 +64,5 @@
 </view>
 
 <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{ list }}" 
-           wx:key="{{index}}" 
+           wx:key="{{index}}"
            bindchange="tabChange"></mp-tabbar>

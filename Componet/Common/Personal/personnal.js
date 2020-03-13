@@ -86,7 +86,7 @@ Component({
       //   phoneNumber: '18651571984'
       // })
     },
-
+    
     // 获取头像信息
     getUserInfo(e) {
       if (e.detail.errMsg == 'getUserInfo:ok') {
@@ -103,7 +103,7 @@ Component({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
           });
-        }, 10);
+        }, 5);
       } else return;
     },
 

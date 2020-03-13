@@ -76,6 +76,15 @@ Page({
     }, function (res) {
       wx.setStorageSync('user', res.data.data);
       if (res.data.data.role == '教师') {
+        wx.showToast({
+          title: '暂不支持教师端',
+          icon: 'none',
+          duration: 1000
+        });
+        that.setData({
+          loadinGdis: false
+        })
+        return;
         that.Teacher(Token);
       } else if (res.data.data.role == '家长') {
         that.Parent(Token);
@@ -162,7 +171,7 @@ Page({
       }
     })
   },
-  
+
   // 注册页面
   forget: function () {
     wx.navigateTo({

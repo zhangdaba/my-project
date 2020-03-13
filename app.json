@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "parent/viewJobs/submission/submiss",
-    
     "pages/home/Parent/Parent",
+    "parent/viewJobs/submission/submiss",
+    "parent/viewJobs/subSee/subSee",
+
     "pages/forget/forget",
     "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setTime/setTime",
@@ -15,7 +16,6 @@
     
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
-    "parent/viewJobs/subSee/subSee",
     
     "home/homeworkAssignment/assignment/assignment",
     "home/homeworkAssignment/setting/setting",

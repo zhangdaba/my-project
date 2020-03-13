@@ -7,19 +7,19 @@
     
     <view class="text_indent">
     
-      <view wx:if="{{ item.stuAnswer != ''}}">
-        <rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
-      </view>
-      
-      <view wx:elif="{{ item.pictureAnswer != '' }}">
+      <view wx:if="{{ item.pictureAnswer != '' }}">
         <view class="imgCenter">
           <image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic1" bindtap='previewImg'>
           </image>
         </view>
       </view>
 
+      <view wx:elif="{{ item.stuAnswer != ''}}">
+        <rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
+      </view>
+
       <view wx:else>
-        <text>空</text>
+        <text>未作答</text>
       </view>
       
     </view>

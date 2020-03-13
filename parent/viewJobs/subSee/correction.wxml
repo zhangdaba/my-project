@@ -1,9 +1,11 @@
 <template name="subject_correction">
-  <view class="istrue">
-    <text class="fz32">批改结果：</text>
-    <icon style="color: #f00" wx:if="{{ item.isTrue == 0 }}" class='iconfont icon-cuo-copy-copy'></icon>
-    <icon style="color: #00f" wx:elif="{{ item.isTrue == 1 }}" class='iconfont icon-duiconverted'></icon>
-    <icon wx:elif="{{ item.isTrue == 2 }}" class='iconfont icon--banduibancuo-copy'></icon>
-    <text class="fz32" wx:else>空</text>
-  </view>
+	<view class="solution">
+		<view>【批改结果】</view>
+    <view class="text_indent">
+		  <icon style="color: #f00" wx:if="{{ item.corrResult == 0 }}" class='iconfont icon-cuo-copy-copy'></icon>
+		  <icon style="color: #00f" wx:elif="{{ item.corrResult == 1 }}" class='iconfont icon-duiconverted'></icon>
+		  <icon wx:elif="{{ item.corrResult == 2 }}" class='iconfont icon--banduibancuo-copy'></icon>
+		  <text class="fz32" wx:else>空</text>
+    </view>
+	</view>
 </template>

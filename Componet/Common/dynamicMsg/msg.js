@@ -9,25 +9,18 @@ Component({
   pageLifetimes: {
 
     show: function () {
-
-      // this.setData({
-      //   my_msgPropArr: [],
-      //   num: 1,
-      //   touchTottom: false
-      // });
-
-      // this.my_msgProp();
-
+      this.setData({
+        num: 1,
+        my_msgPropArr: [],
+        touchTottom: false
+      });
+      this.my_msgProp();
     },
 
     resize: function (size) {}
   },
 
   properties: {
-    // msg: {
-    //   type: Array,
-    //   value: ''
-    // },
 
     windowHeight: {
       type: Number,
@@ -53,7 +46,7 @@ Component({
   },
 
   created() {
-    this.my_msgProp();
+    // this.my_msgProp();
   },
 
   /**
@@ -82,7 +75,7 @@ Component({
       this.setData({
         headerHide: false
       });
-      setTimeout(()=> {
+      setTimeout(() => {
         this.setData({
           headerHide: true
         });
@@ -94,7 +87,9 @@ Component({
       const Token = wx.getStorageSync('Token');
       wx.request({
         url: config.itemURL + '/message/updateMess',
-        header: { Token },
+        header: {
+          Token
+        },
         data: '',
         method: "POST",
         success: (res) => {
@@ -114,7 +109,7 @@ Component({
     },
 
     my_msgProp() {
-      let _this = this;
+      let that = this;
       const token = wx.getStorageSync('Token');
       wx.request({
         url: config.taskURL + '/message/getMess',
@@ -122,18 +117,22 @@ Component({
           'Token': token
         },
         data: {
-          page: this.data.num,
+          page: that.data.num,
           rows: 10
         },
         method: 'GET',
         success: function (res) {
           if (res.data.code == 200) {
-              _this.setData({
-                my_msgPropArr: [..._this.data.my_msgPropArr, ...res.data.data.informationPageResult.items],
-                totalPage: res.data.data.informationPageResult.totalPage,
-                nUnReadr: res.data.data.nUnRead
+            that.setData({
+              my_msgPropArr: [...that.data.my_msgPropArr, ...res.data.data.informationPageResult.items],
+              totalPage: res.data.data.informationPageResult.totalPage,
+              nUnReadr: res.data.data.nUnRead
+            });
+            that.triggerEvent("nUnRead", res.data.data.nUnRead);
+          } else {
+              wx.reLaunch({
+                url: '/pages/index/index'
               });
-            _this.triggerEvent("nUnRead", res.data.data.nUnRead);
           }
         }
       })

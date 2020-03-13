@@ -6,7 +6,7 @@ Page({
    */
 
   data: {
-    task: ['未提交', '已提交', '已批改'],
+    task: ['未提交', '未批改', '已批改'],
     currentTabInde: 0,
     checked: false,
 
@@ -99,6 +99,13 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
+        if(res.data.code != 200) {
+          wx.redirectTo({
+            url: '/pages/index/index'
+          })
+          return;
+        }
+
         let parenTast = res.data.data;
         let oldparen = [],
           newparen = [],
@@ -113,10 +120,11 @@ Page({
             already.push(parenTast[k]);
           }
         }
+        
         that.setData({
-          oldparen: oldparen.reverse(),
-          newparen: newparen.reverse(),
-          already: already.reverse(),
+          oldparen: oldparen,
+          newparen: newparen,
+          already: already,
           parenTast
         })
       }
