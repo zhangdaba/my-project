@@ -2,9 +2,9 @@
 
 // let app = 'http://192.168.1.194';
 
-let app = 'https://abc-test.epen.ltd';
+// let app = 'http://abc-test.epen.ltd';
 
-// let app = 'http://47.103.35.30';
+let app = 'http://47.103.35.30';
 
 // let wss = 'wss://abc.epen.ltd';
 // wss://abc.epen.ltd   ws://192.168.1.184:65512

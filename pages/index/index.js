@@ -63,7 +63,8 @@ Page({
         }
       },
       fail(err) {
-        if(err.errMsg == 'request:fail timeout') {
+        console.log(err, ">>>>>>>>");
+        if(err.errMsg == 'request:fail timeout' || 'request:fail') {
           util.showTextToast('连接超时，请稍后再试...');
           _this.setData({
             loadinGdis: false,
