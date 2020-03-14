@@ -1,6 +1,8 @@
 // let app = 'https://abc.epen.ltd';
 
-let app = 'http://192.168.1.194';
+// let app = 'http://192.168.1.194';
+
+let app = 'https://abc-test.epen.ltd';
 
 // let app = 'http://47.103.35.30';
 

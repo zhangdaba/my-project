@@ -35,13 +35,10 @@ Page({
 
     wx.request({
       url: `${ config.baseURL }/user/login`,
-      complete: (res) => {},
       data: {
         phone: user.phone,
         password: user.password
       },
-      dataType: '',
-      fail: (res) => {},
       method: "POST",
       success: (res) => {
         if (res.data.code == 200) {
@@ -59,12 +56,22 @@ Page({
             loadinGdis: false
           })
         } else {
-          util.showTextToast('登录失败');
+          util.showTextToast('登录失败,请稍后再试...');
           _this.setData({
             loadinGdis: false
           })
         }
       },
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout') {
+          util.showTextToast('连接超时，请稍后再试...');
+          _this.setData({
+            loadinGdis: false,
+            CellPhoneInput: '',
+            CellPasswordInput: ''
+          })
+        }
+      }
     });
   },
 

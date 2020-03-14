@@ -99,10 +99,6 @@ function post(url, data, header, success) {
   })
 }
 
-function no_token() {
-
-}
-
 // 数据递归
 function convert(data, parentIds) {
   var convertData = [];

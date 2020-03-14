@@ -92,7 +92,6 @@
 	</swiper-item>
 
 	<swiper-item>
-
 		<scroll-view scroll-y="true">
 			<block wx:if="{{ !already.length }}">
 				<No_news text='暂无已批改作业...' />

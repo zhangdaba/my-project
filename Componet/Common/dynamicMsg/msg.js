@@ -105,6 +105,15 @@ Component({
             return;
           }
         },
+        fail(err) {
+          if (err.errMsg == 'request:fail timeout') {
+            wx.showToast({
+              title: '连接超时，请稍后再试...',
+              icon: 'none',
+              duration: 1000
+            })
+          }
+        }
       })
     },
 
@@ -130,9 +139,18 @@ Component({
             });
             that.triggerEvent("nUnRead", res.data.data.nUnRead);
           } else {
-              wx.reLaunch({
-                url: '/pages/index/index'
-              });
+            wx.reLaunch({
+              url: '/pages/index/index'
+            });
+          }
+        },
+        fail(err) {
+          if (err.errMsg == 'request:fail timeout') {
+            wx.showToast({
+              title: '连接超时，请稍后再试...',
+              icon: 'none',
+              duration: 1000
+            })
           }
         }
       })
@@ -164,6 +182,15 @@ Component({
             });
             that.triggerEvent("nUnRead", that.data.nUnReadr);
           };
+        },
+        fail(err) {
+          if (err.errMsg == 'request:fail timeout') {
+            wx.showToast({
+              title: '连接超时，请稍后再试...',
+              icon: 'none',
+              duration: 1000
+            })
+          }
         }
       })
     }

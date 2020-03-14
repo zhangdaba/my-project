@@ -26,9 +26,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     this.swiperHeight(); //获取屏幕可视高度
-
-    this.submission(); //获取未提交作业信息
 
     // 数据格式
     this.setData({
@@ -36,6 +35,10 @@ Page({
     });
 
     // 数据格式 end
+  },
+
+  onShow: function() {
+    this.submission(); //获取未提交作业信息
   },
 
   /**
@@ -96,37 +99,45 @@ Page({
         Token: token
       },
       method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
       success: function (res) {
-        if(res.data.code != 200) {
+        if (res.data.code == 200) {
+          let parenTast = res.data.data;
+          let oldparen = [],
+              newparen = [],
+              already = [];
+          for (let k in parenTast) {
+            if (parenTast[k].status == 0) {
+              oldparen.push(parenTast[k]);
+            } else if (parenTast[k].status == 1 || 3) {
+              newparen.unshift(parenTast[k]);
+            } else if (parenTast[k].status == 2) {
+              already.unshift(parenTast[k]);
+            }
+          }
+          oldparen.sort((a,b) =>
+            Math.abs(new Date(a.operationEndTime).getTime() - new Date().getTime()) - 
+            Math.abs(new Date(b.operationEndTime).getTime() - new Date().getTime()));
+          that.setData({
+            oldparen: oldparen,
+            newparen: newparen,
+            already: already,
+            parenTast
+          })
+        } else {
           wx.redirectTo({
             url: '/pages/index/index'
           })
-          return;
         }
-
-        let parenTast = res.data.data;
-        let oldparen = [],
-          newparen = [],
-          already = [];
-
-        for (let k in parenTast) {
-          if (parenTast[k].status == 0) {
-            oldparen.push(parenTast[k]);
-          } else if (parenTast[k].status == 1) {
-            newparen.push(parenTast[k]);
-          } else if (parenTast[k].status == 2) {
-            already.push(parenTast[k]);
-          }
+      },
+      
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout') {
+          wx.showToast({
+            title: '连接超时，请稍后再试...',
+            icon: 'none',
+            duration: 1000
+          })
         }
-        
-        that.setData({
-          oldparen: oldparen,
-          newparen: newparen,
-          already: already,
-          parenTast
-        })
       }
     })
   },
@@ -162,6 +173,15 @@ Page({
         } else if (res.cancel) {
           console.log('用户点击取消')
           return;
+        }
+      },
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout') {
+          wx.showToast({
+            title: '连接超时，请稍后再试...',
+            icon: 'none',
+            duration: 1000
+          })
         }
       }
     })

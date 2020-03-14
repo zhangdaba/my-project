@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/home/Parent/Parent",
     "parent/viewJobs/submission/submiss",
+    "pages/home/Parent/Parent",
     "parent/viewJobs/subSee/subSee",
 
     "pages/forget/forget",
@@ -10,7 +10,7 @@
     "home/homeworkAssignment/setTime/setTime",
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
-    
+
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
     
@@ -42,6 +42,9 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": false
+  },
+  "networkTimeout": {
+    "request": 10000
   },
   "sitemapLocation": "sitemap.json"
 }
