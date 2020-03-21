@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    
     "parent/viewJobs/submission/submiss",
     "pages/home/Parent/Parent",
     "pages/forget/forget",
