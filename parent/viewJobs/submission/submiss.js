@@ -109,11 +109,12 @@ Page({
             if (parenTast[k].status == 0) {
               oldparen.push(parenTast[k]);
             } else if (parenTast[k].status == 1 || 3) {
-              newparen.unshift(parenTast[k]);
+              newparen.push(parenTast[k]);
             } else if (parenTast[k].status == 2) {
-              already.unshift(parenTast[k]);
+              already.push(parenTast[k]);
             }
           }
+          
           oldparen.sort((a,b) =>
             Math.abs(new Date(a.operationEndTime).getTime() - new Date().getTime()) - 
             Math.abs(new Date(b.operationEndTime).getTime() - new Date().getTime()));

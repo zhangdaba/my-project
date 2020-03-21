@@ -3,9 +3,10 @@
   <view class="login">
     <icon class="iconfont icon-huaban"></icon>
   </view>
-  
+
   <view>
     <form bindsubmit="handleLogin">
+    
       <view class="handle">
         <view class="box">手机号</view>
         <icon class="icon iconfont icon-yonghu"></icon>
@@ -20,9 +21,7 @@
                value="{{ CellPhoneInput }}"
                placeholder-class="placeholderStyle">
               </input>
-        <!-- <text class="input-error" bindtap="clearPhone" hidden="{{ !CellPhoneInput.length }}">×</text> -->
         <text class="input-error" bindtap="clearPhone" hidden="{{ !CellPhoneInput.length }}">×</text>
-        <!-- <text class="input-text">×××××××××××××××××××××××××××××××××××××</text> -->
       </view>
 
       <view class="handle">
@@ -43,7 +42,7 @@
 
         <text class="input-error" bindtap="clearPassword" hidden="{{ !CellPasswordInput.length }}">×</text>
       </view>
-
+      
       <!-- 登录 注册 样式 -->
       <view class="sign">
         <button class="signLift" 
@@ -63,4 +62,5 @@
       </view>
     </form>
   </view>
+
   </view>

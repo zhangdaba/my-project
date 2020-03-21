@@ -6,7 +6,7 @@ function log(msg, msg1, msg2) {
 
 App({
   onLaunch: function () {
-
+    
     /**
      * 验证身份
      */
