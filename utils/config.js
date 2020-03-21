@@ -1,6 +1,6 @@
 // let app = 'http://192.168.1.194';         // 本地
-let app = 'https://abc-api.epen.ltd';     // 线上
-// let app = 'https://abc-api-test.epen.ltd';   // 测试
+let app = 'https://abc-api.epen.ltd';        // 线上
+// let app = 'https://abc-api-test.epen.ltd';// 测试
 
 // let wss = 'wss://abc.epen.ltd';
 // wss://abc.epen.ltd   ws://192.168.1.184:65512
