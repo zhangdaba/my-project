@@ -8,7 +8,7 @@ Page({
     // 班级
     correctingItem: null,
     next: 0,
-    choices: ['半对半错', '对','错'],
+    choices: ['半对半错', '对', '错'],
     state: null,
     // 真实数据
     notCorrectedss: [],
@@ -43,11 +43,29 @@ Page({
       method: 'GET',
       success: function (res) {
         if (res.data.code == 200) {
-          const subSee = res.data.data;        
-          subSee.sort((a,b) => a.queNo - b.queNo)
-            _this.setData({
-              notCorrectedss: res.data.data
-            });
+          const subSee = res.data.data;
+          subSee.sort((a, b) => a.queNo - b.queNo)
+          _this.setData({
+            notCorrectedss: subSee
+          });
+        } else if (res.data.code == 4004) {
+          wx.showToast({
+            title: '作业正在批改中，请稍后切换已批改界面查看批改结果',
+            icon: 'none',
+            duration: 2000
+          });
+          setTimeout(() => {
+            wx.navigateBack({delta: 1});
+          } ,2000)
+        };
+      },
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout') {
+          wx.showToast({
+            title: '连接超时，请稍后再试...',
+            icon: 'none',
+            duration: 1000
+          })
         }
       }
     })
@@ -72,7 +90,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   // 获取屏幕高度
@@ -98,7 +116,7 @@ Page({
       imgTopic
     });
   },
-  
+
   previewImg1: function (e) {
     let imgTopic1 = e.currentTarget.dataset.img;
     let img_indx1 = e.currentTarget.dataset.index;
@@ -126,8 +144,8 @@ Page({
       }
       let img_indx = _this.data.img_indx;
       wx.previewImage({
-        current: imgArr[img_indx],  //当前图片地址
-        urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+        current: imgArr[img_indx], //当前图片地址
+        urls: imgArr, //所有要预览的图片的地址集合 数组形式
         success: function (res) {
           console.log(res);
         }
@@ -147,14 +165,14 @@ Page({
       }
 
       wx.previewImage({
-        current: newArr[threeIndex],     //当前图片地址
-        urls: newArr,           //所有要预览的图片的地址集合 数组形式
+        current: newArr[threeIndex], //当前图片地址
+        urls: newArr, //所有要预览的图片的地址集合 数组形式
         success: function (res) {
           console.log(res);
         }
       })
     }
-    
+
     // 重新渲染视图
     _this.setData({
       threeIndex,

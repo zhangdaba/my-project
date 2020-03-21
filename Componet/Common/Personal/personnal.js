@@ -50,7 +50,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    modalHidden: true
   },
 
   /**
@@ -65,17 +65,28 @@ Component({
       })
     },
 
-    makePhone() {
-      wx.previewImage({
-        current: 0, //当前图片地址
-        urls: ['http://47.103.35.30/WeChat/yang.41ba3e7.png'], //所有要预览的图片的地址集合 数组形式
-        success: function(res) {}
+    modalConfirm() {
+      this.setData({
+        modalHidden: true
       });
+    },
+
+    makePhone() {
+      this.setData({
+        modalHidden: false
+      });
+
+      // wx.previewImage({
+      //   current: 0, //当前图片地址
+      //   urls: ['http://47.103.35.30/WeChat/yang.41ba3e7.png'], //所有要预览的图片的地址集合 数组形式
+      //   success: function(res) {}
+      // });
+
       // wx.makePhoneCall({
       //   phoneNumber: '18651571984'
       // })
     },
-
+    
     // 获取头像信息
     getUserInfo(e) {
       if (e.detail.errMsg == 'getUserInfo:ok') {
@@ -92,7 +103,7 @@ Component({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
           });
-        }, 10);
+        }, 5);
       } else return;
     },
 

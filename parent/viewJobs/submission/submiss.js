@@ -6,7 +6,7 @@ Page({
    */
 
   data: {
-    task: ['未提交', '已提交', '已批改'],
+    task: ['未提交', '未批改', '已批改'],
     currentTabInde: 0,
     checked: false,
 
@@ -26,9 +26,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     this.swiperHeight(); //获取屏幕可视高度
-
-    this.submission(); //获取未提交作业信息
 
     // 数据格式
     this.setData({
@@ -36,6 +35,10 @@ Page({
     });
 
     // 数据格式 end
+  },
+
+  onShow: function() {
+    this.submission(); //获取未提交作业信息
   },
 
   /**
@@ -96,29 +99,46 @@ Page({
         Token: token
       },
       method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
       success: function (res) {
-        let parenTast = res.data.data;
-        let oldparen = [],
-          newparen = [],
-          already = [];
-
-        for (let k in parenTast) {
-          if (parenTast[k].status == 0) {
-            oldparen.push(parenTast[k]);
-          } else if (parenTast[k].status == 1) {
-            newparen.push(parenTast[k]);
-          } else if (parenTast[k].status == 2) {
-            already.push(parenTast[k]);
+        if (res.data.code == 200) {
+          let parenTast = res.data.data;
+          let oldparen = [],
+              newparen = [],
+              already = [];
+          for (let k in parenTast) {
+            if (parenTast[k].status == 0) {
+              oldparen.push(parenTast[k]);
+            } else if (parenTast[k].status == 1 || 3) {
+              newparen.push(parenTast[k]);
+            } else if (parenTast[k].status == 2) {
+              already.push(parenTast[k]);
+            }
           }
+          
+          oldparen.sort((a,b) =>
+            Math.abs(new Date(a.operationEndTime).getTime() - new Date().getTime()) - 
+            Math.abs(new Date(b.operationEndTime).getTime() - new Date().getTime()));
+          that.setData({
+            oldparen: oldparen,
+            newparen: newparen,
+            already: already,
+            parenTast
+          })
+        } else {
+          wx.redirectTo({
+            url: '/pages/index/index'
+          })
         }
-        that.setData({
-          oldparen: oldparen.reverse(),
-          newparen: newparen.reverse(),
-          already: already.reverse(),
-          parenTast
-        })
+      },
+      
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout') {
+          wx.showToast({
+            title: '连接超时，请稍后再试...',
+            icon: 'none',
+            duration: 1000
+          })
+        }
       }
     })
   },
@@ -137,10 +157,10 @@ Page({
     let radioChoice = that.data.radioChoice;
     if (radioChoice === null || radioChoice.length === 0) {
       wx.showToast({
-        title: '暂无提交信息',
+        title: '请先选择需要提交的作业哦',
         icon: 'none',
         duration: 1200
-      })
+      });
       return;
     }
 
@@ -155,10 +175,19 @@ Page({
           console.log('用户点击取消')
           return;
         }
+      },
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout') {
+          wx.showToast({
+            title: '连接超时，请稍后再试...',
+            icon: 'none',
+            duration: 1000
+          })
+        }
       }
     })
   },
-
+  
   userDetermine(radioChoice, that) {
     // 把数组中的每一项转换为数字,传递给后台
     that.setData({

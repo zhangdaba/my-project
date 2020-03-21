@@ -1,13 +1,33 @@
 <!-- 名字模块 -->
 <view class="name">
 	<view class="background">
-
 		<view class="user">
 			<image bindtap="bindViewTap" class="img" src="{{ userInfo.avatarUrl }}" mode="cover"></image>
-			<view class="nickName">
-				<text>{{ userInfo.nickName || '某某' }}</text>
+
+			<view class="nickNames">
+				<view class="nickName">
+					<view>微信昵称：</view>
+					<view>{{ userInfo.nickName || '某某' }}</view>
+				</view>
+
+				<view class="nickName">
+					<view>用户名：</view>
+					<view> {{ user.username }}</view>
+				</view>
+
+				<view class="nickName">
+					<view> 手机号：</view>
+					<view> {{ user.phone }}</view>
+				</view>
 			</view>
 		</view>
+
+		<modal hidden="{{ modalHidden }}" bindconfirm="modalConfirm" bindcancel="modalConfirm">
+		<!-- title="Hello !" -->
+			<view class="myClass">
+				<image class="image" src="http://47.103.35.30/WeChat/yang.41ba3e7.png"></image>
+			</view>
+		</modal>
 
 		<view class="right">
 			<button size="mini" open-type="getUserInfo" type="primary" class="pcenter" hover-class="pcenter-hover" plain="true" bindgetuserinfo="getUserInfo">
@@ -19,19 +39,6 @@
 
 <!-- 其他模块 -->
 <view class="editionNum">
-
-	<view>
-    <template is="user" data="{{ ...user }}"></template>
-    <template name="user">
-		  手机号: {{ phone }}. 
-      用户名: {{ username }}.
-      身份类型: {{ role }}.
-    </template>
-	</view>
-
-	<!-- <view class="edition">
-		<text decode="{{ true }}">&nbsp;&nbsp;智能笔</text>
-	</view> -->
 
 	<view class="edition" bindtap="makePhone">
 		<text decode="{{ true }}">&nbsp;&nbsp;联系客服</text>

@@ -8,7 +8,7 @@
       </swiper-item>
     </block>
   </swiper>
-
+  
   <!-- 学生部分 -->
   <view class="parent clearfix">
     <view class="name">

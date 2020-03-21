@@ -53,11 +53,7 @@ Page({
     let tab = {
       detail: {
         index: 0,
-        item: {
-          text: "首页",
-          iconPath: "/static/images/tabBar/news_normal.png",
-          selectedIconPath: "/static/images/tabBar/news_selected.png"
-        }
+        item: list[0]
       }
     };
 
@@ -126,7 +122,6 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        console.log(res);
         let students = res.data.data;
         // 给每个孩子加上index值
         let num = -1;
@@ -206,28 +201,11 @@ Page({
     if(badge > 99) {
       badge = '99+'
     }
-
+    
+    list[1].badge = badge;
     this.setData({
-      list: [{
-          text: "首页",
-          iconPath: "/static/images/tabBar/mine_normal.png",
-          selectedIconPath: "/static/images/tabBar/mine_selected.png"
-        },
-        {
-          text: "消息",
-          iconPath: "/static/images/tabBar/news_normal.png",
-          selectedIconPath: "/static/images/tabBar/news_selected.png",
-          badge: badge
-        },
-        {
-          text: "我的",
-          iconPath: "/static/images/tabBar/category_normal.png",
-          selectedIconPath: "/static/images/tabBar/category_selected.png"
-        }
-      ]
+      list
     });
-
-    console.log(this.data.list);
   }
 
 });

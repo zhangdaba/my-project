@@ -1,12 +1,11 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
 
-<view class="header" hidden="{{ headerHide }}">
-
+<!-- <view class="header" hidden="{{ headerHide }}">
   <view>下拉刷新中……</view>
-  <!-- <view>{{refreshTime}}</view> -->
-</view>
+</view> -->
 
-<view class="AllRead" wx:if="{{ my_msgPropArr.length }}" bindtap="AllReadClick">全部已读</view>
+<view class="AllRead" hidden="{{ !my_msgPropArr.length }}" bindtap="AllReadClick">全部已读</view>
+<view class="AllReadView"></view>
 <!-- bindscrolltoupper="loadMoreUp" -->
 
 <scroll-view scroll-y="true"
@@ -18,7 +17,7 @@
 						 style="height:{{windowHeight}}px;">
 						 
 	<view class="view">
-		<view class="view_num" data-id="{{ item.id }}" data-idx="{{ index }}" data-stateId="{{ stateId }}" bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
+		<view class="view_num" data-item="{{ item }}" data-idx="{{ index }}" bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
 			<!-- <view class="view-list" style="background: {{ dateFr.random() }}"> -->
 			<view class="view-list" style="background: {{ item.subjectId === 1 ?  '#005EFF' : (item.subjectId === 2 ? '#F00': '#0F0' ) }}">
 				<view>
@@ -27,7 +26,8 @@
 			</view>
 
 			<view class="view-last">
-				<text>{{ item.subjectName }}作业</text> {{ item.content }}
+				<text class="thickening">{{ item.subjectName }}作业</text> 
+				<rich-text type="nodes*" space="&nbsp" nodes="{{ item.content }}"></rich-text>
 				<view class="view-last-float">
 					<text>{{ item.createTime }} {{ item.stateId === 1 ? '未读':'已读' }} </text>
 					<!-- <text class="circle"></text> -->

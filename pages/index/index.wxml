@@ -6,6 +6,7 @@
 
   <view>
     <form bindsubmit="handleLogin">
+    
       <view class="handle">
         <view class="box">手机号</view>
         <icon class="icon iconfont icon-yonghu"></icon>
@@ -13,6 +14,7 @@
                class="input-radius"
                name="phone"
                maxlength="11"
+               disabled = "{{ loadinGdis }}"
                placeholder="请输入您的账号"
                bindinput="CellPhone"
                focus
@@ -20,7 +22,6 @@
                placeholder-class="placeholderStyle">
               </input>
         <text class="input-error" bindtap="clearPhone" hidden="{{ !CellPhoneInput.length }}">×</text>
-        <!-- <text class="input-text">×××××××××××××××××××××××××××××××××××××</text> -->
       </view>
 
       <view class="handle">
@@ -34,16 +35,18 @@
               value="{{ CellPasswordInput }}"
               bindinput="CellPassword"
               maxlength="24"
+              disabled = "{{ loadinGdis }}"
               password
               placeholder-class="placeholderStyle">
               </input>
 
         <text class="input-error" bindtap="clearPassword" hidden="{{ !CellPasswordInput.length }}">×</text>
       </view>
-
+      
       <!-- 登录 注册 样式 -->
       <view class="sign">
-        <button class="signLift" form-type="submit"
+        <button class="signLift" 
+                form-type="submit"
                 disabled="{{ loadinGdis }}"
                 loading="{{ loadinGdis }}"
                 size="mini"
@@ -59,4 +62,5 @@
       </view>
     </form>
   </view>
+
   </view>

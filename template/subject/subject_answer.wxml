@@ -6,11 +6,11 @@
       <view wx:if="{{ item.answer1.length != 0 }}">
         <rich-text type="nodes*" space="&nbsp" nodes="{{ item.answer1 }}"></rich-text>
       </view>
-      
+
       <view wx:elif="{{ item.answer2 != 0 }}">
         <rich-text type="nodes*" space="&nbsp" nodes="{{ item.answer2 }}"></rich-text>
       </view>
-      
+
       <view wx:else>
         <view>略</view>
       </view>

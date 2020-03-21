@@ -26,7 +26,7 @@ Page({
     if(phone === '') {
       return;
     };
-
+    
     wx.request({
       url: config.baseURL + '/user/checkPhone',
       data: {

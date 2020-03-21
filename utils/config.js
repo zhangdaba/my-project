@@ -1,18 +1,18 @@
-// let app = 'https://abc.epen.ltd';
-let app = 'http://192.168.1.194';
-// let app = 'http://47.103.35.30';
+// let app = 'http://192.168.1.194';         // 本地
+let app = 'https://abc-api.epen.ltd';        // 线上
+// let app = 'https://abc-api-test.epen.ltd';// 测试
 
 // let wss = 'wss://abc.epen.ltd';
 // wss://abc.epen.ltd   ws://192.168.1.184:65512
 
 module.exports = {
-  baseURL: app + '/gateway/auth',
-  basisURL: app + '/gateway/basis',
-  listURL: app + '/gateway/question',
-  itemURL: app + '/gateway/main',
-  taskURL: app + '/gateway/main',
-  errorURL: app + '/gateway/error_book',
-  reportURL: app + '/gateway/report',
-  anyuanURL: app + '/gateway/question'
+  baseURL: app + '/auth',
+  basisURL: app + '/basis',
+  listURL: app + '/question',
+  itemURL: app + '/main',
+  taskURL: app + '/main',
+  errorURL: app + '/error_book',
+  reportURL: app + '/report',
+  anyuanURL: app + '/question'
   // webSocketURL: wss + '/websocket'
 };

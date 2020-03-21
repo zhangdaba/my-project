@@ -35,13 +35,10 @@ Page({
 
     wx.request({
       url: `${ config.baseURL }/user/login`,
-      complete: (res) => {},
       data: {
         phone: user.phone,
         password: user.password
       },
-      dataType: '',
-      fail: (res) => {},
       method: "POST",
       success: (res) => {
         if (res.data.code == 200) {
@@ -59,12 +56,22 @@ Page({
             loadinGdis: false
           })
         } else {
-          util.showTextToast('登录失败');
+          util.showTextToast('登录失败,请稍后再试...');
           _this.setData({
             loadinGdis: false
           })
         }
       },
+      fail(err) {
+        if(err.errMsg == 'request:fail timeout' || 'request:fail') {
+          util.showTextToast('连接超时，请稍后再试...');
+          _this.setData({
+            loadinGdis: false,
+            CellPhoneInput: '',
+            CellPasswordInput: ''
+          })
+        }
+      }
     });
   },
 
@@ -76,6 +83,15 @@ Page({
     }, function (res) {
       wx.setStorageSync('user', res.data.data);
       if (res.data.data.role == '教师') {
+        wx.showToast({
+          title: '暂不支持教师端',
+          icon: 'none',
+          duration: 1000
+        });
+        that.setData({
+          loadinGdis: false
+        })
+        return;
         that.Teacher(Token);
       } else if (res.data.data.role == '家长') {
         that.Parent(Token);
@@ -162,7 +178,7 @@ Page({
       }
     })
   },
-  
+
   // 注册页面
   forget: function () {
     wx.navigateTo({

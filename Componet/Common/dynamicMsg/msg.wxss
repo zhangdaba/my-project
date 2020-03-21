@@ -69,10 +69,20 @@ page {
 }
 
 .AllRead {
-  /* position: absolute; */
-  /* z-index: 100; */
-  line-height: 68rpx;
-  /* background: #57A4E4; */
-  text-align: left;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
   border-bottom: 1px dashed #57A4E4;
+  background: #F6F7FB;
+}
+
+.AllReadView {
+  height: 50rpx;
+  background: #F6F7FB;
+}
+
+.thickening {
+  font-weight: 700;
 }

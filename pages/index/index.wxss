@@ -43,12 +43,18 @@ page {
 }
 
 .input-error {
+  border-radius: 50%;
+  font-size: 28rpx;
+  z-index: 99;
+  width: 30rpx;
+  height: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+  color: #BABABA;
+  border: 1px solid #BABABA;
   position: absolute;
   right: 0;
   bottom: -10rpx;
-  font-size: 42rpx;
-  z-index: 99;
-  padding: 0 20rpx;
 }
 
 .input-text {
