@@ -36,7 +36,7 @@
 		</view>
 
 		<!-- wx:if="{{ !my_msgPropArr.length }}" -->
-
+		
 		<view wx:if="{{ my_msgPropArr.length }}">
 			<view style="text-align: center;"> {{ touchTottom ? '到底了...':'加载中...' }} </view>
 		</view>
@@ -47,5 +47,4 @@
 		</view>
 
 	</view>
-
 </scroll-view>

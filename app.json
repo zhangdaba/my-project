@@ -1,23 +1,18 @@
 {
   "pages": [
     "pages/index/index",
-    
     "parent/viewJobs/submission/submiss",
     "pages/home/Parent/Parent",
     "parent/viewJobs/subSee/subSee",
-    
     "pages/forget/forget",
     "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setTime/setTime",
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
-
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
-    
     "parent/report/subReport/subReport",
     "parent/report/Learning/learning",
-    
     "home/homeworkAssignment/assignment/assignment",
     "home/homeworkAssignment/setting/setting",
     "home/homeworkAssignment/divideKnowledge/Knowledge",
@@ -34,7 +29,6 @@
     "home/details/details",
     "pages/home/Teacher/teacher",
     "parent/home/binding/children",
-    
     "pages/register/register"
   ],
   "window": {

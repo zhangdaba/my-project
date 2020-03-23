@@ -13,7 +13,7 @@ page {
 .name .background {
   width: 100%;
   height: 430rpx;
-  background: url('http://abc.epen.ltd/image/201910091443311.png') no-repeat;
+  background: url('http://jiaoshi.epen.ltd/image/201910091443311.png') no-repeat;
   background-size: contain;
   margin: 0 auto;
   position: relative;

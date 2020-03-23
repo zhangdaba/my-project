@@ -23,7 +23,6 @@
 		</view>
 
 		<modal hidden="{{ modalHidden }}" bindconfirm="modalConfirm" bindcancel="modalConfirm">
-		<!-- title="Hello !" -->
 			<view class="myClass">
 				<image class="image" src="http://47.103.35.30/WeChat/yang.41ba3e7.png"></image>
 			</view>
