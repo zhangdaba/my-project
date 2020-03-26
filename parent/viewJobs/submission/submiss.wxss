@@ -134,11 +134,11 @@ scroll-view {
 }
 
 .btn {
-  width: 60%;
-  border-radius: 50rpx;
-  margin-top: 50rpx;
-  margin-left: -30%;
+  width: 100%;
+  /* border-radius: 50rpx; */
+  /* margin-top: 50rpx; */
+  /* margin-left: -30%; */
   position: absolute;
-  left: 50%;
+  /* left: 50%; */
   bottom: 0;
 }

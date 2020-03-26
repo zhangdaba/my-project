@@ -97,3 +97,10 @@ page {
 .hoverSign {
   color: #44A9FF;
 }
+
+.landing {
+  position: absolute;
+  bottom: 120rpx;
+  font-size: 28rpx;
+  color: #929292;
+}

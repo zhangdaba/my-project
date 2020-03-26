@@ -5,10 +5,6 @@
   padding: 30rpx 0;
 }
 
-page {
-  background-color: #F6F7FB;
-}
-
 .view {
   width: 94%;
   margin: 45rpx auto 160rpx;
@@ -28,16 +24,33 @@ page {
   line-height: 120rpx;
   text-align: center;
   border-radius: 20rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.view-list .viewCircle {
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #f00;
+  border-radius: 50%;
+  position: absolute;
+  right: -6rpx;
+  top: -6rpx;
 }
 
 .view .view-last-float text {
   float: right;
   color: #ccc;
+  margin-bottom: 20rpx;
 }
 
 .view .view-last {
   width: 80%;
   word-wrap:break-word;
+}
+
+.view .view-last .grey {
+  color: #666;
 }
 
 .view .view-list icon {
@@ -85,4 +98,6 @@ page {
 
 .thickening {
   font-weight: 700;
+  color: #333;
+  font-size: 32rpx;
 }

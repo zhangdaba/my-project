@@ -20,23 +20,22 @@
 		<view class="view_num" data-item="{{ item }}" data-idx="{{ index }}" bindtap="AlreadyRead" wx:for="{{ my_msgPropArr }}" wx:key="{{ index }}">
 			<!-- <view class="view-list" style="background: {{ dateFr.random() }}"> -->
 			<view class="view-list" style="background: {{ item.subjectId === 1 ?  '#005EFF' : (item.subjectId === 2 ? '#F00': '#0F0' ) }}">
+			 <view class="{{ item.stateId === 1 ? 'viewCircle':'' }}"></view>
 				<view>
 					<icon class="iconfont icon-tongyixiaoxi"></icon>
 				</view>
 			</view>
 
 			<view class="view-last">
-				<text class="thickening">{{ item.subjectName }}作业</text> 
-				<rich-text type="nodes*" space="&nbsp" nodes="{{ item.content }}"></rich-text>
+				<text class="thickening">{{ item.subjectName }}作业</text>
+				<view class="grey"><rich-text type="nodes*" space="&nbsp" nodes="{{ item.content }}"></rich-text></view>
 				<view class="view-last-float">
-					<text>{{ item.createTime }} {{ item.stateId === 1 ? '未读':'已读' }} </text>
+					<text>{{ item.createTime }}</text>
 					<!-- <text class="circle"></text> -->
 				</view>
 			</view>
 		</view>
-
 		<!-- wx:if="{{ !my_msgPropArr.length }}" -->
-		
 		<view wx:if="{{ my_msgPropArr.length }}">
 			<view style="text-align: center;"> {{ touchTottom ? '到底了...':'加载中...' }} </view>
 		</view>
@@ -45,6 +44,6 @@
 			<icon class="iconfont icon-empty"></icon>
 			<text> \n 空空如也...</text>
 		</view>
-
+		
 	</view>
 </scroll-view>

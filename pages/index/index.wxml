@@ -62,5 +62,7 @@
       </view>
     </form>
   </view>
-
+    <view class="landing">
+      家长端登录信息, 方便家长查看与提交学生作业
+    </view>
   </view>
