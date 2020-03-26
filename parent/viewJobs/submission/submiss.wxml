@@ -80,7 +80,7 @@
 								<text>{{ item.subject }} \n {{ item.grade }} \t ( {{ item.homeworkSource }} )</text>
 							</view>
 						</view>
-
+						
 						<view class="class_bottom">
 							<view>开始时间: {{ item.createdDate }}</view>
 							<view>结束时间: {{ item.operationEndTime }}</view>
