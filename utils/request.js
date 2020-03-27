@@ -39,7 +39,7 @@ function fetch (parmas) {
       }
     })
   });
-
+  
   promise.then(s => {
     console.log(s);
     return s;
