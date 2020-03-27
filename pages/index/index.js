@@ -1,5 +1,6 @@
 import util from '../../utils/util.js';
 import config from '../../utils/config.js'
+import { fetch } from '../../utils/request.js'
 
 Page({
 
@@ -17,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-
+    
   },
 
   handleLogin: function (e) {
@@ -28,51 +29,70 @@ Page({
       util.showTextToast('手机号错误，请重试！', 1000);
       return;
     };
-
     _this.setData({
       loadinGdis: true
     });
-
-    wx.request({
-      url: `${ config.baseURL }/user/login`,
-      data: {
-        phone: user.phone,
-        password: user.password
-      },
-      method: "POST",
-      success: (res) => {
-        if (res.data.code == 200) {
-          // 保存token
-          wx.setStorageSync('Token', res.data.data);
-          const Token = wx.getStorageSync('Token');
-          util.showTextToast('登录成功', 1000, 'success');
-          /**
-           * 请求token成功, 判断用户身份
-           */
-          this.loginSuccessfully(Token);
-        } else if (res.data.code === 4001) {
-          util.showTextToast('账号或密码错误');
+    fetch({url: `${ config.baseURL }/user/login`,data: { phone: user.phone, password: user.password},method: "POST"})
+    .then(res => {
+      wx.setStorageSync('Token',res.data);
+      util.showTextToast('登录成功', 1000, 'success');
+      this.loginSuccessfully(res.data);
+      return true;
+    }, err => {
+      if (err.code === 4001) {
+        util.showTextToast('账号或密码错误');
           _this.setData({
             loadinGdis: false
           })
         } else {
-          util.showTextToast('登录失败,请稍后再试...');
+        util.showTextToast('登录失败,请稍后再试...');
           _this.setData({
             loadinGdis: false
           })
         }
-      },
-      fail(err) {
-        if(err.errMsg == 'request:fail timeout' || 'request:fail') {
-          util.showTextToast('连接超时，请稍后再试...');
-          _this.setData({
-            loadinGdis: false,
-            CellPhoneInput: '',
-            CellPasswordInput: ''
-          })
-        }
-      }
-    });
+    })
+    .catch(reason => {})
+
+    // wx.request({
+    //   url: `${ config.baseURL }/user/login`,
+    //   data: {
+    //     phone: user.phone,
+    //     password: user.password
+    //   },
+    //   method: "POST",
+    //   success: (res) => {
+    //     if (res.data.code == 200) {
+    //       // 保存token
+    //       wx.setStorageSync('Token', res.data.data);
+    //       const Token = wx.getStorageSync('Token');
+    //       util.showTextToast('登录成功', 1000, 'success');
+    //       /**
+    //        * 请求token成功, 判断用户身份
+    //        */
+    //       this.loginSuccessfully(Token);
+    //     } else if (res.data.code === 4001) {
+    //       util.showTextToast('账号或密码错误');
+    //       _this.setData({
+    //         loadinGdis: false
+    //       })
+    //     } else {
+    //       util.showTextToast('登录失败,请稍后再试...');
+    //       _this.setData({
+    //         loadinGdis: false
+    //       })
+    //     }
+    //   },
+    //   fail(err) {
+    //     if(err.errMsg == 'request:fail timeout' || 'request:fail') {
+    //       util.showTextToast('连接超时，请稍后再试...');
+    //       _this.setData({
+    //         loadinGdis: false,
+    //         CellPhoneInput: '',
+    //         CellPasswordInput: ''
+    //       })
+    //     }
+    //   }
+    // });
   },
 
   // 判断身份

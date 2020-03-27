@@ -19,7 +19,7 @@ function getJSON() {
 function fetch (parmas) {
   let header = {}
   if(parmas.needToken) token = wx.getStorageSync('token')
-  let promise = new Promise(function (resolve,reject){
+  return new Promise(function (resolve,reject) {
     wx.request({
       url:parmas.url,
       data:parmas.data,
@@ -28,24 +28,14 @@ function fetch (parmas) {
         ...parmas.header
       },
       method: parmas.method || 'GET',
-      success:()=>{
-        resolve(res)
+      success:(res)=>{
+        resolve(res.data)
       },
-      fail:()=>{
-        // if () {
-
-        // }
+      fail:(err)=>{
         reject(err)
       }
     })
   });
-  
-  promise.then(s => {
-    console.log(s);
-    return s;
-  }, e => {
-    console.log(e);
-  })
 }
 
 module.exports = {
