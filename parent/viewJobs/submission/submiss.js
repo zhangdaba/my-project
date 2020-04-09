@@ -108,7 +108,7 @@ Page({
           for (let k in parenTast) {
             if (parenTast[k].status == 0) {
               oldparen.push(parenTast[k]);
-            } else if (parenTast[k].status == 1 || 3) {
+            } else if (parenTast[k].status == 1 || parenTast[k].status == 3) {
               newparen.push(parenTast[k]);
             } else if (parenTast[k].status == 2) {
               already.push(parenTast[k]);
