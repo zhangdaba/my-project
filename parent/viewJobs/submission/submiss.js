@@ -10,7 +10,6 @@ Page({
     currentTabInde: 0,
     checked: false,
 
-    // 假数据
     chapterIndex: 0,
 
     // 真实数据
@@ -123,7 +122,7 @@ Page({
             newparen: newparen,
             already: already,
             parenTast
-          })
+          });
         } else {
           wx.redirectTo({
             url: '/pages/index/index'
@@ -229,9 +228,8 @@ Page({
         }
       }
     });
-
   },
-
+  
   // 查看作业
   See_work: function (e) {
     let item = e.currentTarget.dataset.item;
@@ -248,13 +246,12 @@ Page({
       url: '../subSee/subSee?id=1&homeworkId='+homeworkId
     });
   },
-
+  // 系统正在批改中，请稍后查看
   Submitte(e) {
     let item = e.currentTarget.dataset.item;
     let homeworkId = item.homeworkId;
     wx.navigateTo({
       url: '../subSee/subSee?id=2&homeworkId='+homeworkId
     });
-  },
-
+  }
 })
