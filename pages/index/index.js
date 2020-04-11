@@ -25,7 +25,7 @@ Page({
     var user = e.detail.value;
     var num = /^1(3|4|5|7|8)\d{9}$/;
     if (!num.test(user.phone)) {
-      util.showTextToast('手机号错误，请重试！', 1000);
+      util.showTextToast('手机号错误，请重新核对！', 1000);
       return;
     };
 
@@ -45,7 +45,6 @@ Page({
           // 保存token
           wx.setStorageSync('Token', res.data.data);
           const Token = wx.getStorageSync('Token');
-          util.showTextToast('登录成功', 1000, 'success');
           /**
            * 请求token成功, 判断用户身份
            */
@@ -74,7 +73,6 @@ Page({
       }
     });
   },
-
   // 判断身份
   loginSuccessfully(Token) {
     let that = this;
@@ -84,7 +82,7 @@ Page({
       wx.setStorageSync('user', res.data.data);
       if (res.data.data.role == '教师') {
         wx.showToast({
-          title: '暂不支持教师端',
+          title: '该账号是教师账号，不能在家长端登录',
           icon: 'none',
           duration: 1000
         });
@@ -94,6 +92,7 @@ Page({
         return;
         that.Teacher(Token);
       } else if (res.data.data.role == '家长') {
+        util.showTextToast('登录成功', 1000, 'success');
         that.Parent(Token);
       }
       setTimeout(() => {

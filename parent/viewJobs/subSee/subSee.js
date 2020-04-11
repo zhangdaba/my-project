@@ -50,7 +50,7 @@ Page({
           });
         } else if (res.data.code == 4004) {
           wx.showToast({
-            title: '作业正在批改中，请稍后切换已批改界面查看批改结果',
+            title: '系统正在批改中，请稍后查看',
             icon: 'none',
             duration: 2000
           });

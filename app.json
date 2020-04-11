@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/home/Parent/Parent",
     "parent/viewJobs/submission/submiss",
-    "pages/index/index",
     "parent/viewJobs/subSee/subSee",
     "pages/forget/forget",
     "home/homeworkAssignment/sidebar/sidebar",
