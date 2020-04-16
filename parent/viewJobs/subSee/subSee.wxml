@@ -7,27 +7,26 @@
 
 <swiper style="height: {{ windowHeight }}px;" current="{{ next }}" duration="180">
 	<swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
-
 		<scroll-view scroll-y="true">
-			<template is="subject_title" data="{{ item, index }}"></template>
+			<view class="canvas">
+				<canvas style="background: red"
+								canvas-id="{{ 'canvas' + index }}" 
+								style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }}"></canvas>
+			</view>
 
+			<template is="subject_title" data="{{ item, index }}"></template>
 			<view>
 				<view wx:if="{{ item.isSub == 1 }}">
-
 					<!-- 循环遍历子题 -->
 					<view wx:for="{{ item.newSubquestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
-
 						<!-- 子题标题 -->
 						<template is="subject_title" data="{{ item, index }}"></template>
-
 						<!-- 选择 内容 逻辑 -->
 						<template is="subject_select" data="{{ item }}"></template>
-
 						<view hidden="{{ state == 1 || 2 }}">
 							<!-- 子题 学生 答案逻辑 -->
 							<template is="subject_answer" data="{{ item }}"></template>
 						</view>
-
 						<!-- 学生答案逻辑 -->
 						<view hidden="{{ state == 1 }}">
 							<view class="solution">
@@ -35,8 +34,7 @@
 								<view class="text_indent">
 									<view class="stuAnswer" wx:if="{{ item.pictureAnswer != '' }}">
 										<view class="image">
-											<image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic" bindtap='previewImg'>
-											</image>
+											<image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic" bindtap='previewImg'></image>
 										</view>
 									</view>
 									<view class="stuAnswer" wx:elif="{{ item.stuAnswer != '' }}">
@@ -48,27 +46,21 @@
 								</view>
 							</view>
 						</view>
-
 						<view hidden="{{ state == 1 || 2 }}">
 							<!-- 批改结果 -->
 							<template is="subject_correction" data="{{ item }}"></template>
 						</view>
-
 					</view>
 				</view>
-
 				<view wx:if="{{ item.isSub == 0 }}">
-
 					<!-- 选择 内容 逻辑 -->
 					<template is="subject_select" data="{{ item }}"></template>
 					<!-- 大题 学生 答案逻辑 -->
-
 					<view hidden="{{ state == 1 }}">
 						<view hidden="{{ state == 2 }}">
 							<template is="subject_answer" data="{{ item }}"></template>
 							<template is="subject_similarity" data="{{ item }}"></template>
 						</view>
-						
 						<!-- 学生 答题 逻辑 -->
 						<template is="subject_stuAnswer" data="{{ item }}"></template>
 						<view hidden="{{ state == 2 }}">
@@ -76,9 +68,10 @@
 							<template is="subject_correction" data="{{ item }}"></template>
 						</view>
 					</view>
-
 				</view>
 			</view>
+
+			<!-- <view>{{ item.pictureAnswer }}</view> -->
 
 		</scroll-view>
 	</swiper-item>

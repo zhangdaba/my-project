@@ -91,6 +91,7 @@ Page({
     let parentTast = {
       stuId: childList.id
     };
+
     wx.request({
       url: config.itemURL + '/submitHomework/list',
       data: parentTast,
@@ -113,7 +114,7 @@ Page({
               already.push(parenTast[k]);
             }
           }
-          
+
           oldparen.sort((a,b) =>
             Math.abs(new Date(a.operationEndTime).getTime() - new Date().getTime()) - 
             Math.abs(new Date(b.operationEndTime).getTime() - new Date().getTime()));
@@ -238,7 +239,7 @@ Page({
       url: '../subSee/subSee?id=3&homeworkId='+homeworkId
     });
   },
-
+  
   viewUncorrected(e) {
     let item = e.currentTarget.dataset.item;
     let homeworkId = item.homeworkId;

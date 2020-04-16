@@ -1,5 +1,11 @@
 import config from '../../../utils/config.js'
 
+let currentMidX = 0.0
+let currentMidY = 0.0
+let CodePoint = 1.524;  //  码点大小
+let A4W = 210 
+let A4H = 297
+
 Page({
   /**
    * 页面的初始数据
@@ -13,7 +19,8 @@ Page({
     // 真实数据
     notCorrectedss: [],
     indnx: null, //对 错 半对半错
-    windowHeight: null
+    windowHeight: null,
+    windowWidth: null
   },
 
   /**
@@ -30,10 +37,10 @@ Page({
   },
 
   aaa(homeworkId, optionsId) {
-    let _this = this;
+    let self = this;
     let ChildrenItem = wx.getStorageSync('ChildrenItem');
     wx.request({
-      url: config.itemURL + '/homework/getQuestion',
+      url: config.itemURL + '/homework/getQuestionAndDots',
       data: {
         homeworkId,
         clickSource: optionsId,
@@ -42,12 +49,23 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        if (res.data.code == 200) {
+        if (res.data.code == 200) { // 原始比例: width:2481 height:463.4814572318234
           const subSee = res.data.data;
           subSee.sort((a, b) => a.queNo - b.queNo)
-          _this.setData({
+
+          // 对画布等比例缩放
+          let ratio = 0.0
+          subSee.forEach((element, i , newArr) => {
+            ratio = self.data.windowWidth / newArr[i].width
+            let canvasWidth = ratio * newArr[i].width
+            let canvasHeight = ratio * newArr[i].height
+            newArr[i].width = canvasWidth
+            newArr[i].height = canvasHeight
+          })
+          self.setData({
             notCorrectedss: subSee
-          });
+          })
+          self.subSeeClick(subSee, ratio)
         } else if (res.data.code == 4004) {
           wx.showToast({
             title: '系统正在批改中，请稍后查看',
@@ -70,6 +88,67 @@ Page({
       }
     })
   },
+  
+  subSeeClick(subSee, ratio) {
+    for (let i = 0; i < subSee.length; i++) {
+      const context = wx.createCanvasContext(`canvas${i}`)
+      let width = subSee[i].width
+      let height = subSee[i].height
+      // 每个点数据运算
+      let dotList = this.pointOperation(subSee[i], ratio, 2.2, -12.96)
+      // 模拟 运算前 abX: 89.39 abY: 24.38 运算后 abX: 498.213888 (保留:abY: 24.38)
+      this.PointData(context, dotList, width, height, subSee[i].pictureAnswer)
+    }
+  },
+
+  pointOperation(dots, ratio, offsetX, offsetY) {
+    let xyPoints = dots.dotList
+    let sobps = dots.sobps || ['0000']
+    for (let k in xyPoints) {
+      for (let i in sobps) {
+        if (xyPoints[k].sobp == sobps[i]) {
+          xyPoints[k].abX = (xyPoints[k].abX - offsetX) * (this.data.windowWidth / A4W * CodePoint) - dots.startX * ratio
+          // 271 ：第一页最下部分和第二页最上部分为空白, 故做删除后拼接处理，271=297-2△y
+          xyPoints[k].abY = (xyPoints[k].abY - offsetY) * ( this.data.windowHeight / A4H * CodePoint)  - dots.startY * ratio + i * (271 * (this.data.windowHeight / A4H))
+          // xyPoints[k].abY = (xyPoints[k].abY - offsetY) * ( this.data.windowHeight / A4H * CodePoint)  - dots.startY * ratio + i * (271 * (this.data.windowHeight / A4H)* ratio)
+        }
+      }
+    }
+    return xyPoints
+  },
+
+  PointData(context, dotList ,Hwidth, Hheight, pictureAnswer) {
+    context.beginPath()
+    context.drawImage(pictureAnswer, 0, 0, Hwidth, Hheight)
+    context.stroke()
+    context.draw(true)
+    dotList.forEach((item, i, array) => {
+      let preX = array[i].abX
+      let preY = array[i].abY
+      switch (array[i].dotType) {
+        case "PEN_DOWN":
+          context.beginPath();
+          context.moveTo(array[i].abX, array[i].abY);
+          currentMidX = preX;
+          currentMidY = preY;
+          break
+        case "PEN_MOVE":
+          context.beginPath();
+          context.moveTo(currentMidX, currentMidY);
+          context.lineTo(preX, preY);
+          context.stroke();
+          context.draw(true);
+          // log(currentMidX, currentMidY, "MOVE");
+          currentMidX = preX; // 保存下一个点, 并对上一个点进行覆盖
+          currentMidY = preY;
+          break;
+        case "PEN_UP":
+          context.draw(true);
+          break
+      }
+      // console.log(array[i], ">>>>>>>>>>>>>>>>>>")
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -77,6 +156,19 @@ Page({
 
   onReady: function () {
     this.setNavigationBarTitle();
+    // const context = wx.createCanvasContext('canvas0');
+    // const context1 = wx.createCanvasContext('canvas1');
+    // context1.beginPath();
+    // context1.moveTo(10, 10);
+    // context1.lineTo(110, 60);
+    // context1.stroke();
+    // context1.draw(true);
+    
+    // context.beginPath();
+    // context.moveTo(10, 10);
+    // context.lineTo(110, 60);
+    // context.stroke();
+    // context.draw(true);
   },
 
   setNavigationBarTitle: function () {
@@ -95,11 +187,12 @@ Page({
 
   // 获取屏幕高度
   height: function () {
-    let _this = this;
+    let self = this;
     wx.getSystemInfo({
       success(res) {
-        _this.setData({
-          windowHeight: res.windowHeight
+        self.setData({
+          windowHeight: res.windowHeight,
+          windowWidth: res.windowWidth
         })
       }
     })
@@ -107,11 +200,11 @@ Page({
 
   // 小题学生答案图片
   previewImg: function (e) {
-    let _this = this;
+    let self = this;
     let ev = e.currentTarget.dataset;
     let img_indx = ev.index;
     let imgTopic = ev.img;
-    _this.setData({
+    self.setData({
       img_indx,
       imgTopic
     });
@@ -125,15 +218,14 @@ Page({
       img_indx: img_indx1
     });
   },
-
+  
   threeChoice: function (e) {
-    let _this = this;
-    let twoIndx = _this.data.twoIndx;
-    let notCorrectedss = _this.data.notCorrectedss; //后台数据
+    let self = this;
+    let twoIndx = self.data.twoIndx;
+    let notCorrectedss = self.data.notCorrectedss; //后台数据
     let threeIndex = e.currentTarget.dataset.indx; //索引
     // console.log('获取当前大题位置', threeIndex);
-
-    let imgTopic = _this.data.imgTopic;
+    let imgTopic = self.data.imgTopic;
     // 判断当前点击的是否为图片
     if (imgTopic == 'imgTopic') {
       let imgArr = [];
@@ -142,7 +234,7 @@ Page({
       for (let k in img_list_item) {
         imgArr.push(img_list_item[k].pictureAnswer);
       }
-      let img_indx = _this.data.img_indx;
+      let img_indx = self.data.img_indx;
       wx.previewImage({
         current: imgArr[img_indx], //当前图片地址
         urls: imgArr, //所有要预览的图片的地址集合 数组形式
@@ -172,13 +264,11 @@ Page({
         }
       })
     }
-
     // 重新渲染视图
-    _this.setData({
+    self.setData({
       threeIndex,
       imgTopic: null,
       notCorrectedss
     });
   }
-
 })

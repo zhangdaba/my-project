@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/home/Parent/Parent",
-    "parent/viewJobs/submission/submiss",
     "parent/viewJobs/subSee/subSee",
+    "parent/viewJobs/submission/submiss",
+    "pages/home/Parent/Parent",
     "pages/forget/forget",
     "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setTime/setTime",
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
+
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
     "parent/report/subReport/subReport",

@@ -96,3 +96,7 @@ swiper-item {
   margin-top: 20rpx;
   margin-left: 20rpx;
 }
+
+.canvas canvas {
+  margin: 0 auto;
+}

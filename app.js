@@ -10,7 +10,7 @@ App({
     /**
      * 验证身份
      */
-    this.identity();
+    // this.identity();
 
     /**
      * 获取手机信号

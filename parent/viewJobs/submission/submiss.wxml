@@ -59,7 +59,7 @@
 
 	<swiper-item>
 		<scroll-view scroll-y="true">
-
+		
 			<block wx:if="{{ !newparen.length }}">
 				<No_news text='暂无已提交作业...' />
 			</block>
@@ -88,6 +88,7 @@
 					</view>
 				</view>
 			</view>
+
 		</scroll-view>
 	</swiper-item>
 
