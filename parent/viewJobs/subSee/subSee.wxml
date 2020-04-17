@@ -7,8 +7,9 @@
 
 <swiper style="height: {{ windowHeight }}px;" current="{{ next }}" duration="180">
 	<swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
+
 		<scroll-view scroll-y="true">
-			<view class="canvas">
+			<view class="canvas" data-item="{{ item }}" data-idx="{{ index }}" catchtap="playback">
 				<canvas style="background: red"
 								canvas-id="{{ 'canvas' + index }}" 
 								style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }}"></canvas>

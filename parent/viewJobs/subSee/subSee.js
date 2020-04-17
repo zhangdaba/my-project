@@ -5,6 +5,8 @@ let currentMidY = 0.0
 let CodePoint = 1.524;  //  码点大小
 let A4W = 210 
 let A4H = 297
+let ratio = 0.0 // 对画布等比例缩放
+let aggregateArr = []
 
 Page({
   /**
@@ -52,13 +54,10 @@ Page({
         if (res.data.code == 200) { // 原始比例: width:2481 height:463.4814572318234
           const subSee = res.data.data;
           subSee.sort((a, b) => a.queNo - b.queNo)
-
-          // 对画布等比例缩放
-          let ratio = 0.0
           subSee.forEach((element, i , newArr) => {
             ratio = self.data.windowWidth / newArr[i].width
-            let canvasWidth = ratio * newArr[i].width
-            let canvasHeight = ratio * newArr[i].height
+            let canvasWidth = newArr[i].width * ratio
+            let canvasHeight = newArr[i].height * ratio
             newArr[i].width = canvasWidth
             newArr[i].height = canvasHeight
           })
@@ -94,6 +93,7 @@ Page({
       const context = wx.createCanvasContext(`canvas${i}`)
       let width = subSee[i].width
       let height = subSee[i].height
+      aggregateArr.push(context)  // 存储点数据
       // 每个点数据运算
       let dotList = this.pointOperation(subSee[i], ratio, 2.2, -12.96)
       // 模拟 运算前 abX: 89.39 abY: 24.38 运算后 abX: 498.213888 (保留:abY: 24.38)
@@ -117,37 +117,62 @@ Page({
     return xyPoints
   },
 
+  playback(e) {
+    let dataset = e.currentTarget.dataset
+    let item = dataset.item
+    let aIdx = aggregateArr[dataset.idx]
+    let dotList = this.pointOperation(item, ratio, 2.2, -12.96)
+    aIdx.beginPath()
+    aIdx.clearRect(0, 0, item.width, item.height)
+    aIdx.drawImage(item.pictureAnswer, 0, 0, item.width, item.height)
+    aIdx.draw(true)
+    let i = -1
+    clearInterval(this.timer)
+    this.timer = setInterval(()=> {
+      i++
+      if(dotList.length === i) {
+        clearInterval(this.timer)
+        this.timer = null
+      }
+      this.lineFunction(i,dotList,aIdx)
+    }, 26)
+  },
+
   PointData(context, dotList ,Hwidth, Hheight, pictureAnswer) {
     context.beginPath()
     context.drawImage(pictureAnswer, 0, 0, Hwidth, Hheight)
     context.stroke()
     context.draw(true)
     dotList.forEach((item, i, array) => {
-      let preX = array[i].abX
-      let preY = array[i].abY
-      switch (array[i].dotType) {
-        case "PEN_DOWN":
-          context.beginPath();
-          context.moveTo(array[i].abX, array[i].abY);
-          currentMidX = preX;
-          currentMidY = preY;
-          break
-        case "PEN_MOVE":
-          context.beginPath();
-          context.moveTo(currentMidX, currentMidY);
-          context.lineTo(preX, preY);
-          context.stroke();
-          context.draw(true);
-          // log(currentMidX, currentMidY, "MOVE");
-          currentMidX = preX; // 保存下一个点, 并对上一个点进行覆盖
-          currentMidY = preY;
-          break;
-        case "PEN_UP":
-          context.draw(true);
-          break
-      }
-      // console.log(array[i], ">>>>>>>>>>>>>>>>>>")
+      this.lineFunction(i, array, context)
     })
+  },
+
+  lineFunction(i, array, context) {
+    // if(array[i] === undefined) return;
+    let preX = array[i].abX
+    let preY = array[i].abY
+    switch (array[i].dotType) {
+      case "PEN_DOWN":
+        context.beginPath();
+        context.moveTo(array[i].abX, array[i].abY);
+        currentMidX = preX;
+        currentMidY = preY;
+        break
+      case "PEN_MOVE":
+        context.beginPath();
+        context.moveTo(currentMidX, currentMidY);
+        context.lineTo(preX, preY);
+        context.stroke();
+        context.draw(true);
+        // log(currentMidX, currentMidY, "MOVE");
+        currentMidX = preX; // 保存下一个点, 并对上一个点进行覆盖
+        currentMidY = preY;
+        break;
+      case "PEN_UP":
+        context.draw(true);
+        break
+    }
   },
 
   /**
