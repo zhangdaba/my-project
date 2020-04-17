@@ -9,10 +9,10 @@
 	<swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
 
 		<scroll-view scroll-y="true">
-			<view class="canvas" data-item="{{ item }}" data-idx="{{ index }}" catchtap="playback">
-				<canvas style="background: red"
+			<view class="canvas">
+				<canvas data-item="{{ item }}" data-idx="{{ index }}" catchtap="playback" 
 								canvas-id="{{ 'canvas' + index }}" 
-								style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }}"></canvas>
+								style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }}; background-image: url({{ item.pictureAnswer }}); background-repeat: no-repeat;background-size: cover;"></canvas>
 			</view>
 
 			<template is="subject_title" data="{{ item, index }}"></template>

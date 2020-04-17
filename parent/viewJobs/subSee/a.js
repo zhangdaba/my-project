@@ -36,6 +36,8 @@ Page({
       state: options.id
     });
     this.aaa(options.homeworkId, options.id);
+    console.log(options.homeworkId, options.id)
+    // this.aaa(975315575849746, 2);
   },
 
   aaa(homeworkId, optionsId) {
@@ -53,6 +55,8 @@ Page({
       success: function (res) {
         if (res.data.code == 200) { // 原始比例: width:2481 height:463.4814572318234
           const subSee = res.data.data;
+          // console.log(subSee[0], ">>>>>>>>>>>>>>>>")
+          // return
           subSee.sort((a, b) => a.queNo - b.queNo)
           subSee.forEach((element, i , newArr) => {
             ratio = self.data.windowWidth / newArr[i].width
@@ -96,7 +100,7 @@ Page({
       aggregateArr.push(context)  // 存储点数据
       // 每个点数据运算
       // let dotList = this.pointOperation(subSee[i], ratio, 2.2, -12.96)
-      let dotList = this.pointOperation(subSee[i], ratio, 2.2,1.7)
+      let dotList = this.pointOperation(subSee[i], ratio, 0, 0)
       // 模拟 运算前 abX: 89.39 abY: 24.38 运算后 abX: 498.213888 (保留:abY: 24.38)
       this.PointData(context, dotList, width, height, subSee[i].pictureAnswer)
     }
@@ -108,11 +112,10 @@ Page({
     for (let k in xyPoints) {
       for (let i in sobps) {
         if (xyPoints[k].sobp == sobps[i]) {
-          xyPoints[k].abX = (xyPoints[k].abX - offsetX) * (CodePoint * (this.data.windowWidth / A4W)) - dots.startX  * (this.data.windowWidth / 2481)
-          // 271 ：第一页最下部分和第二页最上部分为空白, 故做删除后拼接处理，271=297-2△y   297- 26: A4空白区域
-          xyPoints[k].abY = (xyPoints[k].abY - offsetY) * (CodePoint * (this.data.windowWidth / A4W))  - dots.startY * (this.data.windowWidth / 2481) + i * (271 * (this.data.windowWidth / A4W))
+          xyPoints[k].abX = (xyPoints[k].abX) * (this.data.windowWidth / A4W * CodePoint) - dots.startX * ratio - offsetX
+          // 271 ：第一页最下部分和第二页最上部分为空白, 故做删除后拼接处理，271=297-2△y
+          xyPoints[k].abY = (xyPoints[k].abY) * ( this.data.windowHeight / A4H * CodePoint)  - dots.startY * ratio + i * (271 * (this.data.windowHeight / A4H)) - offsetY
           // xyPoints[k].abY = (xyPoints[k].abY - offsetY) * ( this.data.windowHeight / A4H * CodePoint)  - dots.startY * ratio + i * (271 * (this.data.windowHeight / A4H)* ratio)
-          // console.log((this.data.windowWidth/2481), '>>>>>>>>>>' , ratio, (this.data.windowHeight/3508))
         }
       }
     }

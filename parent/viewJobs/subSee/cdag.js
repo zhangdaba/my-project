@@ -35,7 +35,9 @@ Page({
     this.setData({
       state: options.id
     });
-    this.aaa(options.homeworkId, options.id);
+    // this.aaa(options.homeworkId, options.id);
+    console.log(options.homeworkId, options.id)
+    this.aaa(975315575849746, 2);
   },
 
   aaa(homeworkId, optionsId) {
@@ -54,17 +56,10 @@ Page({
         if (res.data.code == 200) { // 原始比例: width:2481 height:463.4814572318234
           const subSee = res.data.data;
           subSee.sort((a, b) => a.queNo - b.queNo)
-          subSee.forEach((element, i , newArr) => {
-            ratio = self.data.windowWidth / newArr[i].width
-            let canvasWidth = newArr[i].width * ratio
-            let canvasHeight = newArr[i].height * ratio
-            newArr[i].width = canvasWidth
-            newArr[i].height = canvasHeight
-          })
           self.setData({
             notCorrectedss: subSee
           })
-          self.subSeeClick(subSee, ratio)
+          self.subSeeClick(subSee)
         } else if (res.data.code == 4004) {
           wx.showToast({
             title: '系统正在批改中，请稍后查看',
@@ -88,15 +83,14 @@ Page({
     })
   },
   
-  subSeeClick(subSee, ratio) {
+  subSeeClick(subSee) {
     for (let i = 0; i < subSee.length; i++) {
       const context = wx.createCanvasContext(`canvas${i}`)
       let width = subSee[i].width
       let height = subSee[i].height
       aggregateArr.push(context)  // 存储点数据
       // 每个点数据运算
-      // let dotList = this.pointOperation(subSee[i], ratio, 2.2, -12.96)
-      let dotList = this.pointOperation(subSee[i], ratio, 2.2,1.7)
+      let dotList = this.pointOperation(subSee[i], 1, 0, 0)
       // 模拟 运算前 abX: 89.39 abY: 24.38 运算后 abX: 498.213888 (保留:abY: 24.38)
       this.PointData(context, dotList, width, height, subSee[i].pictureAnswer)
     }
@@ -108,11 +102,10 @@ Page({
     for (let k in xyPoints) {
       for (let i in sobps) {
         if (xyPoints[k].sobp == sobps[i]) {
-          xyPoints[k].abX = (xyPoints[k].abX - offsetX) * (CodePoint * (this.data.windowWidth / A4W)) - dots.startX  * (this.data.windowWidth / 2481)
-          // 271 ：第一页最下部分和第二页最上部分为空白, 故做删除后拼接处理，271=297-2△y   297- 26: A4空白区域
-          xyPoints[k].abY = (xyPoints[k].abY - offsetY) * (CodePoint * (this.data.windowWidth / A4W))  - dots.startY * (this.data.windowWidth / 2481) + i * (271 * (this.data.windowWidth / A4W))
+          xyPoints[k].abX = (xyPoints[k].abX) * (2481 / A4W * CodePoint)  - dots.startX
+          // 271 ：第一页最下部分和第二页最上部分为空白, 故做删除后拼接处理，271=297-2△y
+          xyPoints[k].abY = (xyPoints[k].abY) * ( 3508 / A4H * CodePoint)  - dots.startY
           // xyPoints[k].abY = (xyPoints[k].abY - offsetY) * ( this.data.windowHeight / A4H * CodePoint)  - dots.startY * ratio + i * (271 * (this.data.windowHeight / A4H)* ratio)
-          // console.log((this.data.windowWidth/2481), '>>>>>>>>>>' , ratio, (this.data.windowHeight/3508))
         }
       }
     }
@@ -147,6 +140,7 @@ Page({
     // context.draw(true)
     dotList.forEach((item, i, array) => {
       this.lineFunction(i, array, context)
+      // console.log(array[i].abX, array[i].abY)
     })
   },
 
