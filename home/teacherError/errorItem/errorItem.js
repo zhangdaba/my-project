@@ -48,11 +48,8 @@ Page({
       showToast('暂无数据', '', 1500);
       return;
     }
-
     let classId = this.data.task_error;
-
     const token = wx.getStorageSync('Token');
-
     wx.request({
       url: config.errorURL + '/wrong/getErrorQue',
       data: {
@@ -65,15 +62,12 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        let resWholes = res.data.data;
-        
+        let { items: resWholes } = res.data.data;
         for (let k in resWholes) {
           resWholes[k].isTrue = 0;
           resWholes[k].title = resWholes[k].title
         }
-
         subjectImg(resWholes);
-
         _this.setData({
           wholes: resWholes,
           knowledgePoints: []
