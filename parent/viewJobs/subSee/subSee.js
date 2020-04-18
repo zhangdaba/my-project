@@ -94,10 +94,7 @@ Page({
       let width = subSee[i].width
       let height = subSee[i].height
       aggregateArr.push(context)  // 存储点数据
-      // 每个点数据运算
-      // let dotList = this.pointOperation(subSee[i], ratio, 2.2, -12.96)
-      let dotList = this.pointOperation(subSee[i], ratio, 2.2,1.7)
-      // 模拟 运算前 abX: 89.39 abY: 24.38 运算后 abX: 498.213888 (保留:abY: 24.38)
+      let dotList = this.pointOperation(subSee[i], ratio, 2.2,1.7)  // 每个点数据运算
       this.PointData(context, dotList, width, height, subSee[i].pictureAnswer)
     }
   },
@@ -107,23 +104,45 @@ Page({
     let sobps = dots.sobps || ['0000']
     for (let k in xyPoints) {
       for (let i in sobps) {
-        if (xyPoints[k].sobp == sobps[i]) {
+        if (xyPoints[k].sobp === sobps[i]) {
           xyPoints[k].abX = (xyPoints[k].abX - offsetX) * (CodePoint * (this.data.windowWidth / A4W)) - dots.startX  * (this.data.windowWidth / 2481)
           // 271 ：第一页最下部分和第二页最上部分为空白, 故做删除后拼接处理，271=297-2△y   297- 26: A4空白区域
           xyPoints[k].abY = (xyPoints[k].abY - offsetY) * (CodePoint * (this.data.windowWidth / A4W))  - dots.startY * (this.data.windowWidth / 2481) + i * (271 * (this.data.windowWidth / A4W))
           // xyPoints[k].abY = (xyPoints[k].abY - offsetY) * ( this.data.windowHeight / A4H * CodePoint)  - dots.startY * ratio + i * (271 * (this.data.windowHeight / A4H)* ratio)
-          // console.log((this.data.windowWidth/2481), '>>>>>>>>>>' , ratio, (this.data.windowHeight/3508))
         }
       }
     }
     return xyPoints
   },
 
+  playbackTouchend(e) {
+    let dataset = e.currentTarget.dataset
+    let item = dataset.item
+    const context = wx.createCanvasContext(`canvas${dataset.idx}`)
+    aggregateArr[dataset.idx] = context
+    aggregateArr[dataset.idx].draw()
+    // context.drawImage(item.pictureAnswer, 0, 0, item.width, item.height)
+    // context.clearRect(0, 0, item.width, item.height)
+    let dotList = this.pointOperation(item, ratio, 2.2,1.7)
+
+    let i = -1
+    clearInterval(this.timer)
+    this.timer = setInterval(()=> {
+      i++
+      if(dotList.length === i) {
+        clearInterval(this.timer)
+        this.timer = null
+      }
+      this.lineFunction(i, dotList ,context)
+    }, 26)
+  },
+
   playback(e) {
+    return
     let dataset = e.currentTarget.dataset
     let item = dataset.item
     let aIdx = aggregateArr[dataset.idx]
-    let dotList = this.pointOperation(item, ratio, 0, 0)
+    let dotList = this.pointOperation(item, ratio, 2.2,1.7)
     aIdx.beginPath()
     aIdx.clearRect(0, 0, item.width, item.height)
     aIdx.drawImage(item.pictureAnswer, 0, 0, item.width, item.height)

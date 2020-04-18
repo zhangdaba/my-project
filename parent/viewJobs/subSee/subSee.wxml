@@ -7,10 +7,10 @@
 
 <swiper style="height: {{ windowHeight }}px;" current="{{ next }}" duration="180">
 	<swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
-
 		<scroll-view scroll-y="true">
 			<view class="canvas">
-				<canvas data-item="{{ item }}" data-idx="{{ index }}" catchtap="playback" 
+			 <!-- bindtouchend="playbackTouchend" -->
+				<canvas data-item="{{ item }}" data-idx="{{ index }}" catchtap="playbackTouchend"
 								canvas-id="{{ 'canvas' + index }}" 
 								style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }}; background-image: url({{ item.pictureAnswer }}); background-repeat: no-repeat;background-size: cover;"></canvas>
 			</view>
@@ -71,9 +71,7 @@
 					</view>
 				</view>
 			</view>
-
 			<!-- <view>{{ item.pictureAnswer }}</view> -->
-
 		</scroll-view>
 	</swiper-item>
 </swiper>
