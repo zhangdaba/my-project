@@ -8,7 +8,7 @@
 <template name="err_template">
 
   <view class="subject">
-    <checkbox-group bindchange="checkboxChange">
+    <!-- <checkbox-group bindchange="checkboxChange"> -->
       <view wx:for="{{ wholes }}" 
             wx:key="{{ index }}" 
             data-item='{{ item }}' 
@@ -18,7 +18,7 @@
         <view class="top-content">
           <view>第{{ index + 1 }}题.</view>
           <!-- <view>错误率:{{ dateFr.errorRate(item.chapterErrorRate) + '%' }}</view> -->
-          <view><checkbox value="{{ item.homeworkId }}"/></view>
+          <!-- <view><checkbox value="{{ item.homeworkId }}"/></view> -->
         </view>
 
         <template is="subject_title" data="{{ item }}"></template>
@@ -97,7 +97,7 @@
           </view>
         </view>
       </view>
-    </checkbox-group>
+    <!-- </checkbox-group> -->
   </view>
   
   <!-- <view hidden="{{ !wholes.length }}" class="viewButton" hover-class="viewButton-hover" type="primary">错题推送</view> -->

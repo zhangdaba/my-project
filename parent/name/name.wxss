@@ -1,9 +1,0 @@
-/* parent/name/name.wxss */
-
-.canvas {
-  background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587115939462&di=2c2bd7a1b9f58276060e433ad2966d78&imgtype=0&src=http%3A%2F%2Fbbs.jooyoo.net%2Fattachment%2FMon_0905%2F24_65548_2835f8eaa933ff6.jpg);
-  background-repeat: no-repeat;
-  background-size: contain
-}
-
-/* .style="background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587115939462&di=2c2bd7a1b9f58276060e433ad2966d78&imgtype=0&src=http%3A%2F%2Fbbs.jooyoo.net%2Fattachment%2FMon_0905%2F24_65548_2835f8eaa933ff6.jpg)" */

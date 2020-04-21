@@ -68,7 +68,6 @@ Page({
 
   GetVerificationCode(phone) {
     console.log('手机号验证成功');
-    let that = this;
     wx.request({
       url: config.baseURL + '/user/code?phone=' + phone,
       method: 'POST',
@@ -93,20 +92,6 @@ Page({
         disabledCode: false
       });
     }, 60000);
-
-    // let time = setInterval(() => {
-    //   this.setData({
-    //     CodeTime: this.data.CodeTime--,
-    //     disabledCode: true
-    //   })
-    //   if (this.data.CodeTime >= 60) {
-    //     clearInterval(time);
-    //     this.setData({
-    //       CodeTime: 60,
-    //       disabledCode: false
-    //     })
-    //   }
-    // }, 1000);
   },
 
   CellPhoneText(e) {
@@ -127,7 +112,6 @@ Page({
       success: (result) => {
         const code = result.data.code;
         if (code === 200) {
-          console.log(result.data.data, "130");
           if (!result.data.data) {
             wx.showToast({
               title: '验证码错误, 请确定后重新输入',

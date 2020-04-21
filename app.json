@@ -1,16 +1,17 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/home/Parent/Parent",
-    "parent/viewJobs/submission/submiss",
-    "parent/viewJobs/subSee/subSee",
-    "parent/name/name",
     "pages/forget/forget",
-    "home/homeworkAssignment/sidebar/sidebar",
-    "home/homeworkAssignment/setTime/setTime",
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
-
+    
+    "pages/home/Parent/Parent",
+    "parent/viewJobs/subSee/subSee",
+    "parent/viewJobs/submission/submiss",
+    
+    "home/homeworkAssignment/sidebar/sidebar",
+    "home/homeworkAssignment/setTime/setTime",
+    
     "home/Report/emotion/emotion",
     "home/Report/Report/Report",
     "parent/report/subReport/subReport",
@@ -30,8 +31,8 @@
     "home/teacherError/errorItem/errorItem",
     "home/details/details",
     "pages/home/Teacher/teacher",
-    "parent/home/binding/children",
-    "pages/register/register"
+    "pages/register/register",
+    "parent/home/binding/children"
   ],
   "window": {
     "backgroundTextStyle": "light",

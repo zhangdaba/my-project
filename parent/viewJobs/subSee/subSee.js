@@ -1,4 +1,5 @@
 import config from '../../../utils/config.js'
+let { ...UPNG } = require('../../../utils/uPng.js')
 
 let currentMidX = 0.0
 let currentMidY = 0.0
@@ -6,7 +7,7 @@ let CodePoint = 1.524;  //  码点大小
 let A4W = 210
 let A4H = 297
 let ratio = 0.0 // 对画布等比例缩放
-let aggregateArr = []
+let aggregateArr = {}
 
 Page({
   /**
@@ -35,7 +36,9 @@ Page({
     this.setData({
       state: options.id
     });
-    this.aaa(options.homeworkId, options.id);
+    console.log(options.homeworkId, options.id)
+    // this.aaa(options.homeworkId, options.id);
+    this.aaa(976489276449178 ,3);
   },
 
   aaa(homeworkId, optionsId) {
@@ -87,13 +90,13 @@ Page({
       }
     })
   },
-  
+
   subSeeClick(subSee, ratio) {
     for (let i = 0; i < subSee.length; i++) {
       const context = wx.createCanvasContext(`canvas${i}`)
       let width = subSee[i].width
       let height = subSee[i].height
-      aggregateArr.push(context)  // 存储点数据
+      aggregateArr[i] = context  // 存储点数据
       let dotList = this.pointOperation(subSee[i], ratio, 2.2,1.7)  // 每个点数据运算
       this.PointData(context, dotList, width, height, subSee[i].pictureAnswer)
     }
@@ -116,22 +119,49 @@ Page({
   },
 
   playbackTouchend(e) {
+    // console.log(e.currentTarget.dataset.idx, ">>>>>>>>>>>>>")
+    wx.canvasGetImageData({
+      canvasId: 'canvas1',
+      x: 0,
+      y: 0,
+      width: 100,
+      height: 100,
+      success(res) {
+        // console.log(res.data instanceof Uint8ClampedArray) // true
+        // console.log(res.data.length) // 100 * 100 * 4
+        let pngData = UPNG.encode([res.data.buffer],res.width,res.height)
+        let bs64 = wx.arrayBufferToBase64(pngData)
+        return
+      }
+    })
+
+    // var uploadImage = this.data.imageList[0]
+    // var reader = new FileReader()
+    // reader.onload = function (e) {
+    //       var arrayBuffer = reader.result;
+    //       var base64 = wx.arrayBufferToBase64(arrayBuffer)
+    // }
+    // reader.readAsArrayBuffer(new Blob(this.data.imageList)) 
+    // console.log(e, ">>>>>>>>>>>>>>>")
+    return
     let dataset = e.currentTarget.dataset
     let item = dataset.item
-    const context = wx.createCanvasContext(`canvas${dataset.idx}`)
-    aggregateArr[dataset.idx] = context
-    aggregateArr[dataset.idx].draw()
+    let idx = dataset.idx
+    const context = wx.createCanvasContext(`canvas${idx}`)
+    aggregateArr[idx] = context
+    aggregateArr[idx].draw()
     // context.drawImage(item.pictureAnswer, 0, 0, item.width, item.height)
     // context.clearRect(0, 0, item.width, item.height)
-    let dotList = this.pointOperation(item, ratio, 2.2,1.7)
-
-    let i = -1
+    let dotList = this.pointOperation(item, ratio, 2.2, 1.7)
     clearInterval(this.timer)
+    // aggregateArr[idx].i = -1
+    let i = -1
     this.timer = setInterval(()=> {
-      i++
+      i ++
       if(dotList.length === i) {
         clearInterval(this.timer)
         this.timer = null
+        i = -1
       }
       this.lineFunction(i, dotList ,context)
     }, 26)

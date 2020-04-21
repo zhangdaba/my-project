@@ -99,6 +99,7 @@ Page({
       }
     });
   },
+
   // 判断身份
   loginSuccessfully(Token) {
     let that = this;
@@ -115,7 +116,7 @@ Page({
         that.setData({
           loadinGdis: false
         })
-        // return;
+        return;
         that.Teacher(Token);
       } else if (res.data.data.role == '家长') {
         util.showTextToast('登录成功', 1000, 'success');
