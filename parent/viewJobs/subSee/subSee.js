@@ -1,5 +1,4 @@
 import config from '../../../utils/config.js'
-let { ...UPNG } = require('../../../utils/uPng.js')
 
 let currentMidX = 0.0
 let currentMidY = 0.0
@@ -23,7 +22,8 @@ Page({
     notCorrectedss: [],
     indnx: null, //对 错 半对半错
     windowHeight: null,
-    windowWidth: null
+    windowWidth: null,
+    tempFilePath: []
   },
 
   /**
@@ -31,14 +31,9 @@ Page({
    */
 
   onLoad: function (options) {
-    // 获取屏幕高度
     this.height();
-    this.setData({
-      state: options.id
-    });
-    console.log(options.homeworkId, options.id)
-    // this.aaa(options.homeworkId, options.id);
-    this.aaa(976489276449178 ,3);
+    this.setData({ state: options.id });
+    this.aaa("992697007112192", "2");
   },
 
   aaa(homeworkId, optionsId) {
@@ -56,8 +51,8 @@ Page({
       success: function (res) {
         if (res.data.code == 200) { // 原始比例: width:2481 height:463.4814572318234
           const subSee = res.data.data;
-          subSee.sort((a, b) => a.queNo - b.queNo)
-          subSee.forEach((element, i , newArr) => {
+          subSee.sort((a, b) => a.queNo - b.queNo)  // 1. 按题号进行排序
+          subSee.forEach((element, i , newArr) => { // 2. 对画布等比例缩放
             ratio = self.data.windowWidth / newArr[i].width
             let canvasWidth = newArr[i].width * ratio
             let canvasHeight = newArr[i].height * ratio
@@ -67,7 +62,7 @@ Page({
           self.setData({
             notCorrectedss: subSee
           })
-          self.subSeeClick(subSee, ratio)
+          self.subSeeClick(subSee)
         } else if (res.data.code == 4004) {
           wx.showToast({
             title: '系统正在批改中，请稍后查看',
@@ -91,18 +86,51 @@ Page({
     })
   },
 
-  subSeeClick(subSee, ratio) {
+  subSeeClick(subSee) {
+    let self = this;
     for (let i = 0; i < subSee.length; i++) {
       const context = wx.createCanvasContext(`canvas${i}`)
-      let width = subSee[i].width
-      let height = subSee[i].height
-      aggregateArr[i] = context  // 存储点数据
-      let dotList = this.pointOperation(subSee[i], ratio, 2.2,1.7)  // 每个点数据运算
-      this.PointData(context, dotList, width, height, subSee[i].pictureAnswer)
+      self.getImageInfo(subSee[i],i,context)
     }
   },
 
-  pointOperation(dots, ratio, offsetX, offsetY) {
+  getImageInfo(subSeeItem, i,context) {
+    let self = this;
+    wx.getImageInfo({
+      src: subSeeItem.pictureAnswer,
+      success (res) {
+        context.drawImage(res.path, 0, 0, subSeeItem.width, subSeeItem.height)
+        let ratio = self.data.windowWidth / subSeeItem.width
+        context.draw(true, function(res) {
+          wx.canvasToTempFilePath({
+            x: 0,
+            y: 0,
+            width: subSeeItem.width,
+            height: subSeeItem.height,
+            destWidth: subSeeItem.width * ratio,
+            destHeight: subSeeItem.height * ratio,
+            quality: 0.1,
+            canvasId: `canvas${i}`,
+            success(res) {
+              let obj = new Object();
+              obj.width = subSeeItem.width* ratio
+              obj.height = subSeeItem.height* ratio
+              obj.tempFilePath = res.tempFilePath
+              self.data.tempFilePath.push(obj)
+              self.setData({
+                tempFilePath: self.data.tempFilePath
+              })
+            }
+          })
+        })
+        aggregateArr[i] = context  // 存储画布
+        let dotList = self.pointOperation(subSeeItem, 2.2,1.7)  // 每个点数据运算
+        self.PointData(context, dotList, subSeeItem.width, subSeeItem.height,subSeeItem.pictureAnswer)
+      }
+    })
+  },
+
+  pointOperation(dots, offsetX, offsetY) {
     let xyPoints = dots.dotList
     let sobps = dots.sobps || ['0000']
     for (let k in xyPoints) {
@@ -116,55 +144,6 @@ Page({
       }
     }
     return xyPoints
-  },
-
-  playbackTouchend(e) {
-    // console.log(e.currentTarget.dataset.idx, ">>>>>>>>>>>>>")
-    wx.canvasGetImageData({
-      canvasId: 'canvas1',
-      x: 0,
-      y: 0,
-      width: 100,
-      height: 100,
-      success(res) {
-        // console.log(res.data instanceof Uint8ClampedArray) // true
-        // console.log(res.data.length) // 100 * 100 * 4
-        let pngData = UPNG.encode([res.data.buffer],res.width,res.height)
-        let bs64 = wx.arrayBufferToBase64(pngData)
-        return
-      }
-    })
-
-    // var uploadImage = this.data.imageList[0]
-    // var reader = new FileReader()
-    // reader.onload = function (e) {
-    //       var arrayBuffer = reader.result;
-    //       var base64 = wx.arrayBufferToBase64(arrayBuffer)
-    // }
-    // reader.readAsArrayBuffer(new Blob(this.data.imageList)) 
-    // console.log(e, ">>>>>>>>>>>>>>>")
-    return
-    let dataset = e.currentTarget.dataset
-    let item = dataset.item
-    let idx = dataset.idx
-    const context = wx.createCanvasContext(`canvas${idx}`)
-    aggregateArr[idx] = context
-    aggregateArr[idx].draw()
-    // context.drawImage(item.pictureAnswer, 0, 0, item.width, item.height)
-    // context.clearRect(0, 0, item.width, item.height)
-    let dotList = this.pointOperation(item, ratio, 2.2, 1.7)
-    clearInterval(this.timer)
-    // aggregateArr[idx].i = -1
-    let i = -1
-    this.timer = setInterval(()=> {
-      i ++
-      if(dotList.length === i) {
-        clearInterval(this.timer)
-        this.timer = null
-        i = -1
-      }
-      this.lineFunction(i, dotList ,context)
-    }, 26)
   },
 
   playback(e) {
@@ -190,10 +169,6 @@ Page({
   },
 
   PointData(context, dotList ,Hwidth, Hheight, pictureAnswer) {
-    // context.beginPath()
-    // context.drawImage(pictureAnswer, 0, 0, Hwidth, Hheight)
-    // context.stroke()
-    // context.draw(true)
     dotList.forEach((item, i, array) => {
       this.lineFunction(i, array, context)
     })

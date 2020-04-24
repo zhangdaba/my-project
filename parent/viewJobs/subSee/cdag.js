@@ -36,10 +36,9 @@ Page({
       state: options.id
     });
     // this.aaa(options.homeworkId, options.id);
-    console.log(options.homeworkId, options.id)
     this.aaa(975315575849746, 2);
   },
-
+  
   aaa(homeworkId, optionsId) {
     let self = this;
     let ChildrenItem = wx.getStorageSync('ChildrenItem');

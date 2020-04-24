@@ -1,77 +1,25 @@
-<import src="/template/subject/subject_select"></import>
-<import src="/template/subject/subject_answer"></import>
-<import src="/template/subject/subject_title"></import>
-<import src="/template/subject/subject_stuAnswer"></import>
-<import src="/template/subject/subject_similarity"></import>
-<import src="./correction"></import>
+<!-- <scroll-view scroll-y="true"> -->
 
-<swiper style="height: {{ windowHeight }}px;" current="{{ next }}" duration="180">
-	<swiper-item bindtap="threeChoice" data-indx="{{ index }}" data-item="{{ item }}" wx:for="{{ notCorrectedss }}" wx:key="{{ index }}">
-		<scroll-view scroll-y="true">
-			<view class="canvas">
-				<canvas data-item="{{ item }}" data-idx="{{ index }}" catchtap="playbackTouchend"
-								canvas-id="{{ 'canvas' + index }}"
-								style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }}; background-image: url({{ item.pictureAnswer }}); background-repeat: no-repeat;background-size: cover;">
-				</canvas>
-			</view>
-			
-			<template is="subject_title" data="{{ item, index }}"></template>
-			<view>
-				<view wx:if="{{ item.isSub == 1 }}">
-					<!-- 循环遍历子题 -->
-					<view wx:for="{{ item.newSubquestionAnswers }}" wx:key="{{ index }}" data-twoIndx="{{ index }}" data-item="{{ item }}" bindtap="wrong_List">
-						<!-- 子题标题 -->
-						<template is="subject_title" data="{{ item, index }}"></template>
-						<!-- 选择 内容 逻辑 -->
-						<template is="subject_select" data="{{ item }}"></template>
-						<view hidden="{{ state == 1 || 2 }}">
-							<!-- 子题 学生 答案逻辑 -->
-							<template is="subject_answer" data="{{ item }}"></template>
-						</view>
-						<!-- 学生答案逻辑 -->
-						<view hidden="{{ state == 1 }}">
-							<view class="solution">
-								<view>【学生答案】</view>
-								<view class="text_indent">
-									<view class="stuAnswer" wx:if="{{ item.pictureAnswer != '' }}">
-										<view class="image">
-											<image mode="widthFix" data-index="{{ index }}" src="{{ item.pictureAnswer }}" data-img="imgTopic" bindtap='previewImg'></image>
-										</view>
-									</view>
-									<view class="stuAnswer" wx:elif="{{ item.stuAnswer != '' }}">
-										<rich-text type="nodes" space="nbsp" nodes="{{ item.stuAnswer }}"></rich-text>
-									</view>
-									<view class="stuAnswer" wx:else>
-										<text>空</text>
-									</view>
-								</view>
-							</view>
-						</view>
-						<view hidden="{{ state == 1 || 2 }}">
-							<!-- 批改结果 -->
-							<template is="subject_correction" data="{{ item }}"></template>
-						</view>
-					</view>
-				</view>
-				<view wx:if="{{ item.isSub == 0 }}">
-					<!-- 选择 内容 逻辑 -->
-					<template is="subject_select" data="{{ item }}"></template>
-					<!-- 大题 学生 答案逻辑 -->
-					<view hidden="{{ state == 1 }}">
-						<view hidden="{{ state == 2 }}">
-							<template is="subject_answer" data="{{ item }}"></template>
-							<template is="subject_similarity" data="{{ item }}"></template>
-						</view>
-						<!-- 学生 答题 逻辑 -->
-						<template is="subject_stuAnswer" data="{{ item }}"></template>
-						<view hidden="{{ state == 2 }}">
-							<!-- 批改结果 -->
-							<template is="subject_correction" data="{{ item }}"></template>
-						</view>
-					</view>
-				</view>
-			</view>
-			<!-- <view>{{ item.pictureAnswer }}</view> -->
-		</scroll-view>
-	</swiper-item>
-</swiper>
+<!-- <movable-area scale-area="true">
+	<movable-view direction="all" scale="true">
+		<view wx:for="{{ tempFilePath }}" wx:key="{{ index }}">
+			<image style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }};" src="{{ item.tempFilePath }}"></image>
+		</view>
+	</movable-view>
+</movable-area> -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+<movable-area scale-area="true">
+	<movable-view direction="all" scale="true">
+		<view wx:for="{{ notCorrectedss }}" wx:key="{{ index }}" data-indx="{{ index }}" data-item="{{ item }}">
+			<canvas data-item="{{ item }}" data-idx="{{ index }}"
+							canvas-id="{{ 'canvas' + index }}"
+							style="width: {{ item.width + 'px' }}; height: {{ item.height + 'px' }};">
+			</canvas>
+		</view>
+	</movable-view>
+</movable-area>
+
+<!-- background-image: url({{ item.pictureAnswer }}); background-repeat: no-repeat;background-size: cover; -->
+<!-- </scroll-view>

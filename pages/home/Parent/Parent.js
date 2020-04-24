@@ -14,7 +14,6 @@ let advImage = [
 ];
 
 let badge = 0;
-
 let list = [{
     text: "首页",
     iconPath: "/static/images/tabBar/mine_normal.png",

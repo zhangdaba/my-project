@@ -1,0 +1,43 @@
+<view>
+  <swiper class="pswiper" style="width:{{ windowWidth }}px; height:{{ windowHeight }}px"
+    vertical="{{false}}"
+    easing-function="linear" circular="true" indicator-dots="true">
+    <block wx:for="{{ workPictures }}" wx:key="{{ index }}"><!-- list 循环体 -->
+      <swiper-item>
+        <scroll-view scroll-y="true">
+          <movable-area style="height: 100%; width: 100%;" scale-area="true">
+            <movable-view style="height: 100%; width: 100%; background: rgba(0,0,0,.2);"
+                          x="{{x}}" y="{{y}}" direction="all" scale="true" scale-min="1" scale-max="5" animation="true"
+                          bindchange="eventhandle">
+              <!-- 第一种实现全屏方式 -->
+              <!-- <image class="pimg" src="{{ item.photo }}"></image> -->
+
+              <!-- 第二种实现全屏方式 -->
+              <!-- <view style="background-image: url({{ item.photo }});background-size: cover;background-repeat: no-repeat;width: {{ item.weight }}px;height: {{ item.height }}px"></view> -->
+
+              <!-- 第三种实现全屏方式 -->
+              <canvas canvas-id="{{ 'canvas' + index }}" style="width:{{ item.weight + 'px' }};height:{{ item.height + 'px' }};background-image:url({{ item.photo }});background-size:cover;background-repeat:no-repeat;"></canvas>
+              <view wx:for="{{ item.students }}" wx:key="{{ index }}" wx:for-item="student">
+                <view style="position: absolute;right: {{ student.startX * ratio }}px;top: {{ student.startY * ratio }}px;">123</view>
+              </view>
+            </movable-view>
+          </movable-area>
+        </scroll-view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- <block wx:for="{{ workPictures }}" wx:key="{{ index }}">
+  <swiper-item>
+    <scroll-view scroll-y="true">
+      <movable-area style="height: 100%; width: 100%;" scale-area="true">
+        <movable-view style="height: 100%; width: 100%; background: rgba(0,0,0,.2);"
+                      x="{{x}}" y="{{y}}" direction="all" scale="true" scale-min="1" scale-max="5" animation="true"
+                      bindchange="eventhandle">
+          <view style="background-image: url({{ item.photo }});background-size: cover;background-repeat: no-repeat;width: {{ item.weight * ratio }}px;height: {{ item.height * ratio }}px"></view>
+        </movable-view>
+      </movable-area>
+    </scroll-view>
+  </swiper-item>
+</block> -->

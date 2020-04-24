@@ -36,14 +36,15 @@
       </view>
     </view>
 
-    <view class="select" bindtap="ParentErrorBook">
+    <!-- <view class="select" bindtap="ParentErrorBook">
       <icon class="iconfont icon-cuoti"></icon>
       <view>
         <text>错题本\n</text>
         <text>错了什么一目了然</text>
       </view>
-    </view>
-<!--     
+    </view> -->
+
+  <!--     
     <view class="select" bindtap="parentInfo">
       <icon class="iconfont icon-xueqing"></icon>
       <view>

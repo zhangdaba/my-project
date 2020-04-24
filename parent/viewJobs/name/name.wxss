@@ -1,0 +1,22 @@
+.pswiper {
+  width: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+swiper .pimg {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+scroll-view {
+  height: 100%;
+}
+
+.class {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* style="'position': 'absolute'; 'right': 0px; 'left': '0px'" */
+}
