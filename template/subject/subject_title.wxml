@@ -2,7 +2,9 @@
   <view class="subject">
     <view class="subject_title">
       <view>{{ item.queNo }}.</view>
-      <rich-text type="nodes" space="nbsp" nodes="{{ item.queBody || item.title }}"></rich-text>
+      <view class="subject_content">
+        <rich-text type="nodes" space="nbsp" nodes="{{ item.queBody || item.title }}"></rich-text>
+      </view>
     </view>
   </view>
 </template>

@@ -15968,7 +15968,8 @@ let currentMidX = 0.0
 let currentMidY = 0.0
 let A4W = 210
 let A4H = 297
-let CodePoint = 1.524 // 腾千里码点大小
+let CodePoint = 1.524
+let storageDrawing = {}
 
 Page({
 
@@ -16021,62 +16022,65 @@ Page({
       newArr[i].height = canvasHeight
     })
     self.setData({workPictures,answers,ratio})
-    self.subSeeClick(answers, workPictures)
+    self.subSeeClick(workPictures)
   },
 
-  subSeeClick(answers, workPictures) {
+  subSeeClick(workPictures) {
     let self = this;
     workPictures.forEach((ele, i) => {
       const context = wx.createCanvasContext(`canvas${i}`)
-      self.answersCanvas(answers, context)
+      storageDrawing[workPictures[i].sobp] = context
+      context.drawImage('./../../../static/images/04.png', 0, 0, workPictures[0].weight, workPictures[0].height)
+      context.draw(true)
+      self.answersCanvas(workPictures)
     })
   },
-
-  answersCanvas(answers, context) {
-    for (let j = 0; j < answers.length; j++) {
-      let dotList = answers[j].dotList
+  
+  answersCanvas(workPictures) {
+    for (let j = 0; j < workPictures.length; j++) {
+      let dotList = workPictures[j].students
       if (!dotList) return
       /* 4.计算每一个点( 忽略 ) */
       // dotList = this.pointOperation(answers[j])
       /* 5.绘描点信息 */
-      this.dotListCanvas(dotList, context)
+      for(let i = 0; i < dotList.length; i++) {
+        let dotListItem = dotList[i].dotList
+        if (!dotListItem) return
+        this.dotListCanvas(dotListItem)
+      }
     }
   },
 
-  dotListCanvas(dotList, context) {
+  dotListCanvas(dotList) {
     dotList.forEach((item, i, array) => {
-      this.lineFunction(i, array, -2, -1.5, context)
+      this.lineFunction(i, array)
     })
   },
 
-  lineFunction(i, array, offsetX, offsetY, context) {
-    let preX = null
-    let preY = null
-    if (array[i].penType === 1 || array[i].penType === 2) {
-      // windowWidth
-      preX = (array[i].abX + offsetX) * (this.layoutsWidth / A4W) * CodePoint
-      preY = (array[i].abY + offsetY) * (this.layoutsWidth / A4W) * CodePoint
-    } else if (array[i].penType === 3 || array[i].penType === 4) {
-      preX = (array[i].abX + offsetX) * (this.layoutsWidth / A4W) * epenCodePoint
-      preY = (array[i].abY + offsetY) * (this.layoutsWidth / A4W) * epenCodePoint
-    }
+  lineFunction(i, array) {
+    let context = storageDrawing[array[i].sobp]
+    if(!context) return
+    let preX = array[i].abX * (this.data.windowWidth / A4W) * CodePoint
+    let preY = array[i].abY * (this.data.windowWidth / A4W) * CodePoint
     switch (array[i].dotType) {
-      case 'PEN_DOWN':
-        context.beginPath()
-        context.moveTo(array[i].abX, array[i].abY)
-        currentMidX = preX
-        currentMidY = preY
+      case "PEN_DOWN":
+        context.beginPath();
+        context.moveTo(preX, preY);
+        currentMidX = preX;
+        currentMidY = preY;
         break
-      case 'PEN_MOVE':
-        context.beginPath()
-        context.moveTo(currentMidX, currentMidY)
-        context.lineTo(preX, preY)
-        context.stroke()
-        currentMidX = preX // 保存下一个点, 并对上一个点进行覆盖
-        currentMidY = preY
-        break
-      case 'PEN_UP':
-        context.stroke()
+      case "PEN_MOVE":
+        context.beginPath();
+        context.moveTo(currentMidX, currentMidY);
+        context.lineTo(preX, preY);
+        context.stroke();
+        context.draw(true);
+        // log(currentMidX, currentMidY, "MOVE");
+        currentMidX = preX; // 保存下一个点, 并对上一个点进行覆盖
+        currentMidY = preY;
+        break;
+      case "PEN_UP":
+        context.draw(true);
         break
     }
   },

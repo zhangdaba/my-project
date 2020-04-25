@@ -12,6 +12,8 @@ Page({
    */
   onLoad: function (options) {
     let self = this;
+
+    return false
     const ctx = wx.createCanvasContext('myCanvas')
     this.setData({
       ctx: ctx

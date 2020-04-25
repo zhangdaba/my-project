@@ -1,16 +1,15 @@
 {
   "pages": [
     "parent/viewJobs/name/name",
+    "pages/name/name",
 
-    "parent/viewJobs/subSee/subSee",
-    "parent/viewJobs/submission/submiss",
     "pages/index/index",
-    "pages/home/Parent/Parent",
-    
-    "pages/forget/forget",
     "parent/ErrorBook/andError/andError",
     "parent/ErrorBook/seeError/seeError",
-    
+    "parent/viewJobs/subSee/subSee",
+    "parent/viewJobs/submission/submiss",
+    "pages/home/Parent/Parent",
+    "pages/forget/forget",
     "home/homeworkAssignment/sidebar/sidebar",
     "home/homeworkAssignment/setTime/setTime",
     "home/Report/emotion/emotion",
