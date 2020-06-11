@@ -18,6 +18,7 @@
         <view class="top-content">
           <view>第{{ index + 1 }}题.</view>
           <!-- <view>错误率:{{ dateFr.errorRate(item.chapterErrorRate) + '%' }}</view> -->
+          <view>{{item.chapterErrorRate}}</view>
           <!-- <view><checkbox value="{{ item.homeworkId }}"/></view> -->
         </view>
 
@@ -31,8 +32,7 @@
 
             <view wx:if="{{ item.picturePath != '' }}">
               <view class="images">
-                <image data-dati="dati" data-index="{{ index }}" bindtap='previewImg1' mode="widthFix" src="{{ item.picturePath }}">
-                </image>
+                <image data-dati="dati" data-index="{{ index }}" bindtap='previewImg1' mode="widthFix" src="{{ item.picturePath }}"></image>
               </view>
             </view>
 

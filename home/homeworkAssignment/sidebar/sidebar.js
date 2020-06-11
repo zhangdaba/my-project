@@ -116,7 +116,6 @@ Page({
       wx: "wx"
     }
 
-
     wx.request({
       url: config.anyuanURL + '/message/getNewChangeQue',
       data: c,

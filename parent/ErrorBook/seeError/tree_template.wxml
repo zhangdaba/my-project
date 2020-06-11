@@ -1,9 +1,11 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
 <template name="template">
   <view class="contentName" wx:if="{{ chapters.length }}">
     <view>章节目录</view>
     <view>章节错误率</view>
   </view>
+  
   <view class="ChapterRecursions">
     <view class="ChapterRecursionsNum">
       <view wx:for="{{ chapters }}" wx:key="{{ index }}" data-item="{{ item }}" catchtap='Knowledge'>
@@ -32,4 +34,5 @@
       </view>
     </view>
   </view>
+  
 </template>

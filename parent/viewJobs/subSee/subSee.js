@@ -33,7 +33,7 @@ Page({
   onLoad: function (options) {
     this.height();
     this.setData({ state: options.id });
-    this.aaa("992697007112192", "2");
+    this.aaa(options.homeworkId,options.id);
   },
 
   aaa(homeworkId, optionsId) {

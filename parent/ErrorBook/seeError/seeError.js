@@ -53,11 +53,9 @@ Page({
     let itemId = {
       id: 2
     }
-
     _this.setData({
       itemError: itemId.error
     });
-
     switch (itemId.id) {
       case 1:
         _this.whole();
@@ -112,7 +110,8 @@ Page({
   onLoad: function(options) {
     let _this = this;
     _this.setData({
-      subject: options.subjectId
+      // subject: options.subjectId
+      subject: 2
     })
 
     // 知识点
@@ -120,15 +119,15 @@ Page({
   },
   
   // 知识点
+
   knowledge: function() {
+    // 获取章节信息
     let _this = this;
     const ChildList = wx.getStorageSync('ChildrenItem');
-    const token = wx.getStorageSync('Token');
-    // console.log(ChildList, token, this.data.subject);
-
     wx.request({
       url: config.errorURL + '/wrong/getChapterOfParent?classId=' + ChildList.classId + '&subjectId=' + _this.data.subject + '&stuId=' + ChildList.id,
       data: '',
+      
       header: {},
       method: 'GET',
       success: function(res) {
@@ -152,11 +151,12 @@ Page({
   },
 
   Knowledge(e) {
+    // 章节下的错题
     let _this = this;
     let chapterId = e.currentTarget.dataset.item.chapterId;
     const ChildList = wx.getStorageSync('ChildrenItem');
     let subject = _this.data.subject;
-    
+    console.log()
     wx.request({
       url: config.errorURL + '/wrong/getErrorQueOfParent',
       data: { 'stuId': ChildList.id, 'chapterId': chapterId, 'subjectId': subject, wx: 'wx' },

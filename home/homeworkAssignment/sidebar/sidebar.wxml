@@ -27,6 +27,7 @@
         <view class="block" hidden="{{ !item.flag }}">
           <icon type="success" size="38rpx" color="#44a9ff"></icon>
         </view>
+
       </view>
 
       <!-- 题型开始 -->

@@ -1,13 +1,13 @@
 <wxs module="dateFr" src="../../../filter/students.wxs"></wxs>
+
 <import src="./tree_template.wxml"></import>
 <import src="./err_template.wxml"></import>
 
 <scroll-view scroll-y="true">
   <view class="top-and">
-  
     <view class="top_tab_number">
       <view class="top-tab" bindtap="switchTab">
-        <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{ questions }}" 
+        <view class="top-tab-item {{ currentTabInde == index?'active':'' }}" wx:for="{{ questions }}"
               data-index="{{ index }}" 
               wx:key="index">
               {{ item.error }}
@@ -20,6 +20,7 @@
       <template is="template" data="{{ chapters }}"></template>
     </view>
     <!-- 章节下 end -->
+
     <template is="err_template" data="{{ wholes }}"></template>
   </view>
 

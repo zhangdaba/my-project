@@ -11,35 +11,37 @@
             <scroll-view scroll-y="true">
               <!-- 第一种实现全屏方式 -->
               <!-- <image class="pimg" src="{{ item.photo }}"></image> -->
-              
+
               <!-- 第二种实现全屏方式 -->
               <!-- <view style="background-image: url({{ item.photo }});background-size: cover;background-repeat: no-repeat;width: {{ item.weight }}px;height: {{ item.height }}px"></view> -->
 
               <!-- 第三种实现全屏方式 -->
               <!-- background-image:url({{ item.photo }});background-size:cover;background-repeat:no-repeat;" -->
-              <canvas canvas-id="{{ 'canvas' + index }}" style="width:{{ item.weight + 'px' }};height:{{ item.height + 'px' }};"></canvas>
-              <view wx:for="{{ item.students }}" wx:key="{{ index }}" wx:for-item="student">
-                <view style="position: absolute;right: {{ student.startX * ratio }}px;top: {{ student.startY * ratio }}px;">对</view>
-              </view>
-              </scroll-view>
+              <canvas canvas-id="{{ 'canvas' + index }}" style="width:{{ item.weight + 'px' }};height:{{ item.height + 'px' }};position: absolute;top: -999px;left: -999px;opacity: 0;"></canvas>
 
+              <view wx:for="{{ item.students }}" wx:key="{{ index }}" wx:for-item="student">
+
+                <view style="position: absolute;left: {{ student.startX * ratio + 20 }}px;top: {{ student.startY * ratio }}px;">
+                  {{ student.corrResult ? '错':'对' }}
+                  <icon wx:if="student.corrResult" class="iconfont icon-V"></icon>
+                  <icon wx:else class="iconfont icon-duigou"></icon>
+                </view>
+              </view>
+
+              <view style="text-align: center;">
+                <image style="width:{{ item.weight - 20 + 'px' }};height:{{ item.height + 'px' }};" src="{{ item.copyPhoto }}"></image>
+              </view>
+
+              </scroll-view>
             </movable-view>
           </movable-area>
       </swiper-item>
     </block>
   </swiper>
-</view>
 
-<!-- <block wx:for="{{ workPictures }}" wx:key="{{ index }}">
-  <swiper-item>
-    <scroll-view scroll-y="true">
-      <movable-area style="height: 100%; width: 100%;" scale-area="true">
-        <movable-view style="height: 100%; width: 100%; background: rgba(0,0,0,.2);"
-                      x="{{x}}" y="{{y}}" direction="all" scale="true" scale-min="1" scale-max="5" animation="true"
-                      bindchange="eventhandle">
-          <view style="background-image: url({{ item.photo }});background-size: cover;background-repeat: no-repeat;width: {{ item.weight * ratio }}px;height: {{ item.height * ratio }}px"></view>
-        </movable-view>
-      </movable-area>
-    </scroll-view>
-  </swiper-item>
-</block> -->
+  <view>
+    
+  </view>
+  <view class="reference">参考答案</view>
+
+</view>

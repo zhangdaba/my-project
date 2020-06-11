@@ -36,7 +36,6 @@ Component({
     show: function() {
       console.log('show');
       this.Identity();
-      
     },
     hide: function() {
       console.log('hide');

@@ -204,6 +204,8 @@ Page({
       submitHomework_id: newradioChoice //作业id
     }
 
+    console.log(submit, ">>>>>>>>>>>>>>")
+    
     wx.request({
       url: config.itemURL + '/submitHomework/submitHomework',
       data: submit,

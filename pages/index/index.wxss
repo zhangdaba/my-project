@@ -104,3 +104,33 @@ page {
   font-size: 28rpx;
   color: #929292;
 }
+
+
+
+page, .page {
+  height: 100%;
+  font-family: 
+  'PingFang SC',
+  'Helvetica Neue',
+   Helvetica,
+  'Droid Sans Fallback',
+  'Microsoft Yachei',
+  sans-serif;
+  font-size: 28rpx;
+  background: #f6f7fb;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+.first .box {
+  padding-left: 20rpx;
+  display: inline-block;
+}
